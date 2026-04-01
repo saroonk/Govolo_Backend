@@ -1,0 +1,686 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Govolo Tours</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Clash Grotesk Font -->
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600,700&display=swap" rel="stylesheet">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/aboutus.css' %}">
+</head>
+
+<body>
+
+
+<div class="social-iconss">
+        <a href="" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <a href="" target="_blank" rel="noopener noreferrer" class="telephone-float">
+        <i class="bi bi-telephone"></i>
+    </a>
+
+    <a href="mailto:[EMAIL_ADDRESS]" target="_blank" rel="noopener noreferrer" class="email-float">
+        <i class="bi bi-envelope"></i>
+    </a>
+</div>
+
+
+    <!-- Desktop & Mobile Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+        <div class="container-fluid px-3">
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="{% static 'images/Group_1.png' %}" alt="Govolo Tours">
+            </a>
+
+            <!-- Mobile Toggle Button (Triggers Offcanvas Drawer) -->
+            <button class="navbar-toggler border-0 shadow-none d-lg-none p-0" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#mobileDrawer" aria-controls="mobileDrawer">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Desktop Menu -->
+            <div class="collapse navbar-collapse d-none d-lg-flex" id="desktopNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+    
+                    <!-- Multi-level Dropdown for Destinations -->
+<li class="nav-item mega-parent ">
+    <a class="nav-link mega-trigger" href="#">
+        International 
+        <i class="bi bi-chevron-down ms-1 small dropdown-icon"></i>
+    </a>
+
+    <!-- FULL WIDTH WRAPPER -->
+    <div class="mega-menu mt-2">
+
+        <!-- INNER CONTAINER (IMPORTANT) -->
+        <div class="container">
+            <div class="row">
+
+                <!-- Asia -->
+                <div class="col-lg-4">
+                    <h6 class="mega-heading">Asia</h6>
+                    <ul class="mega-list">
+                        <li>Bali </li>
+                        <li>Maldives </li>
+                        <li>Thailand <span class="badge badge-budget">BUDGET</span></li>
+                        <li>Dubai</li>
+                        <li>Vietnam</li>
+                    </ul>
+                </div>
+
+                <!-- Europe -->
+                <div class="col-lg-4">
+                    <h6 class="mega-heading">Europe</h6>
+                    <ul class="mega-list">
+                        <li>France</li>
+                        <li>Switzerland</li>
+                        <li>Spain<span class="badge badge-trending">TRENDING</span></li>
+                        <li>Italy</li>
+                        <li>Germany</li>
+                    </ul>
+                </div>
+
+                <!-- Africa -->
+                <div class="col-lg-4">
+                    <h6 class="mega-heading">Africa</h6>
+                    <ul class="mega-list">
+                        <li>Kenya</li>
+                        <li>South Africa</li>
+                        <li>Egypt <span class="badge badge-trending">TRENDING</span></li>
+                        <li>Morocco</li>
+
+                        <!-- SINGLE VIEW ALL -->
+                        <li class="mt-3">
+                            <a href="/destinations/" class="view-all">
+                                Explore 40+ Destinations →
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#" >
+                            Domestic
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#" >
+                            Packages
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Testimonials</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-primary rounded-pill px-4 nav-explore-btn " type="button">Explore Tours <i
+                            class="bi bi-arrow-right ms-2   align-text-bottom"></i></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <!-- Custom Mobile Drawer (Offcanvas) -->
+    <div class="offcanvas offcanvas-start custom-mobile-drawer border-0 shadow-sm" tabindex="-1" id="mobileDrawer"
+        aria-labelledby="mobileDrawerLabel">
+        <div class="offcanvas-header border-bottom-0 mt-2 px-4">
+            <h5 class="offcanvas-title" id="mobileDrawerLabel">
+                <img src="{% static 'images/Group_1.png' %}" alt="Govolo Tours" style="height: 36px; width: auto;">
+            </h5>
+            <button type="button" class="btn-close shadow-none p-2" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body px-4 pt-1">
+            <div class="accordion accordion-flush mobile-nav-accordion" id="mobileNavAccordion">
+                <div class="nav-item mb-3">
+                    <a class="nav-link active  fs-5" href="#">Home</a>
+                </div>
+                <div class="nav-item mb-3">
+                    <a class="nav-link  fs-5" href="#">About</a>
+                </div>
+                <!-- Accordion for Mobile Dropdown (Clean/Modern integration) -->
+
+                <!-- Nested Accordion for Destinations Mobile Dropdown -->
+                <div class="accordion-item border-0 mb-3 bg-transparent">
+                    <h2 class="accordion-header" id="headingDestinations">
+                        <button class="accordion-button collapsed px-0 py-0 shadow-none bg-transparent fs-5"
+                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseDestinations"
+                            aria-expanded="false" aria-controls="collapseDestinations">
+                            International
+                        </button>
+                    </h2>
+                    <div id="collapseDestinations" class="accordion-collapse collapse" aria-labelledby="headingDestinations"
+                        data-bs-parent="#mobileNavAccordion">
+                        <div class="accordion-body px-3 py-2 mt-2 border-start border-2 border-light">
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                                <li class="accordion accordion-flush" id="nestedNavAccordionInt">
+                                    <div class="accordion-item border-0 bg-transparent mb-0">
+                                        <h2 class="accordion-header" id="headingInt">
+                                            <button class="accordion-button collapsed px-0 py-1 shadow-none bg-transparent text-muted nav-sublink"
+                                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseInt"
+                                                aria-expanded="false" aria-controls="collapseInt" style="font-size: 1rem;">
+                                                Asia
+                                            </button>
+                                        </h2>
+                                        <div id="collapseInt" class="accordion-collapse collapse" aria-labelledby="headingInt"
+                                            data-bs-parent="#nestedNavAccordionInt">
+                                            <div class="accordion-body px-3 py-1 mt-1 border-start border-1 border-light">
+                                                <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Bali</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Maldives</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Thailand</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Vietnam</a></li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="accordion-item border-0 bg-transparent mb-0">
+                                        <h2 class="accordion-header" id="headingInt">
+                                            <button class="accordion-button collapsed px-0 py-1 shadow-none bg-transparent text-muted nav-sublink"
+                                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseeuro"
+                                                aria-expanded="false" aria-controls="collapseInt" style="font-size: 1rem;">
+                                                Europe
+                                            </button>
+                                        </h2>
+                                        <div id="collapseeuro" class="accordion-collapse collapse" aria-labelledby="headingInt"
+                                            data-bs-parent="#nestedNavAccordionInt">
+                                            <div class="accordion-body px-3 py-1 mt-1 border-start border-1 border-light">
+                                                <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">France</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Switzerland</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Italy</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Spain</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="accordion-item border-0 bg-transparent mb-0">
+                                        <h2 class="accordion-header" id="headingInt">
+                                            <button class="accordion-button collapsed px-0 py-1 shadow-none bg-transparent text-muted nav-sublink"
+                                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseafr"
+                                                aria-expanded="false" aria-controls="collapseInt" style="font-size: 1rem;">
+                                                Africa
+                                            </button>
+                                        </h2>
+                                        <div id="collapseafr" class="accordion-collapse collapse" aria-labelledby="headingInt"
+                                            data-bs-parent="#nestedNavAccordionInt">
+                                            <div class="accordion-body px-3 py-1 mt-1 border-start border-1 border-light">
+                                                <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Kenya</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">South Africa</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Egypt</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Morocco</a></li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </li>
+
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+                                <div class="nav-item mb-3">
+                    <a class="nav-link active fs-5" href="#">Domestic</a>
+                </div>
+
+
+                <div class="nav-item mb-3">
+                    <a class="nav-link active fs-5" href="#">Packages</a>
+                </div>
+
+
+                <div class="nav-item mb-3">
+                    <a class="nav-link  fs-5" href="#">Testimonials</a>
+                </div>
+            </div>
+
+            <button
+                class="btn btn-primary rounded-pill w-100 py-3 mt-4 fs-6  d-flex align-items-center justify-content-center mobile-explore-btn"
+                type="button">
+                Explore Tours <i class="bi bi-arrow-right ms-2"></i>
+            </button>
+        </div>
+    </div>
+
+    <section class="about-hero d-flex align-items-center justify-content-center text-center text-white">
+        <div class="container" data-aos="fade-up" data-aos-duration="1000">
+            <p class="hero-label text-uppercase tracking-wider mb-3">Unforgettable Journeys</p>
+            <h1 class="display-2 fw-semibold mb-4 hero-main-title">Explore The World With Us</h1>
+            <p class="lead mb-5 mx-auto opacity-75 hero-desc" style="max-width: 700px;">
+                Discover hidden gems and create lasting memories with our curated travel experiences designed just for you.
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="#about-company" class="btn btn-primary rounded-pill px-md-5 px-4 py-3 shadow-lg">Start Your Story</a>
+                <a href="#" class="btn btn-outline-light rounded-pill px-md-5 px-3 py-3 text-white border-2">Contact Us <i class="bi bi-arrow-right ms-1"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-company" class="py-5 section-padding overflow-hidden">
+        <div class="container py-lg-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="about-img-wrapper position-relative">
+                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=1935&auto=format&fit=crop" 
+                             alt="Company History" class="img-fluid rounded-4 shadow-xl main-about-img">
+                        <div class="experience-badge bg-primary text-white p-4 rounded-4 shadow-lg position-absolute bottom-0 end-0 translate-middle-y me-n4">
+                            <h2 class="mb-0 fw-bold">15+</h2>
+                            <p class="mb-0 text-uppercase small">Years of Passion</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <p class="section-subtitle">Since 2010</p>
+                    <h2 class="section-title mb-4">Dedicated to Making Every Journey Exceptional</h2>
+                    <p class="text-muted mb-4 lead font-secondary">
+                        Govolo Tours began with a simple belief: travel should be more than just visiting places; it should be about connecting with the world.
+                    </p>
+                    <p class="text-muted mb-5">
+                        Our team of seasoned explorers and travel experts works tirelessly to handpick destinations and activities that provide genuine cultural immersion and unparalleled comfort. We don't just book tours; we craft narratives.
+                    </p>
+                    <div class="row g-4">
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="icon-box bg-light text-primary rounded-circle p-3">
+                                    <i class="bi bi-globe2 fs-4"></i>
+                                </div>
+                                <h6 class="mb-0 fw-semibold">Global Reach</h6>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="icon-box bg-light text-primary rounded-circle p-3">
+                                    <i class="bi bi-shield-check fs-4"></i>
+                                </div>
+                                <h6 class="mb-0 fw-semibold">Safe & Secure</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-light py-5 section-padding">
+        <div class="container py-lg-5">
+            <div class="row g-4">
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card border-0 rounded-4 shadow-sm h-100 p-4 p-md-5">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="mission-icon me-3">
+                                <i class="bi bi-bullseye text-primary display-4"></i>
+                            </div>
+                            <h3 class="mb-0 section-title fs-2">Our Mission</h3>
+                        </div>
+                        <p class="text-muted fs-5">
+                            To empower travelers by providing seamless, sustainable, and soulful travel experiences that respect local cultures and create positive global impact.
+                        </p>
+                        <ul class="list-unstyled mt-4 d-flex flex-column gap-3">
+                            <li class="d-flex align-items-center gap-2"><i class="bi bi-check2-circle text-primary"></i> Sustainable Tourism</li>
+                            <li class="d-flex align-items-center gap-2"><i class="bi bi-check2-circle text-primary"></i> Cultural Preservation</li>
+                            <li class="d-flex align-items-center gap-2"><i class="bi bi-check2-circle text-primary"></i> Authentic Local Experiences</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card border-0 rounded-4 shadow-sm h-100 p-4 p-md-5">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="mission-icon me-3">
+                                <i class="bi bi-eye text-primary display-4"></i>
+                            </div>
+                            <h3 class="mb-0 section-title fs-2">Our Vision</h3>
+                        </div>
+                        <p class="text-muted fs-5">
+                            To be the world's most trusted travel companion, known for innovation in travel technology and excellence in personalized service.
+                        </p>
+                        <ul class="list-unstyled mt-4 d-flex flex-column gap-3">
+                            <li class="d-flex align-items-center gap-2"><i class="bi bi-check2-circle text-primary"></i> Industry Leadership</li>
+                            <li class="d-flex align-items-center gap-2"><i class="bi bi-check2-circle text-primary"></i> Customer Centric Approach</li>
+                            <li class="d-flex align-items-center gap-2"><i class="bi bi-check2-circle text-primary"></i> Continuous Innovation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 section-padding">
+        <div class="container py-lg-5 text-center">
+            <p class="section-subtitle">The Govolo Edge</p>
+            <h2 class="section-title mb-5">Why Travelers Choose Us</h2>
+            <div class="row g-4 mt-2">
+                <!-- Affordable Packages -->
+                <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="feature-card p-4 rounded-4 border h-100 transition-all">
+                        <div class="feature-icon-lg mb-4 text-primary bg-primary-light rounded-circle mx-auto">
+                            <i class="bi bi-tag fs-2"></i>
+                        </div>
+                        <h5 class="fw-semibold mb-3">Affordable Packages</h5>
+                        <p class="text-muted small mb-0">Premium experiences at prices that make sense. Luxury within reach.</p>
+                    </div>
+                </div>
+                <!-- Worldwide Destinations -->
+                <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="feature-card p-4 rounded-4 border h-100 transition-all">
+                        <div class="feature-icon-lg mb-4 text-primary bg-primary-light rounded-circle mx-auto">
+                            <i class="bi bi-map fs-2"></i>
+                        </div>
+                        <h5 class="fw-semibold mb-3">Global Destinations</h5>
+                        <p class="text-muted small mb-0">From bustling cities to quiet peaks, explore 50+ countries with us.</p>
+                    </div>
+                </div>
+                <!-- Trusted Guides -->
+                <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="feature-card p-4 rounded-4 border h-100 transition-all">
+                        <div class="feature-icon-lg mb-4 text-primary bg-primary-light rounded-circle mx-auto">
+                            <i class="bi bi-person-check fs-2"></i>
+                        </div>
+                        <h5 class="fw-semibold mb-3">Trusted Guides</h5>
+                        <p class="text-muted small mb-0">Local experts who bring history and culture to life in every step.</p>
+                    </div>
+                </div>
+
+<div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="300">
+    <div class="feature-card p-4 rounded-4 border h-100 transition-all">
+        <div class="feature-icon-lg mb-4 text-primary bg-primary-light rounded-circle mx-auto">
+            <i class="bi bi-geo-alt fs-2"></i>
+        </div>
+        <h5 class="fw-semibold mb-3">Direct Destination Support</h5>
+        <p class="text-muted small mb-0">
+            Direct contact with each destination ensuring quality service, with local insights and dedicated support throughout your journey.
+        </p>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="400">
+    <div class="feature-card p-4 rounded-4 border h-100 transition-all">
+        <div class="feature-icon-lg mb-4 text-primary bg-primary-light rounded-circle mx-auto">
+            <i class="bi bi-people fs-2"></i>
+        </div>
+        <h5 class="fw-semibold mb-3">Smart Tour Management</h5>
+        <p class="text-muted small mb-0">
+            Virtual tour manager for small groups (under 20 people) and a dedicated tour manager for larger groups to ensure a smooth travel experience.
+        </p>
+    </div>
+</div>
+                <!-- 24/7 Support -->
+                <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="feature-card p-4 rounded-4 border h-100 transition-all">
+                        <div class="feature-icon-lg mb-4 text-primary bg-primary-light rounded-circle mx-auto">
+                            <i class="bi bi-headset fs-2"></i>
+                        </div>
+                        <h5 class="fw-semibold mb-3">24/7 Support</h5>
+                        <p class="text-muted small mb-0">Always there for you. Assistance is just a call away, anytime.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="provide-section py-5 section-padding position-relative">
+        <div class="container py-lg-5">
+            <div class="row mb-5">
+                <div class="col-lg-6">
+                    <p class="text-white fw-medium mb-2">Expert Offerings</p>
+                    <h2 class="display-5  mb-0">What We Provide</h2>
+                </div>
+            </div>
+            <div class="row g-4 overflow-hidden">
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-strip d-flex align-items-center p-4 rounded-4 bg-white bg-opacity-10 border border-white border-opacity-10">
+                        <div class="service-icon me-4 text-white">
+                            <i class="bi bi-briefcase display-5"></i>
+                        </div>
+                        <div>
+                            <h4 class="mb-1 fw-semibold">Tour Packages</h4>
+                            <p class="mb-0 text-white shadow-none opacity-75">All-inclusive groups and solo adventures.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-strip d-flex align-items-center p-4 rounded-4 bg-white bg-opacity-10 border border-white border-opacity-10">
+                        <div class="service-icon me-4 text-white">
+                            <i class="bi bi-sliders2 display-5"></i>
+                        </div>
+                        <div>
+                            <h4 class="mb-1 fw-semibold">Custom Trips</h4>
+                            <p class="mb-0 opacity-75">Tailor-made itineraries based on your pace.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-strip d-flex align-items-center p-4 rounded-4 bg-white bg-opacity-10 border border-white border-opacity-10">
+                        <div class="service-icon me-4 text-white">
+                            <i class="bi bi-building-check display-5"></i>
+                        </div>
+                        <div>
+                            <h4 class="mb-1 fw-semibold">Hotel Booking</h4>
+                            <p class="mb-0 opacity-75">Curated selection of stays from boutique to luxury.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-strip d-flex align-items-center p-4 rounded-4 bg-white bg-opacity-10 border border-white border-opacity-10">
+                        <div class="service-icon me-4 text-white">
+                            <i class="bi bi-car-front display-5"></i>
+                        </div>
+                        <div>
+                            <h4 class="mb-1 fw-semibold">Transportation</h4>
+                            <p class="mb-0 opacity-75">Seamless airport and local commute solutions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 section-padding">
+        <div class="container py-lg-5">
+            <div class="row align-items-center g-md-5 g-3">
+                <div class="col-lg-7" data-aos="fade">
+                    <div class="collage-grid">
+                        <div class="collage-item item-1">
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1473" alt="Beach" class="rounded-4">
+                        </div>
+                        <div class="collage-item item-2">
+                            <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=1470" alt="Mountain" class="rounded-4">
+                        </div>
+                        <div class="collage-item item-3">
+                            <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1374" alt="City" class="rounded-4">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5" data-aos="fade">
+                    <p class="section-subtitle">Visual Journey</p>
+                    <h2 class="section-title mb-4">Capturing Moments That Last a Lifetime</h2>
+                    <p class="text-muted mb-4">
+                        A picture is worth a thousand words, but a travel memory is priceless. We share the beauty of the world through the eyes of our travelers.
+                    </p>
+                    <div class="experience-list">
+                        <div class="d-flex align-items-start gap-3 mb-4">
+                            <i class="bi bi-camera text-primary fs-4"></i>
+                            <div>
+                                <h6 class="fw-semibold mb-1">Photography Tours</h6>
+                                <p class="small text-muted mb-0">Guided sessions for enthusiasts to capture perfection.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start gap-3">
+                            <i class="bi bi-journal-text text-primary fs-4"></i>
+                            <div>
+                                <h6 class="fw-semibold mb-1">Travel Journals</h6>
+                                <p class="small text-muted mb-0">We help you document your stories as you go.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <section class="stats-bg py-5">
+        <div class="container py-4" data-aos="fade-up">
+            <div class="row text-center g-4">
+                <div class="col-6 col-md-3">
+                    <h2 class="display-4  text-primary mb-1">10k+</h2>
+                    <p class="text-uppercase small tracking-widest text-muted fw-medium">Travelers</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h2 class="display-4  text-primary mb-1">50+</h2>
+                    <p class="text-uppercase small tracking-widest text-muted fw-medium">Destinations</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h2 class="display-4  text-primary mb-1">15+</h2>
+                    <p class="text-uppercase small tracking-widest text-muted fw-medium">Years Experience</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h2 class="display-4  text-primary mb-1">99%</h2>
+                    <p class="text-uppercase small tracking-widest text-muted fw-medium">Happy Clients</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 section-padding bg-light">
+        <div class="container py-lg-5">
+            <div class="text-center mb-5">
+                <p class="section-subtitle">Meet Our Team</p>
+                <h2 class="section-title">The People Behind Your Trips</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="team-card bg-white rounded-4 overflow-hidden border-0 shadow-sm text-center">
+                        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="CEO" class="img-fluid w-100">
+                        <div class="p-4">
+                            <h5 class="fw-semibold mb-1">Alex Rivier</h5>
+                            <p class="text-muted small mb-0">CEO & Founder</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="team-card bg-white rounded-4 overflow-hidden border-0 shadow-sm text-center">
+                        <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Operations" class="img-fluid w-100">
+                        <div class="p-4">
+                            <h5 class="fw-semibold mb-1">Sarah Jenkins</h5>
+                            <p class="text-muted small mb-0">Head of Operations</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="team-card bg-white rounded-4 overflow-hidden border-0 shadow-sm text-center">
+                        <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Guide" class="img-fluid w-100">
+                        <div class="p-4">
+                            <h5 class="fw-semibold mb-1">David Chen</h5>
+                            <p class="text-muted small mb-0">Senior Travel Guide</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="team-card bg-white rounded-4 overflow-hidden border-0 shadow-sm text-center">
+                        <img src="https://randomuser.me/api/portraits/women/4.jpg" alt="Support" class="img-fluid w-100">
+                        <div class="p-4">
+                            <h5 class="fw-semibold mb-1">Elena Petrova</h5>
+                            <p class="text-muted small mb-0">Customer Success</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="cta-box bg-primary rounded-5 p-5 text-center text-white position-relative overflow-hidden" data-aos="zoom-in">
+                <div class="position-relative z-1">
+                    <h2 class="display-4 fw-bold mb-4">Ready To Start Your Adventure?</h2>
+                    <p class="fs-5 mb-5 opacity-75 mx-auto" style="max-width: 600px;">
+                        Join 10,000+ happy travelers and book your dream trip today. We handle the details, you make the memories.
+                    </p>
+                    <a href="#" class="btn btn-white rounded-pill px-md-5 px-4 py-3 fw-semibold text-primary">Book Your Trip Now <i class="bi bi-arrow-right ms-2"></i></a>
+                </div>
+                <div class="cta-circle position-absolute top-0 end-0 translate-middle"></div>
+            </div>
+        </div>
+    </section>
+
+   {% include 'footer.html' %}
+
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+                    const navbar = document.querySelector('.custom-navbar');
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+    }
+
+    
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,4528 @@
+/* Color Variables */
+:root {
+    --primary-blue: #0077FF;
+    --navbar-bg: #fff9f9c6;
+    --pure-white: #FFFFFF;
+    --hover-blue: #2f8bf5;
+    --light-gray: #f8f9fa;
+    --text-dark: #212529;
+}
+
+body {
+    font-family: 'Clash Grotesk', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    color: var(--text-dark);
+}
+
+/* Typography Overrides */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+}
+
+/* ===== Reusable Section Headings ===== */
+.section-subtitle {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #113D48;
+    margin-bottom: 0.5rem;
+    font-family: 'Clash Grotesk', sans-serif;
+}
+
+.section-title {
+    font-size: 42px;
+    letter-spacing: -1.5px;
+    font-weight: 500;
+    color: var(--primary-blue);
+    line-height: 1.2;
+    margin-bottom: 0;
+    font-family: 'Clash Grotesk', sans-serif;
+}
+
+@media (max-width: 991px) {
+    .section-title {
+        font-size: 2.5rem;
+    }
+}
+
+.text-primary {
+    color: var(--primary-blue) !important;
+}
+
+.bg-primary {
+    background-color: var(--primary-blue) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary-blue);
+    border-color: var(--primary-blue);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--hover-blue);
+    border-color: var(--hover-blue);
+}
+
+.text-info {
+    color: #40c4ff !important;
+}
+
+
+
+
+.navbar-brand img {
+    height: clamp(2.5rem, 4vw, 3.5rem);
+    width: auto;
+}
+
+
+.custom-navbar {
+    /* background-color: var(--navbar-bg); */
+    /* background-color: transparent;
+
+    backdrop-filter: blur(0px); */
+
+
+    background-color: #ffffff !important;
+    backdrop-filter: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+
+
+    border-radius: 12px;
+    margin: 1.5rem auto;
+    width: 95%;
+    max-width: 1400px;
+    padding: 0.6rem 0.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+
+}
+
+/* Scrolled Navbar Style */
+.custom-navbar.navbar-scrolled {
+    background-color: #ffffff !important;
+    backdrop-filter: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.custom-navbar.navbar-scrolled .nav-link {
+    color: #000000 !important;
+}
+
+.custom-navbar.navbar-scrolled .navbar-toggler-icon {
+    filter: none !important;
+}
+
+/* Ensure default toggler is white */
+/* .navbar-toggler-icon {
+    filter: invert(1) brightness(200%);
+    transition: filter 0.3s ease;
+} */
+
+
+
+@media (max-width: 991px) {
+    .custom-navbar {
+        padding: 0.5rem 0.5rem;
+        margin: 1rem auto;
+        border-radius: 10px;
+    }
+}
+
+.navbar-nav .nav-link {
+    color: #020202;
+    font-weight: 400;
+    font-size: 1rem;
+    transition: color 0.5s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--primary-blue) !important;
+
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--primary-blue) !important;
+    font-size: 1.1rem;
+}
+
+.govolo-brand {
+    color: var(--text-dark);
+    letter-spacing: -0.5px;
+}
+
+.dropdown-icon {
+    vertical-align: middle;
+    transition: transform 0.2s;
+}
+
+@media (min-width: 992px) {
+    .hover-dropdown:hover>.dropdown-menu {
+        display: block;
+        margin-top: 0;
+        animation: fadeIn 0.15s ease-in-out;
+    }
+
+    .hover-dropdown-submenu>.dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -1px;
+    }
+
+    .hover-dropdown-submenu:hover>.dropdown-menu {
+        display: block;
+        animation: fadeIn 0.15s ease-in-out;
+    }
+
+    .hover-dropdown:hover>.nav-link .dropdown-icon {
+        transform: rotate(180deg);
+    }
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdown-menu {
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 0.5rem 0;
+    min-width: 200px;
+    /* z-index: 100; */
+}
+
+.dropdown-item {
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 1.25rem;
+    color: #444;
+    transition: all 0.2s;
+    border-radius: 8px !important;
+    /* background-color: red !important; */
+}
+
+.dropdown-item:hover {
+    background-color: rgba(0, 119, 255, 0.05);
+    color: var(--primary-blue);
+}
+
+
+
+.nav-explore-btn {
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    display: flex;
+    padding: 12px;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+
+    font-family: 'Clash Grotesk', sans-serif !important;
+
+}
+
+.custom-mobile-drawer {
+    width: 85% !important;
+    max-width: 380px;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    background-color: var(--pure-white);
+    /* background-color: transparent; */
+    backdrop-filter: blur(20px);
+
+}
+
+.custom-mobile-drawer .nav-link {
+    padding-left: 0;
+    color: #111;
+}
+
+.accordion-button::after {
+    background-size: 1rem;
+    color: var(--text-dark);
+}
+
+.accordion-button:not(.collapsed)::after {
+    filter: brightness(0) saturate(100%) invert(32%) sepia(87%) saturate(3089%) hue-rotate(204deg) brightness(101%) contrast(106%);
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--primary-blue);
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.nav-sublink {
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.nav-sublink:hover {
+    color: var(--primary-blue) !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mega-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    width: 100%;
+    /* Keep the image, but use a light overlay */
+    /* background: url('assets/dest_amsterdam.jpg') no-repeat center center; */
+    background-size: cover;
+    padding: 40px 0;
+    border-radius: 16px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+    z-index: 9999;
+}
+
+/* Updated overlay to light theme matching default website */
+.mega-menu::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.95) 100%);
+    z-index: 0;
+}
+
+.mega-menu .container {
+    position: relative;
+    z-index: 1;
+}
+
+@media (min-width: 992px) {
+    .mega-parent:hover .mega-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+.mega-parent::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 16px;
+}
+
+/* =========================
+   COLUMNS
+========================= */
+
+.mega-menu .col-lg-4 {
+    padding: 0 40px;
+    border-right: 1px solid rgba(0, 0, 0, 0.08); /* changed from light to dark */
+    transition: background 0.3s ease;
+}
+
+.mega-menu .col-lg-4:last-child {
+    border-right: none;
+}
+
+/* =========================
+   REGION HEADING
+========================= */
+
+.mega-heading {
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #113D48; /* matched with section subtitle titles in dark, or #212529 */
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+    /* Slide-in animation on menu open */
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.mega-parent:hover .mega-heading {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Theme primary blue map icon before heading */
+.mega-heading::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    /* changing stroke='%23ffffff' to stroke='%230077FF' (var(--primary-blue)) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230077FF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+    flex-shrink: 0;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.mega-menu .col-lg-4:hover .mega-heading::before {
+    transform: rotate(20deg) scale(1.15);
+}
+
+/* Stagger heading animations per column */
+.mega-menu .col-lg-4:nth-child(1) .mega-heading { transition-delay: 0.1s; }
+.mega-menu .col-lg-4:nth-child(2) .mega-heading { transition-delay: 0.15s; }
+.mega-menu .col-lg-4:nth-child(3) .mega-heading { transition-delay: 0.2s; }
+
+/* =========================
+   DESTINATION LIST
+========================= */
+
+.mega-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mega-list li {
+    font-size: 16px;
+    color: #4b5563; /* light theme list item color */
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.mega-list li:not(.mt-3) {
+    position: relative;
+    padding-left: 0;
+}
+
+.mega-list li:not(.mt-3):hover {
+    padding-left: 16px;
+    color: var(--primary-blue);
+}
+
+.mega-list li:not(.mt-3)::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-blue);
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.mega-list li:not(.mt-3):hover::before {
+    opacity: 1;
+}
+
+/* =========================
+   BADGES
+========================= */
+
+.mega-list .badge {
+    /* Push badge away from the left text */
+    margin-left: 12px;
+    
+    font-size: 10px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+}
+
+/* Reset badges to default theme badges with slightly adjusted borders for crispness */
+.mega-list .badge-trending {
+    background: #edf5fb !important;
+    color: #0077FF !important;
+    border: 1px solid rgba(0, 119, 255, 0.15);
+}
+
+.mega-list .badge-honeymoon {
+    background: #fce7f3 !important;
+    color: #be185d !important;
+    border: 1px solid rgba(236, 72, 153, 0.15);
+}
+
+.mega-list .badge-budget {
+    background: #fef3c7 !important;
+    color: #92400e !important;
+    border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+/* Fallback/global definitions for badges in case they are used outside mega menu */
+.badge-trending {
+    background: #edf5fb !important;
+    color: var(--primary-blue) !important;
+}
+
+.badge-honeymoon {
+    background: #fce7f3;
+    color: #be185d;
+}
+
+.badge-budget {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+/* =========================
+   VIEW ALL LINK
+========================= */
+
+.view-all {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-blue);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 24px;
+    background: rgba(0, 119, 255, 0.05);
+    border-radius: 50px;
+    border: 1px solid rgba(0, 119, 255, 0.15);
+    margin-top: 10px;
+}
+
+.view-all:hover {
+    background: var(--primary-blue);
+    color: #ffffff;
+    gap: 12px;
+}
+
+/* =========================
+   DROPDOWN ICON ROTATION
+========================= */
+
+.dropdown-icon {
+    display: inline-block;
+    transition: transform 0.22s ease;
+}
+
+.mega-parent:hover .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+
+
+
+
+
+
+
+
+/* ===== Hero Section ===== */
+.hero-section {
+    min-height: 100svh !important;
+}
+
+.hero-content-box {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.hero-subtitle {
+    letter-spacing: 0.5px;
+    opacity: 0.95;
+    font-size: 18px;
+    font-weight: 400 !important;
+}
+
+.hero-title {
+    letter-spacing: -1px;
+    font-weight: 500 !important;
+    font-size: 4rem;
+}
+
+.action-btn {
+    font-weight: 400 !important;
+    transition: all 0.3s ease;
+}
+
+.hover-fill:hover {
+    background-color: var(--pure-white) !important;
+    color: var(--text-dark) !important;
+    border-color: var(--pure-white) !important;
+}
+
+
+
+
+
+
+.slider-bg-container {
+    background-color: #000;
+    /* Prevent white flash behind images */
+}
+
+/* .slider-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 0;
+    pointer-events: none;
+} */
+
+
+
+.slider-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.slider-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(13, 13, 13, 0.5) 0%, rgba(39, 39, 39, 0.392) 50%, rgba(31, 30, 30, 0.529) 100%);
+    z-index: 1;
+}
+
+.slider-bg.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* ===== Slider Arrows Controls (Vertical Stack) ===== */
+.pointer-events-none {
+    pointer-events: none;
+}
+
+.pointer-events-auto {
+    pointer-events: auto;
+}
+
+.slider-circle {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    /* Frosted glass look */
+    backdrop-filter: blur(8px);
+    transition: all 0.3s;
+    color: rgba(255, 255, 255, 0.85);
+    border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.slider-circle:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+    color: #fff;
+    border-color: #fff !important;
+}
+
+.track-line,
+.track-indicator {
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+
+
+
+
+
+
+.filter-bar-wrapper {
+    bottom: 2rem;
+}
+
+@media (min-width: 992px) {
+    .filter-container {
+        max-width: 1100px;
+    }
+}
+
+.filter-bar {
+    background-color: var(--pure-white);
+    border-radius: 1rem !important;
+}
+
+.filter-label {
+    letter-spacing: 0.5px;
+    font-size: 0.75rem;
+}
+
+@media (max-width: 1199px) {
+
+    /* Adjust for large tablets / small desktops */
+    .filter-item {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+    }
+
+    .filter-item i {
+        font-size: 1.1rem !important;
+    }
+
+    .custom-filter-dropdown .btn {
+        font-size: 0.9rem !important;
+    }
+
+    .search-btn {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.95rem !important;
+        font-weight: 400 !important;
+    }
+}
+
+@media (max-width: 991px) {
+
+    /* Tablets */
+    .filter-item {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+
+    .custom-filter-dropdown .btn {
+        font-size: 0.8rem !important;
+    }
+
+    .filter-item i.bi-geo-alt,
+    .filter-item i.bi-bicycle,
+    .filter-item i.bi-clock {
+        display: none !important;
+        /* hide icon on real tight spaces if needed, or just make them smaller */
+    }
+
+    .filter-bar {
+        padding: 0.5rem 0.5rem 0.5rem 1rem !important;
+    }
+}
+
+
+
+
+
+.custom-filter-dropdown .dropdown-toggle::after {
+    display: none;
+    /* Hide default bootstrap arrow */
+}
+
+.custom-filter-dropdown .dropdown-menu {
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.custom-filter-dropdown .dropdown-item {
+    font-size: 0.95rem;
+    color: #444;
+    padding: 0.6rem 1.2rem;
+    transition: all 0.2s ease-in-out;
+    background-color: var(--pure-white);
+}
+
+.custom-filter-dropdown .dropdown-item:hover,
+.custom-filter-dropdown .dropdown-item:focus {
+    background-color: var(--primary-blue) !important;
+    color: var(--pure-white) !important;
+}
+
+.border-light {
+    border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== Tour Categories Section ===== */
+.tour-categories-section {
+    position: relative;
+    z-index: 0;
+}
+
+
+
+
+
+.custom-arch-carousel .item {
+    padding-top: 30px;
+    padding-bottom: 70px;
+}
+
+.custom-arch-carousel .category-card {
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.8s ease;
+    transform: translateY(60px) scale(0.85);
+    opacity: 0;
+}
+
+.custom-arch-carousel .category-card img {
+    border-radius: 20px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    width: 100%;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.category-title {
+    font-weight: 500;
+    font-size: 1.4rem;
+    color: var(--text-dark);
+    letter-spacing: -0.5px;
+}
+
+.category-link {
+    display: inline-block;
+    color: var(--primary-blue);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-transform: capitalize;
+    transition: color 0.2s;
+}
+
+.category-link:hover {
+    color: var(--hover-blue);
+}
+
+/* Arch CSS Logic using dynamic classes added via JS */
+.custom-arch-carousel .owl-item.item-center .category-card {
+    transform: translateY(0px) scale(1.15);
+    /* Highest in the arch */
+    opacity: 1;
+    z-index: 5;
+    position: relative;
+}
+
+.custom-arch-carousel .owl-item.item-left-1 .category-card {
+    transform: translateY(30px) scale(0.95) rotate(-4deg);
+    opacity: 0.95;
+    z-index: 4;
+    position: relative;
+}
+
+.custom-arch-carousel .owl-item.item-left-2 .category-card {
+    transform: translateY(70px) scale(0.8) rotate(-8deg);
+    opacity: 0.8;
+    z-index: 3;
+    position: relative;
+}
+
+.custom-arch-carousel .owl-item.item-right-1 .category-card {
+    transform: translateY(30px) scale(0.95) rotate(4deg);
+    opacity: 0.95;
+    z-index: 4;
+    position: relative;
+}
+
+.custom-arch-carousel .owl-item.item-right-2 .category-card {
+    transform: translateY(70px) scale(0.8) rotate(8deg);
+    opacity: 0.8;
+    z-index: 3;
+    position: relative;
+}
+
+/* Base fallback for invisible/distant items */
+.custom-arch-carousel .owl-item:not(.active) .category-card {
+    transform: translateY(120px) scale(0.7);
+    opacity: 0;
+}
+
+/* Custom Dots for Carousel */
+.custom-arch-carousel .owl-dots {
+    display: none !important;
+}
+
+.custom-arch-dots {
+    margin-top: -10px;
+    padding-bottom: 20px;
+}
+
+.custom-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    background: transparent;
+    display: block;
+    transition: all 0.3s ease;
+    margin: 0 !important;
+    padding: 0;
+    cursor: pointer;
+    outline: none !important;
+}
+
+.custom-dot.active {
+    border-color: var(--primary-blue);
+    background: var(--primary-blue);
+}
+
+
+
+
+
+
+
+/* ===== Plan Your Trip Section ===== */
+.plan-trip-section {
+    background-color: #DBECFF;
+}
+
+
+
+.plan-desc {
+    font-size: 18px;
+    line-height: 26px;
+    color: #000000;
+    font-weight: 400;
+}
+
+.feature-title {
+    color: #113D48;
+    font-weight: 500;
+    /* matching reference typography dark tone */
+}
+
+.future-title+p {
+    color: #000000;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.plan-btn {
+    font-weight: 400 !important;
+    font-size: 1rem;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}
+
+.custom-dot:hover {
+    border-color: var(--primary-blue);
+}
+
+/* ===== Top Destinations Section ===== */
+.top-destinations-section {
+    background-color: #ffffff;
+}
+
+.destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 240px;
+    gap: 20px;
+}
+
+.dest-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.dest-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.dest-card:hover img {
+    transform: scale(1.08);
+    /* Hover effect applied universally here */
+}
+
+.dest-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 40%);
+    display: flex;
+    align-items: flex-end;
+    padding: 25px;
+    pointer-events: none;
+}
+
+.dest-title {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+
+
+
+/* Specific Grid Spans for Desktop Masonry */
+.dest-item-1 {
+    grid-column: span 3;
+    grid-row: span 1;
+}
+
+.dest-item-2 {
+    grid-column: span 3;
+    grid-row: span 2;
+}
+
+.dest-item-3 {
+    grid-column: span 4;
+    grid-row: span 1;
+}
+
+.dest-item-4 {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.dest-item-5 {
+    grid-column: span 3;
+    grid-row: span 1;
+}
+
+.dest-item-6 {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.dest-item-7 {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .destinations-grid {
+        grid-template-columns: repeat(6, 1fr);
+        grid-auto-rows: 220px;
+    }
+
+    .dest-item-1 {
+        grid-column: span 3;
+    }
+
+    .dest-item-2 {
+        grid-column: span 3;
+    }
+
+    .dest-item-3 {
+        grid-column: span 6;
+    }
+
+    .dest-item-4 {
+        grid-column: span 3;
+    }
+
+    .dest-item-5 {
+        grid-column: span 3;
+    }
+
+    .dest-item-6 {
+        grid-column: span 3;
+    }
+
+    .dest-item-7 {
+        grid-column: span 3;
+    }
+
+
+}
+
+@media (max-width: 767px) {
+    .destinations-grid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dest-card {
+        height: 250px;
+    }
+
+    .dest-item-2,
+    .dest-item-4 {
+        height: 350px;
+        /* Preserve tall look slightly on mobile */
+    }
+}
+
+
+
+
+/* Mobile filter button */
+.mobile-filter-btn {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mobile-filter-btn:active {
+    transform: scale(0.95);
+}
+
+/* Adjust title sizes on mobile */
+@media (max-width: 991px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* ===== Recent Packages Section ===== */
+.recent-packages-section {
+    background-color: #DBECFF;
+    /* Light blue matching the reference */
+}
+
+.package-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    /* very soft shadow */
+}
+
+.package-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+}
+
+.package-img {
+    height: 320px;
+    width: 100%;
+    border-radius: 30px !important;
+}
+
+.package-img img {
+
+    border-radius: 0px 0px 15px 15px !important;
+}
+
+.package-title {
+    color: #0A0A0A;
+    letter-spacing: -0.5px;
+    font-weight: 500 !important;
+}
+
+.price {
+    font-weight: 500 !important;
+}
+
+.package-meta {
+    border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.package-meta span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Specific precise styling for View Tour button font weight */
+.package-btn {
+    font-weight: 400 !important;
+    font-size: 0.95rem;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}
+
+.btn-see-all {
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-see-all:hover {
+    color: var(--primary-blue) !important;
+    border-color: var(--primary-blue) !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ===== Special Offer Section ===== */
+/* .special-offer-img {
+    height: 100%;
+    display: block;
+    max-height: 500px;
+    
+  
+    border: 2px solid red;
+} */
+
+.special-offer-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-height: 500px;
+
+}
+
+
+
+/* .special-offer-section .row .col-lg-4{
+    border: 3px solid red;
+}
+
+.special-offer-section .row .col-lg-3{
+    border: 3px solid red;
+}
+
+.special-offer-section .row .col-lg-5{
+    border: 3px solid red;
+} */
+
+
+@media (min-width: 992px) {
+    .special-offer-img {
+        max-height: 500px;
+    }
+}
+
+.offer-img {
+    width: 100%;
+    max-width: 380px;
+    border-radius: 12px;
+}
+
+.airplane-icon-fixed {
+    width: clamp(140px, 18vw, 260px);
+    bottom: -100px;
+    left: -100px;
+    transform: rotate(15deg);
+
+    /* border: 2px solid red !important; */
+}
+
+@media (max-width: 767px) {
+    .airplane-icon-fixed {
+        right: -10px;
+        bottom: -15px;
+        width: 35px;
+    }
+}
+
+
+
+/* ===== Testimonial Section ===== */
+.testimonial-section {
+    background-color: #DBECFF;
+    /* Light blue similar to reference */
+}
+
+.testimonial-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    margin-top: 45px;
+    padding: 2.5rem 1.5rem 2rem !important;
+    /* Matches reference proportions */
+    display: flex;
+    flex-direction: column;
+    min-width: 350px !important;
+    /* flex-grow: 1 !important; */
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-img-wrapper img {
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.testimonial-text {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 0.98rem;
+}
+
+.stars-area {
+    min-height: 40px;
+    /* designated area for stars */
+}
+
+/* Override Owl Carousel native elements if needed */
+.testimonial-carousel .owl-stage-outer {
+    padding-top: 50px;
+    /* Ensure top image doesn't get clipped by hidden overflow */
+}
+
+/* ===== Testimonial Flexbox fixes ===== */
+.testimonial-carousel .owl-stage {
+    display: flex;
+}
+
+.testimonial-carousel .owl-item {
+    display: flex;
+    flex: 1 0 auto;
+}
+
+
+
+
+
+
+.special-offer-right {
+    overflow: hidden;
+    /* IMPORTANT: keeps gallery inside */
+}
+
+/* ===== Special Offer Tilted Gallery ===== */
+.tilted-gallery-container {
+
+
+    /* border: 2px solid red; */
+
+
+
+
+    top: -2%;
+    right: -20px;
+
+    width: 260px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+
+    transform: rotate(18deg);
+    animation: travelScroll 15s linear infinite;
+
+}
+
+
+
+@keyframes travelScroll {
+    0% {
+        transform: rotate(18deg) translateY(0);
+    }
+
+    100% {
+        transform: rotate(18deg) translateY(-200px);
+    }
+}
+
+
+
+
+
+.special-offer-right:hover .tilted-gallery-container {
+    animation-play-state: paused;
+}
+
+.gallery-item {
+    width: 100px;
+    height: 130px !important;
+    border-radius: 15px;
+    overflow: hidden;
+    /* border: 4px solid #fff; */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+
+
+
+/* Precise tilted arrangement like reference */
+/* .item-1 { transform: rotate(-5deg) translate(-20px, 0); }
+.item-2 { transform: rotate(10deg) translate(20px, -10px); }
+.item-3 { transform: rotate(-8deg) translate(-40px, -20px); }
+.item-4 { transform: rotate(5deg) translate(10px, -30px); }
+.item-5 { transform: rotate(-12deg) translate(-60px, -40px); }
+.item-6 { transform: rotate(15deg) translate(30px, -50px); } */
+
+/* @media (max-width: 1199px) {
+    .gallery-item { width: 90px; height: 120px; }
+}
+
+@media (max-width: 991px) {
+    .tilted-gallery-container { width: 40%; }
+    .gallery-item { width: 70px; height: 100px; }
+} */
+
+@media (max-width: 767px) {
+    .tilted-gallery-container {
+        display: none;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== Gallery Section ===== */
+.gallery-section {
+    background-color: #fff;
+}
+
+.gallery-img {
+    height: clamp(200px, 30vw, 300px);
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-carousel .item {
+    overflow: hidden;
+}
+
+.gallery-carousel .item:hover .gallery-img {
+    transform: scale(1.1);
+}
+
+
+
+
+.footer-section {
+    background: linear-gradient(90deg, #001227 0%, #0077FF 100%);
+    font-family: 'Clash Grotesk', sans-serif !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-logo img {
+    filter: brightness(0) invert(1);
+    /* Ensure logo is white if it's the black version */
+}
+
+.footer-desc {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #fff;
+}
+
+.nav-heading {
+    font-weight: 400 !important;
+    /* As requested */
+    font-size: 1.25rem !important;
+    letter-spacing: 0.5px !important;
+    position: relative !important;
+    padding-bottom: 10px !important;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    font-weight: 300 !important;
+    /* As requested */
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    opacity: 0.75;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    transform: translateX(5px);
+    color: #0077FF !important;
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    background: #0077FF;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 119, 255, 0.4);
+}
+
+.footer-divider {
+    border-top: 1px solid white;
+}
+
+.footer-legal-links a:hover {
+    opacity: 1;
+    color: #0077FF !important;
+}
+
+@media (max-width: 991px) {
+    .footer-section {
+        text-align: start;
+    }
+
+    .social-links {
+        justify-content: start;
+    }
+
+    .footer-desc {
+        padding-right: 0 !important;
+    }
+}
+
+
+@media (max-width: 767px) {
+    .footer-logo img {
+        max-height: 70px !important;
+
+    }
+}
+
+/* ===== Customize Your Trip CTA ===== */
+.customize-trip-cta-section .container {
+    background: white !important;
+    /* border: 2px solid red !important; */
+
+    /* border: 1px solid rgba(0, 0, 0, 0.08) !important; */
+}
+
+
+
+
+
+
+.cta-image-wrapper img {
+    transition: transform 0.8s ease;
+    border-radius: 14px;
+    transform: scale(1.05);
+
+}
+
+.customize-trip-cta-section:hover .cta-image-wrapper img {
+    transform: scale(1.05);
+}
+
+.customize-trip-cta-section .section-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+.customize-trip-cta-section .section-title {
+    font-size: 3.5rem;
+    line-height: 1.1;
+}
+
+@media (max-width: 991px) {
+    .customize-trip-cta-section .section-title {
+        font-size: 2.5rem !important;
+    }
+
+    .cta-image-wrapper {
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.btn-close-overlay {
+    border: 1px solid rgba(180, 201, 242, 0.5) !important;
+    background-color: var(--primary-blue);
+    color: white !important;
+
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* smoother base transition */
+    transition: all 0.25s ease;
+}
+
+/* icon smoother animation */
+.btn-close-overlay i {
+    transition: transform 0.25s ease;
+}
+
+.btn-close-overlay:hover {
+    background-color: var(--hover-blue);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    transform: translateY(-2px); /* subtle lift */
+}
+
+/* small, classy rotation */
+.btn-close-overlay:hover i {
+    transform: rotate(45deg);
+}
+
+
+/* ===== Full-Screen Customize Overlay ===== */
+.customize-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh;
+        background: linear-gradient(135deg, #e8eaf6 0%, #e3f0fb 50%, #dce8f5 100%) !important;
+    z-index: 9999;
+    display: none;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.customize-overlay.active {
+    display: flex !important;
+    opacity: 1;
+}
+
+.overlay-header {
+    height: 80px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 20px;
+
+    /* ✨ Glass effect */
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    /* ✨ Soft border */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    /* ✨ Premium rounded look */
+    border-radius: 18px;
+
+    /* ✨ Floating shadow */
+    box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.05);
+
+    /* ✨ Smooth appearance */
+    transition: all 0.3s ease;
+}
+
+
+/* Optional: subtle hover/lift (feels interactive) */
+.overlay-header:hover {
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.12),
+        0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+
+/* Logo refinement */
+.overlay-logo img {
+    height: 38px;
+    object-fit: contain;
+}
+
+
+/* Step navigation spacing fix */
+.step-navigation {
+    gap: 28px !important;
+}
+
+
+
+
+
+
+
+
+/* Container (optional enhancement) */
+.step-navigation {
+    position: relative;
+}
+
+/* Base step item */
+.step-nav-item {
+    font-size: 0.95rem;
+    font-weight: 400 !important;
+    color: #9aa3b2;
+    position: relative;
+    cursor: pointer;
+
+    padding: 6px 4px;
+    transition: color 0.3s ease;
+}
+
+/* Hover effect (encourages interaction) */
+.step-nav-item:hover {
+    color: var(--primary-blue);
+}
+
+/* Active step */
+.step-nav-item.active {
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+/* Animated underline */
+.step-nav-item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+
+    width: 0%;
+    height: 2px;
+
+    background: linear-gradient(90deg, var(--primary-blue), #6ea8ff);
+    border-radius: 2px;
+
+    transition: width 0.35s ease;
+}
+
+/* On hover */
+.step-nav-item:hover::after {
+    width: 100%;
+}
+
+/* On active */
+.step-nav-item.active::after {
+    width: 100%;
+}
+
+
+
+
+
+
+
+.progress-container {
+    height: 6px;
+    background: #eee;
+    width: 100%;
+   
+}
+
+.progress-bar-custom {
+    height: 100%;
+    background: var(--primary-blue);
+    transition: width 0.4s ease;
+    border-radius: 10px;
+}
+
+/* Step Headings — consistent across all steps */
+.form-step h2 {
+    font-size: clamp(2.5rem, 3vw, 3rem);
+    font-weight: 500 !important;
+    color: var(--primary-blue);
+    letter-spacing: -0.3px;
+}
+
+/* Remove step-specific size override */
+
+/* Step 2 Scrollbar Fix */
+.form-step[data-step="2"] {
+    overflow: hidden;
+}
+
+/* Step 5 Date Picker — Clean native input, fully clickable */
+.datepicker-wrapper {
+    position: relative;
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.datepicker-wrapper input[type="date"] {
+    display: block;
+    width: 100%;
+    height: 80px;
+    padding: 0 24px !important;
+    font-size: 1.15rem;
+    font-weight: 500;
+    font-family: 'Clash Grotesk', sans-serif;
+    color: #1a1a1a;
+    background: #f8fbff;
+    border: 2px solid #e4eeff;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.2s ease;
+    box-shadow: 0 4px 20px rgba(0, 119, 255, 0.06);
+    /* Ensure nothing blocks clicks */
+    pointer-events: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.datepicker-wrapper input[type="date"]:hover {
+    border-color: rgba(0, 119, 255, 0.5);
+    background: #fff;
+    box-shadow: 0 6px 24px rgba(0, 119, 255, 0.1);
+}
+
+.datepicker-wrapper input[type="date"]:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    background: #fff;
+    box-shadow: 0 8px 30px rgba(0, 119, 255, 0.15);
+}
+
+/* Style the date picker calendar icon (browser native) */
+.datepicker-wrapper input[type="date"]::-webkit-calendar-picker-indicator {
+    width: 28px;
+    height: 28px;
+    opacity: 0.5;
+    cursor: pointer;
+    filter: invert(38%) sepia(93%) saturate(1352%) hue-rotate(200deg) brightness(100%) contrast(100%);
+    transition: opacity 0.2s ease;
+}
+
+.datepicker-wrapper input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+/* Step 6 City Planning UI */
+.day-plan-card {
+    background: white;
+    border-radius: 20px;
+    padding: 28px;
+    border: 1px solid rgba(0, 119, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    height: 100%;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.day-plan-card:hover {
+    border-color: rgba(0, 119, 255, 0.2);
+    box-shadow: 0 8px 30px rgba(0, 119, 255, 0.06);
+}
+
+.day-plan-card .day-label {
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+}
+
+.city-multi-select {
+    width: 100%;
+    min-height: 50px;
+    padding: 10px 40px 10px 15px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.city-multi-select::after {
+    content: '\F229';
+    /* bi-chevron-down */
+    font-family: 'bootstrap-icons';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.selected-city-tag {
+    background: #eef6ff;
+    color: var(--primary-blue);
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid rgba(0, 119, 255, 0.1);
+}
+
+.city-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    margin-top: 10px;
+    display: none;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.city-dropdown-menu.active {
+    display: block;
+}
+
+.city-option {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 0.95rem;
+}
+
+.city-option:hover {
+    background: #f8fbff;
+}
+
+.city-option.selected {
+    background: #eef6ff;
+    color: var(--primary-blue);
+    font-weight: 500;
+}
+
+/* ===== CORE: Form Step Visibility (CRITICAL) ===== */
+/* All steps hidden by default; JS toggles .active */
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+}
+
+/* Overlay body must scroll independently */
+.overlay-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* ===== Selection Cards (Travelers / Duration) ===== */
+.selection-card {
+    display: block;
+    border: 2px solid #eee;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: white;
+    width: 100%;
+}
+
+.selection-card:hover {
+    border-color: var(--primary-blue);
+    background: #f0f7ff;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 119, 255, 0.1);
+}
+
+.selection-card input[type="radio"]:checked+.card-content,
+.selection-card:has(input[type="radio"]:checked) {
+    color: var(--primary-blue);
+}
+
+.selection-card:has(input[type="radio"]:checked) {
+    border-color: var(--primary-blue);
+    background: #f0f7ff;
+    box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.15);
+}
+
+/* ===== Premium Traveler Image Cards ===== */
+.traveler-selection-card {
+    display: block;
+    cursor: pointer;
+    width: 100%;
+}
+
+.card-img-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/5;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 3px solid transparent;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px;
+    transition: background 0.3s ease;
+}
+
+.card-overlay h4 {
+    color: white;
+    font-weight: 600 !important;
+    font-size: 1.25rem;
+    margin: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover Effect */
+.traveler-selection-card:hover .card-img-wrapper {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 119, 255, 0.15);
+    border-color: rgba(0, 119, 255, 0.3);
+}
+
+.traveler-selection-card:hover img {
+    transform: scale(1.1);
+}
+
+.traveler-selection-card:hover .card-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+}
+
+/* Selected State */
+.traveler-selection-card:has(input[type="radio"]:checked) .card-img-wrapper {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 4px rgba(0, 119, 255, 0.2), 0 15px 40px rgba(0, 119, 255, 0.2);
+    transform: scale(1.02) translateY(-4px);
+}
+
+.traveler-selection-card:has(input[type="radio"]:checked) .card-overlay {
+    background: linear-gradient(to top, rgb(2, 24, 54), rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+}
+
+/* ===== Destination Selection Carousel Cards ===== */
+.dest-select-card {
+    display: block;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.dest-select-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.dest-select-card:hover img {
+    transform: scale(1.05);
+}
+
+.dest-select-card .dest-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.dest-select-card:has(input[type="radio"]:checked) {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.25);
+}
+
+/* Destination carousel doesn't auto-scroll page */
+.destination-selection-carousel {
+    overflow: hidden;
+}
+
+/* ===== Airport Selection List ===== */
+.airport-list {
+    border: 1px solid #eee;
+    border-radius: 16px;
+    overflow: hidden;
+    background: white;
+}
+
+.airport-item {
+    cursor: pointer;
+    transition: background 0.2s ease;
+    color: #333;
+    padding: 12px !important;
+    max-height: 150px !important;
+}
+
+.airport-item:hover {
+    background: #f0f7ff;
+    color: var(--primary-blue);
+
+}
+
+
+.airport-item.selected {
+    background: #eef6ff;
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.airport-item i {
+    color: var(--primary-blue);
+    font-size: 1.1rem;
+}
+
+/* ===== City plan card position fix ===== */
+.day-plan-card {
+    position: relative;
+}
+
+/* Responsive Overlay */
+@media (max-width: 767px) {
+    .overlay-body {
+        padding-top: 20px !important;
+    }
+
+    .selection-card h4 {
+        font-size: 1rem;
+    }
+
+    .overlay-footer {
+        padding: 1rem !important;
+    }
+
+    .form-step[data-step="2"] h2 {
+        font-size: 2rem;
+    }
+}
+
+/* ============================================
+   UI REFINEMENTS – Overlay Polish
+   ============================================ */
+
+/* ── Overlay body: hide scrollbar, keep scrolling ── */
+.overlay-body {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE / Edge */
+}
+
+.overlay-body::-webkit-scrollbar {
+    display: none;
+    /* Chrome / Safari */
+}
+
+/* ── Step 6 city section: hide scrollbar inside planning container ── */
+#city-planning-container {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+#city-planning-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* ── Step 6: better gap between day cards ── */
+#city-planning-container.row {
+    row-gap: 1.5rem !important;
+}
+
+/* ── Destination cards: bigger + premium ── */
+.dest-select-card img {
+    height: 280px;
+}
+
+.dest-select-card .dest-label {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 20px 18px;
+}
+
+.dest-select-card:has(input[type="radio"]:checked) .dest-label {
+    color: #fff;
+}
+
+/* Owl Carousel items inside overlay: better spacing */
+.destination-selection-carousel .owl-item {
+    padding: 4px 2px 6px;
+}
+
+/* ── City dropdown: premium look ── */
+.city-dropdown-menu {
+    border-radius: 16px;
+    padding: 6px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+.city-option {
+    padding: 11px 16px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+.city-option:hover {
+    background: #f0f7ff;
+    color: var(--primary-blue);
+    font-weight: 500;
+}
+
+.city-option.selected {
+    background: #eef6ff;
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.city-option.selected::after {
+    content: ' ✓';
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+/* ── City multi-select box: more polished ── */
+.city-multi-select {
+    min-height: 54px;
+    border-radius: 14px;
+    border: 1.5px solid #dde8ff;
+    background: #f8fbff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.city-multi-select:hover {
+    border-color: var(--primary-blue);
+    box-shadow: 0 4px 15px rgba(0, 119, 255, 0.08);
+}
+
+/* ── Mobile responsive destination cards ── */
+@media (max-width: 767px) {
+    .dest-select-card img {
+        height: 200px;
+    }
+
+    .dest-select-card .dest-label {
+        font-size: 1rem;
+        padding: 14px;
+    }
+}
+
+/* ============================================
+   FINAL UI POLISH
+   ============================================ */
+
+/* ── 1. Destination cards — match index page style ── */
+.dest-select-card {
+    display: block;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+        box-shadow 0.35s ease,
+        border-color 0.25s ease;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.dest-select-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.dest-select-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.18);
+}
+
+.dest-select-card:hover img {
+    transform: scale(1.08);
+}
+
+/* Bottom gradient overlay — identical to index .dest-overlay */
+.dest-select-card .dest-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0) 45%);
+    display: flex;
+    align-items: flex-end;
+    padding: 22px 20px;
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    pointer-events: none;
+}
+
+/* Selected state */
+.dest-select-card:has(input[type="radio"]:checked) {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.3),
+        0 18px 48px rgba(0, 0, 0, 0.15);
+}
+
+/* ── 2. Destination carousel — premium Owl nav arrows ── */
+.destination-selection-carousel.owl-carousel .owl-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    padding: 0 8px;
+}
+
+.destination-selection-carousel.owl-carousel .owl-nav button {
+    pointer-events: auto;
+    width: 48px;
+    height: 48px;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.6) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    color: var(--primary-blue) !important;
+    font-size: 1rem !important;
+    line-height: 1;
+}
+
+.destination-selection-carousel.owl-carousel .owl-nav button:hover {
+    background: var(--primary-blue) !important;
+    color: #fff !important;
+    box-shadow: 0 6px 24px rgba(0, 119, 255, 0.35);
+    transform: scale(1.08);
+}
+
+.destination-selection-carousel.owl-carousel .owl-nav button span {
+    display: none !important;
+    /* hide default « » or any text icons */
+}
+
+/* We remove the ::after because the icons are already provided via navText in script.js */
+.destination-selection-carousel.owl-carousel .owl-prev::after,
+.destination-selection-carousel.owl-carousel .owl-next::after {
+    content: none !important;
+}
+
+
+
+/* Carousel container relative for nav positioning */
+.destination-selection-carousel.owl-carousel {
+    position: relative;
+}
+
+/* ── 3. City tag × remove button ── */
+.selected-city-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #eef6ff;
+    color: var(--primary-blue);
+    padding: 4px 10px 4px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid rgba(0, 119, 255, 0.15);
+    transition: background 0.2s ease;
+}
+
+.selected-city-tag:hover {
+    background: #ddefff;
+}
+
+.city-tag-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-blue);
+    opacity: 0.6;
+    font-size: 1rem;
+    padding: 0 2px;
+    line-height: 1;
+    border-radius: 4px;
+    transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.city-tag-remove:hover {
+    opacity: 1;
+    background: rgba(0, 119, 255, 0.1);
+}
+
+/* ============================================
+   PREMIUM ITINERARY STYLING (Step 9 Output)
+   ============================================ */
+.itin-document {
+    background: var(--pure-white);
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+    color: var(--text-dark);
+}
+
+.itin-header {
+    margin-bottom: 2.5rem;
+}
+
+.itin-logo-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.itin-logo {
+    height: 42px;
+}
+
+.itin-tag {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--primary-blue);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: #eef6ff;
+    padding: 6px 16px;
+    border-radius: 100px;
+}
+
+.itin-destination-name {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #113D48;
+}
+
+.itin-meta-pills {
+    display: flex;
+    gap: 20px;
+    color: #6c757d;
+    font-size: 1rem;
+}
+
+.itin-meta-pills i {
+    color: var(--primary-blue);
+    margin-right: 6px;
+}
+
+.itin-divider-dashed {
+    height: 1px;
+    border-top: 2px dashed #eee;
+    margin: 2rem 0;
+}
+
+.itin-overview-card {
+    background: #f8fbff;
+    border-radius: 18px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    border: 1px solid #eef2f8;
+}
+
+.itin-from-to {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+}
+
+.itin-from-col,
+.itin-to-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.itin-label {
+    font-size: 0.75rem;
+    color: #99a;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.itin-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #113D48;
+}
+
+.itin-plane-icon {
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    opacity: 0.5;
+}
+
+.itin-overview-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    border-top: 1px solid #e8ecf2;
+    padding-top: 2rem;
+}
+
+.itin-section {
+    margin-bottom: 3rem;
+}
+
+.itin-section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.itin-section-title i {
+    color: var(--primary-blue);
+}
+
+.itin-days-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.itin-day-card {
+    background: #ffffff;
+    border: 1.5px solid #f0f2f5;
+    border-radius: 16px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.itin-day-card:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+}
+
+.itin-day-header {
+    margin-bottom: 15px;
+}
+
+.itin-day-badge {
+    background: #113D48;
+    color: #fff;
+    padding: 4px 14px;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.itin-city-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.itin-city-list li {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.itin-city-list i {
+    color: var(--primary-blue);
+    font-size: 0.8rem;
+}
+
+.no-city {
+    color: #bbb;
+    font-style: italic;
+}
+
+.itin-traveler-details {
+    background: #f8fbff;
+    border-radius: 18px;
+    padding: 1.5rem 2.5rem;
+}
+
+.itin-detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #eef2f8;
+}
+
+.itin-detail-row:last-child {
+    border-bottom: none;
+}
+
+.itin-footer {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.itin-footer-note {
+    font-size: 0.95rem;
+    color: #778;
+    margin-bottom: 2rem;
+}
+
+.itin-download-btn {
+    background: var(--primary-blue);
+    color: #fff;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 100px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.itin-download-btn:hover {
+    background: var(--hover-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 119, 255, 0.25);
+    color: #fff !important;
+}
+
+@media (max-width: 768px) {
+    .itin-document {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+        border-radius: 16px;
+    }
+
+    .itin-logo {
+        height: 32px;
+    }
+
+    .itin-tag {
+        font-size: 0.75rem;
+        padding: 4px 12px;
+        letter-spacing: 1px;
+    }
+
+    .itin-destination-name {
+        font-size: 1.85rem;
+        line-height: 1.2;
+        margin-top: 0.5rem;
+    }
+
+    .itin-meta-pills {
+        flex-direction: column;
+        gap: 8px;
+        font-size: 0.9rem;
+    }
+
+    .itin-overview-card {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .itin-from-to {
+        margin-bottom: 1.5rem;
+    }
+
+    .itin-value {
+        font-size: 1rem;
+    }
+
+    .itin-label {
+        font-size: 0.65rem;
+        margin-bottom: 2px;
+    }
+
+    .itin-plane-icon {
+        font-size: 1.2rem;
+    }
+
+    .itin-overview-details {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding-top: 1.5rem;
+    }
+
+    .itin-section {
+        margin-bottom: 2rem;
+    }
+
+    .itin-section-title {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .itin-days-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .itin-day-card {
+        padding: 15px;
+    }
+
+    .itin-city-list li {
+        font-size: 0.85rem;
+        padding: 6px 0;
+    }
+
+    .itin-traveler-details {
+        padding: 1rem 1.5rem;
+    }
+
+    .itin-detail-row {
+        padding: 8px 0;
+    }
+
+    .itin-detail-row .itin-value {
+        font-size: 0.9rem;
+    }
+
+    .itin-footer {
+        margin-top: 2.5rem;
+    }
+
+    .itin-footer-note {
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .itin-download-btn {
+        padding: 12px 30px;
+        font-size: 0.95rem;
+    }
+}
+
+/* --- Custom Trip Form Redesign --- */
+
+/* Duration Cards */
+.duration-card {
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 2px solid transparent !important;
+    transition: all 0.3s ease;
+}
+
+.duration-card:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+    transform: translateY(-5px);
+}
+
+.duration-img {
+    transition: transform 0.5s ease;
+}
+
+.duration-card:hover .duration-img {
+    transform: scale(1.1);
+}
+
+input[name="duration"]:checked~img {
+    transform: scale(1.1);
+}
+
+input[name="duration"]:checked~.card-overlay {
+    background: rgba(78, 148, 254, 0.85) !important;
+}
+
+input[name="duration"]:checked~.card-overlay .icon-animate {
+    transform: scale(1.2);
+}
+
+.duration-card .card-overlay {
+    transition: all 0.3s ease;
+}
+
+.duration-card:hover .card-overlay {
+    background: rgba(0, 0, 0, 0.4) !important;
+}
+
+.icon-animate {
+    transition: transform 0.3s ease;
+}
+
+/* Airport Location Cards */
+.airport-card {
+    border: 2px solid transparent !important;
+    transition: all 0.3s ease;
+}
+
+.airport-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+}
+
+.airport-bg {
+    transition: transform 0.6s ease;
+}
+
+.airport-card:hover .airport-bg {
+    transform: scale(1.1) rotate(2deg);
+}
+
+.airport-overlay {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 100%);
+    transition: all 0.3s ease;
+}
+
+.airport-card:hover .airport-overlay {
+    background: linear-gradient(90deg, rgba(13, 110, 253, 0.9) 0%, rgba(13, 110, 253, 0.4) 100%);
+}
+
+.airport-card.selected {
+    border-color: var(--primary-blue) !important;
+    box-shadow: 0 8px 20px rgba(13, 110, 253, 0.2) !important;
+}
+
+.airport-card.selected .check-circle {
+    opacity: 0 !important;
+    transform: scale(1.1);
+}
+
+.airport-card.selected .airport-overlay {
+    background: linear-gradient(90deg, rgba(13, 110, 253, 0.95) 0%, rgba(13, 110, 253, 0.6) 100%);
+}
+
+/* Date Picker Premium */
+.bg-gradient-dark {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.date-input-premium {
+    font-size: 1.1rem;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    background-color: #f8f9fa;
+}
+
+.date-input-premium:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+    background-color: #ffffff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.social-iconss{
+    /* border: 2px solid red; */
+    position: fixed;
+    top: 80%;
+    right: 20px;
+    transform: translateY(-50%);
+        z-index: 1000;
+
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+
+
+
+.whatsapp-float {
+
+
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    font-size: 30px;
+    text-decoration: none;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+
+    transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    background-color: #1ebe5d;
+    transform: translateY(-10%) scale(1.1);
+    color: white;
+}
+
+
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+.whatsapp-float {
+    animation: pulse 2s infinite;
+}
+
+
+
+
+
+.telephone-float {
+ 
+
+
+    width: 60px;
+    height: 60px;
+    background-color: #314c87;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    font-size: 28px;
+    text-decoration: none;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+
+    transition: all 0.3s ease;
+}
+
+.telephone-float:hover {
+    background-color: #1e69be;
+    transform: translateY(-10%) scale(1.1);
+    color: white;
+}
+
+
+
+@keyframes pulsetel {
+    0% {
+        box-shadow: 0 0 0 0 rgba(61, 117, 238, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+.telephone-float {
+    animation: pulsetel 2s infinite;
+}
+
+
+
+
+
+.email-float {
+
+
+    width: 60px;
+    height: 60px;
+    background-color: #605c5c;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    font-size: 28px;
+    text-decoration: none;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+
+    transition: all 0.3s ease;
+}
+
+.email-float:hover {
+    background-color: #adc0d5;
+    transform: translateY(-10%) scale(1.1);
+    color: white;
+}
+
+
+
+@keyframes pulseemail {
+    0% {
+        box-shadow: 0 0 0 0 rgba(111, 115, 123, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+.email-float {
+    animation: pulseemail 2s infinite;
+}
+
+
+
+
+@media (max-width: 768px) {
+.whatsapp-float {
+width: 40px;
+    height: 40px;
+    font-size: 20px;
+
+  
+}
+
+.telephone-float {
+width: 40px;
+    height: 40px;
+    font-size: 20px;
+
+  
+}
+
+.email-float {
+width: 40px;
+    height: 40px;
+    font-size: 20px;
+
+  
+}
+}
+
+
+
+
+
+
+/* =========================
+   TRIP DURATION SELECTION (STEP 3)
+========================= */
+
+.step-duration {
+    border-radius: 20px;
+    padding: 5.5rem 2rem;
+    background: linear-gradient(135deg, #e8eaf6 0%, #cfe2f3 50%, #dce8f5 100%);
+    border: 1px solid white;
+}
+ 
+@media (max-width: 991px) {
+    .step-duration {
+        padding: 2.5rem 1rem !important;
+    }
+}
+
+.duration-select-card {
+    cursor: pointer;
+    border: 2px solid #e8eaf0 !important;
+    border-radius: 40px !important;
+    background: #fff;
+    padding: 2rem 1.25rem !important;
+    transition: all 0.28s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05) !important;
+    min-height: 160px;
+}
+
+.duration-select-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(0, 119, 255, 0.12) !important;
+    border-color: rgba(0, 119, 255, 0.3) !important;
+}
+
+/* Icon circle default */
+.duration-icon-box {
+    width: 56px !important;
+    height: 56px !important;
+    font-size: 1.3rem !important;
+    background-color: #eff3ff !important;
+    color: var(--primary-blue) !important;
+    border-radius: 50% !important;
+    flex-shrink: 0;
+    transition: all 0.28s ease;
+}
+
+.duration-select-card h4 {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+    transition: color 0.28s ease;
+}
+
+.duration-subtitle {
+    font-size: 0.78rem !important;
+    color: #8a93a6;
+    transition: color 0.28s ease;
+}
+
+/* Checkmark badge */
+.check-circle {
+    width: 22px !important;
+    height: 22px !important;
+    top: 10px !important;
+    right: 10px !important;
+    font-size: 1rem !important;
+    background: var(--primary-blue) !important;
+    color: #fff !important;
+    border-radius: 50%;
+    border: 2px solid #fff !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+
+/* ---- SELECTED STATE (matches reference) ---- */
+.duration-select-card:has(input[type="radio"]:checked) {
+    background: linear-gradient(145deg, #1a6ef5, #0055d4) !important;
+    border-color: #1a6ef5 !important;
+    transform: scale(1.04);
+    box-shadow: 0 16px 40px rgba(0, 86, 212, 0.30) !important;
+}
+
+.duration-select-card:has(input[type="radio"]:checked) .duration-icon-box {
+    background-color: rgba(255,255,255,0.20) !important;
+    color: #fff !important;
+}
+
+.duration-select-card:has(input[type="radio"]:checked) h4 {
+    color: #fff !important;
+}
+
+.duration-select-card:has(input[type="radio"]:checked) .duration-subtitle {
+    color: rgba(255,255,255,0.80) !important;
+}
+
+.duration-select-card:has(input[type="radio"]:checked) .check-circle {
+    opacity: 1 !important;
+    background: #fff !important;
+    color: var(--primary-blue) !important;
+    font-size: 0.85rem !important;
+}
+
+/* ---- BOTTOM INFO PANEL ---- */
+.duration-info-img {
+    border-radius: 20px;
+    height: 340px;
+    object-fit: cover;
+    border: none !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+}
+
+.duration-info-img:hover{
+    transform: scale(1.02);
+    transition: 0.4s ease;
+    border: 1px solid #3131d5;
+    box-shadow: 0 8px 24px rgba(49, 49, 213, 0.1);
+}
+
+.duration-info-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--primary-blue);
+    margin-bottom: 0.75rem;
+}
+
+.duration-info-text {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #5a6278;
+    line-height: 1.7;
+}
+
+/* ---- CONTINUE BUTTON ---- */
+.custom-continue-btn {
+    background: linear-gradient(135deg, #1a72ff, #0b5ed7) !important;
+    border: none !important;
+    border-radius: 50px !important;
+    padding: 0.65rem 2rem !important;
+    font-size: 1rem !important;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    box-shadow: 0 4px 18px rgba(13, 110, 253, 0.35);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.custom-continue-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(13, 110, 253, 0.50) !important;
+}
+
+.custom-continue-btn .bi-arrow-right {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+/* =========================
+   DAILY CUSTOMIZATION (STEP 6)
+========================= */
+
+
+.form-step {
+        /* background: linear-gradient(135deg, #e8eaf6 0%, #e3f0fb 50%, #dce8f5 100%) !important; */
+        background-color: transparent;
+            border-radius: 20px;
+    padding: 2.5rem 4rem !important;
+
+}
+
+@media (max-width: 991px) {
+    .form-step {
+        padding: 2.5rem 1rem !important;
+    }
+}
+
+.step-daily {
+    background: linear-gradient(135deg, #e8eaf6 0%, #cfe2f3 50%, #dce8f5 100%);
+    border-radius: 20px;
+    padding: 2.5rem 4rem !important;
+    border: 1px solid white;
+}
+
+.step-date{
+        background: linear-gradient(135deg, #e8eaf6 0%, #cfe2f3 50%, #dce8f5 100%);
+    border: 1px solid white;
+}
+
+.step-airport{
+        background: linear-gradient(135deg, #e8eaf6 0%, #cfe2f3 50%, #dce8f5 100%);
+    border: 1px solid white;
+}
+
+@media (max-width: 991px) {
+    .step-daily {
+        padding: 2.5rem 2rem !important;
+    }
+}
+
+/* ---- Column wrapper (replaces old col-md-6) ---- */
+.daily-plan-col {
+    width: 100%;
+    margin-bottom: 1rem;
+    position: relative;   /* needed for z-index to take effect */
+    z-index: 1;           /* base stacking level */
+}
+
+/* When a dropdown inside this column is open, float it above all other columns */
+.daily-plan-col:has(.city-dropdown-menu.active) {
+    z-index: 50;
+}
+
+/* ---- Day Card ---- */
+.daily-day-card {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 20px;
+    border: 1.5px solid #e8eaf0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    padding: 1.4rem 1.6rem;
+    gap: 2rem;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.daily-day-card:hover {
+    box-shadow: 0 10px 28px rgba(0,119,255,0.09);
+    /* No transform here — transform creates a new stacking context
+       that traps absolutely-positioned children (the dropdown) inside it */
+}
+
+/* ---- Left Info Panel ---- */
+.daily-card-left {
+    flex: 0 0 200px;
+    min-width: 160px;
+}
+
+.daily-day-tag {
+    display: inline-block;
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: var(--primary-blue);
+    text-transform: uppercase;
+    background: #eff3ff;
+    border-radius: 20px;
+    padding: 3px 10px;
+    margin-bottom: 0.5rem;
+}
+
+.daily-day-number {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1a1a2e;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+}
+
+.daily-day-dest {
+    font-size: 0.85rem;
+    color: #8a93a6;
+}
+
+.daily-day-dest .bi-geo-alt-fill {
+    color: var(--primary-blue);
+    font-size: 0.8rem;
+}
+
+/* ---- Right Dropdown Panel ---- */
+.daily-card-right {
+    flex: 1;
+    position: relative;
+}
+
+.daily-select-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #8a93a6;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+}
+
+/* Override existing city-multi-select inside step-daily */
+.step-daily .city-multi-select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f4f6fb;
+    border: 1.5px solid #e0e4ef;
+    border-radius: 12px;
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    min-height: 46px;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.step-daily .city-multi-select:hover,
+.step-daily .city-multi-select:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(0,119,255,0.10);
+    outline: none;
+}
+
+.daily-select-chevron {
+    font-size: 0.8rem;
+    color: #8a93a6;
+    flex-shrink: 0;
+    margin-left: auto;
+    padding-left: 6px;
+}
+
+/* City dropdown menu */
+.step-daily .city-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1.5px solid #e0e4ef;
+    border-radius: 14px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+    z-index: 999;   /* high enough to always be on top within the elevated column */
+    max-height: 220px;
+    overflow-y: auto;
+    display: none;
+    padding: 6px;
+}
+
+.step-daily .city-dropdown-menu.active {
+    display: block;
+}
+
+.step-daily .city-option {
+    padding: 0.55rem 0.9rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: #3a3f5c;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.step-daily .city-option:hover {
+    background: #eff3ff;
+    color: var(--primary-blue);
+}
+
+.step-daily .city-option.selected {
+    background: var(--primary-blue);
+    color: #fff;
+}
+
+/* Selected city tags inside the select box */
+.step-daily .selected-city-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--primary-blue);
+    color: #fff;
+    border-radius: 20px;
+    padding: 2px 10px 2px 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.step-daily .city-tag-remove {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.8);
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 2px;
+}
+
+.step-daily .city-tag-remove:hover {
+    color: #fff;
+}
+
+/* ---- Bottom Info Panel ---- */
+.daily-info-panel {
+    background: #fff;
+    border-radius: 18px;
+    border: 1.5px solid #e8eaf0;
+}
+
+.daily-info-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    color: var(--primary-blue);
+}
+
+/* ---- Accommodation Highlight Card ---- */
+.daily-highlight-card {
+    background: linear-gradient(145deg, #1a6ef5, #0055d4);
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0,86,212,0.25);
+}
+
+.daily-highlight-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    color: rgba(255,255,255,0.65);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 767px) {
+    .daily-day-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .daily-card-left {
+        flex: unset;
+        min-width: unset;
+        width: 100%;
+    }
+
+    .daily-card-right {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .daily-card-left {
+        flex: 0 0 160px;
+    }
+}
+
+
+
+
+
+
+/* =========================
+   DESTINATION SELECTION (STEP 2)
+========================= */
+
+.step-destination {
+    /* background: #f4f6fb; */
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+        background: linear-gradient(135deg, #e8eaf6 0%, #cfe2f3 50%, #dce8f5 100%);
+    border: 1px solid white;
+}
+
+@media (max-width: 991px) {
+    .step-destination {
+        padding: 2.5rem 1rem !important;
+    }
+}
+
+/* Header title */
+.dest-main-title {
+    font-size: 2.8rem;
+    letter-spacing: -1.5px;
+    color: #111;
+    line-height: 1.15;
+}
+
+/* Hint note strip */
+.dest-note {
+    background: rgba(0,119,255,0.06);
+    border-radius: 12px;
+    padding: 0.6rem 1rem;
+    max-width: 480px;
+}
+
+/* ---- 3-column grid ---- */
+.dest-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    gap: 1.5rem;
+}
+
+
+
+
+/* ---- Individual Card ---- */
+/* ---- Individual Card ---- */
+.dest-grid-card {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    border-radius: 24px;
+    overflow: hidden;
+    border: none;
+    box-shadow:
+        0 4px 18px rgba(0,0,0,0.12),
+        inset 0 0 0 1px rgba(255,255,255,0.08); /* premium inner rim */
+    transition: transform 0.28s cubic-bezier(0.25,0.8,0.25,1),
+                box-shadow 0.28s ease;
+    background: #000;
+    aspect-ratio: 4 / 3; /* ← controls card height; image fills this exactly */
+    margin-bottom: 12px;
+}
+
+.dest-grid-card:hover {
+    transform: translateY(-6px) scale(1.015);
+    box-shadow:
+        0 22px 44px rgba(0,0,0,0.22),
+        inset 0 0 0 1px rgba(255,255,255,0.14);
+}
+
+/* ---- Image ---- */
+.dest-card-img {
+    position: absolute;          /* ← fills the card absolutely */
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+    opacity: 0.88;
+}
+
+.dest-grid-card:hover .dest-card-img {
+    transform: scale(1.06);
+    opacity: 1;
+}
+
+/* ---- Gradient overlay (bottom) ---- */
+.dest-card-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 65%;
+    background: linear-gradient(
+        to top,
+        rgba(5, 8, 20, 0.92) 0%,
+        rgba(5, 8, 20, 0.4) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+}
+
+
+
+
+/* ---- Badge (top-left) ---- */
+.dest-card-badge {
+    position: absolute;
+    top: 14px;
+    left: 24px;
+    background:var(--primary-blue);
+    color: #ffffff;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+    z-index: 2;
+}
+
+/* ---- Check badge (top-right) — hidden by default ---- */
+.dest-card-check {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--primary-blue);
+    color: #fff;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 3;
+}
+
+/* ---- Card info (over the gradient) ---- */
+.dest-card-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1rem 1.1rem 1rem;
+    z-index: 2;
+}
+
+.dest-card-name {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 3px;
+    letter-spacing: 1px;
+}
+
+.dest-card-sub {
+    color: rgba(255,255,255,0.72);
+    font-size: 0.78rem;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* ---- SELECTED STATE ---- */
+.dest-grid-card:has(input[type="radio"]:checked) {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 5px rgba(0,119,255,0.18), 0 18px 40px rgba(0,0,0,0.18);
+    transform: translateY(-4px) scale(1.01);
+}
+
+.dest-grid-card:has(input[type="radio"]:checked) .dest-card-img {
+    opacity: 1;
+}
+
+.dest-grid-card:has(input[type="radio"]:checked) .dest-card-check {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 767px) {
+    .dest-cards-grid {
+        grid-template-columns: 1fr;
+    }
+    .dest-card-img {
+        height: 200px;
+    }
+    .dest-main-title {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .dest-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+
+
+
+
+/* ======================================================
+   RECOVERY: CUSTOMIZE OVERLAY REDESIGN (Step 1,2,4,5,7)
+   ====================================================== */
+
+/* Unified heading style across form steps */
+.form-step h2 {
+    font-size: clamp(3rem, 4vw, 4rem) !important;
+    font-weight: 600 !important;
+    color: #111 !important;
+    letter-spacing: 1px;
+}
+
+.overlay-body.container {
+    max-width: 1320px;
+}
+
+
+@media (max-width: 991px) {
+    .step-travelers {
+        padding: 2.5rem 1rem !important;
+    }
+}
+
+
+.step-travelers{
+        background: linear-gradient(135deg, #e8eaf6 0%, #cfe2f3 50%, #dce8f5 100%);
+    border: 1px solid white;
+}
+
+/* ---------- Step 1: Traveler Type ---------- */
+.step-travelers .traveler-cards-wrap {
+    max-width: 1220px;
+    position: relative;
+}
+
+.step-travelers .traveler-selection-card {
+    display: block;
+    width: 100%;
+    cursor: pointer;
+}
+
+.step-travelers .card-img-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 3.7;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.step-travelers .card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.55s ease;
+}
+
+.step-travelers .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(3, 13, 28, 0.86) 0%, rgba(4, 20, 45, 0.32) 52%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 18px 18px 16px;
+}
+
+.step-travelers .trip-meta-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin-bottom: 10px;
+    color: #fff;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(8px);
+}
+
+.step-travelers .card-overlay h4 {
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1;
+    margin: 0;
+    font-weight: 500 !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.step-travelers .traveler-selection-card:hover .card-img-wrapper {
+    transform: translateY(-8px);
+    border-color: rgba(0, 119, 255, 0.32);
+    box-shadow: 0 18px 44px rgba(15, 23, 42, 0.16);
+}
+
+.step-travelers .traveler-selection-card:hover .card-img-wrapper img {
+    transform: scale(1.1);
+}
+
+.step-travelers .traveler-selection-card:has(input[type="radio"]:checked) .card-img-wrapper {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 5px rgba(0, 119, 255, 0.18), 0 20px 52px rgba(0, 119, 255, 0.2);
+    transform: scale(1.02) translateY(-4px);
+}
+
+.step-travelers .traveler-selection-card:has(input[type="radio"]:checked) .card-overlay {
+    background: linear-gradient(to top, rgba(5, 40, 95, 0.88) 0%, rgba(4, 20, 45, 0.36) 55%, transparent 100%);
+}
+
+/* Member box inside active card (Family/Friends) */
+#member-count-wrapper {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 32px);
+    background: rgba(121, 168, 220, 0.26);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 26px;
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.2);
+    padding: 12px;
+    z-index: 20;
+    backdrop-filter: blur(10px);
+}
+
+#member-count-wrapper .form-label {
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px !important;
+}
+
+#member-count-wrapper .input-group {
+    align-items: center;
+    gap: 10px;
+}
+
+#member-count-input {
+    max-width: 86px;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    text-align: center;
+    font-size: 2rem;
+    line-height: 1;
+    padding: 6px 10px;
+    font-weight: 700;
+}
+
+#member-count-input::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.member-help-text {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.68rem;
+    line-height: 1.25;
+    font-weight: 500;
+}
+
+/* ---------- Step 2: Destination polish ---------- */
+/* .step-destination .dest-main-title {
+    color: #111;
+} */
+
+/* ---------- Step 4: Departure ---------- */
+.form-step[data-step="4"] {
+    /* background: #f6f7f9; */
+    border-radius: 24px;
+    padding: 2.75rem 2rem 3.25rem;
+}
+
+.departure-title {
+    font-size: clamp(2.2rem, 3.4vw, 3.4rem);
+    letter-spacing: -1.6px;
+    line-height: 1.05;
+    color: #111;
+    font-weight: 700;
+}
+
+.departure-subtitle {
+    color: rgba(15, 23, 42, 0.62);
+    font-size: 1.02rem;
+}
+
+.form-step[data-step="4"] .airport-list {
+    border: 0;
+    border-radius: 24px;
+    overflow: visible;
+    background: transparent;
+}
+
+.airport-tile {
+    position: relative;
+    height: 142px;
+    background: #fff;
+    border-radius: 26px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 14px 12px;
+    transition: all 0.22s ease;
+    user-select: none;
+}
+
+.airport-tile:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.1);
+    border-color: rgba(0, 119, 255, 0.18);
+}
+
+.airport-tile-icon {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-blue);
+}
+
+.airport-tile-icon i {
+    font-size: 1.35rem;
+}
+
+.airport-tile-name {
+    font-size: 1rem;
+    font-weight: 650;
+    color: rgba(15, 23, 42, 0.78);
+    line-height: 1.1;
+}
+
+.airport-tile-code {
+    font-size: 0.62rem;
+    letter-spacing: 1.2px;
+    font-weight: 800;
+    color: rgba(15, 23, 42, 0.55);
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.airport-selected-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    opacity: 0;
+    transform: scale(0.85);
+    transition: all 0.18s ease;
+}
+
+.airport-selected-indicator::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 7px;
+    height: 4px;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(-45deg) translateY(-1px);
+}
+
+.airport-item.selected.airport-tile {
+    background: #0b5ed7;
+    border-color: rgba(11, 94, 215, 0.22);
+    box-shadow: 0 18px 40px rgba(11, 94, 215, 0.22);
+    transform: translateY(-2px);
+}
+
+.airport-item.selected.airport-tile .airport-tile-icon,
+.airport-item.selected.airport-tile .airport-tile-name,
+.airport-item.selected.airport-tile .airport-tile-code {
+    color: #fff;
+}
+
+.airport-item.selected.airport-tile .airport-selected-indicator {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ---------- Step 5: Dynamic Date Card ---------- */
+.trip-date-card {
+    max-width: 820px;
+    background: #fff;
+    border-radius: 26px;
+    border: 1px solid rgba(0, 119, 255, 0.1);
+    box-shadow: 0 18px 55px rgba(15, 23, 42, 0.1);
+    overflow: hidden;
+}
+
+.trip-date-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+    background: linear-gradient(135deg, rgba(0, 119, 255, 0.06), rgba(0, 119, 255, 0.02));
+}
+
+.trip-date-month {
+    font-size: 1.05rem;
+    font-weight: 650;
+    color: rgba(15, 23, 42, 0.82);
+}
+
+.trip-date-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.trip-date-nav {
+    width: 44px;
+    height: 44px;
+    border-radius: 16px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    background: rgba(255, 255, 255, 0.95);
+    display: grid;
+    place-items: center;
+    color: rgba(15, 23, 42, 0.65);
+    transition: all 0.2s ease;
+}
+
+.trip-date-nav:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 119, 255, 0.22);
+    box-shadow: 0 10px 22px rgba(0, 119, 255, 0.1);
+    color: var(--primary-blue);
+}
+
+.trip-date-grid,
+.trip-date-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.trip-date-grid {
+    padding-top: 16px;
+    padding-bottom: 8px;
+}
+
+.trip-date-days {
+    padding-top: 8px;
+    padding-bottom: 18px;
+}
+
+.trip-date-dow {
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 750;
+    letter-spacing: 0.6px;
+    color: rgba(15, 23, 42, 0.42);
+}
+
+.trip-date-day {
+    height: 44px;
+    border-radius: 16px;
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    background: rgba(15, 23, 42, 0.02);
+    color: rgba(15, 23, 42, 0.8);
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: grid;
+    place-items: center;
+    transition: all 0.18s ease;
+}
+
+.trip-date-day.is-outside {
+    opacity: 0.35;
+}
+
+.trip-date-day:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 119, 255, 0.22);
+    box-shadow: 0 10px 22px rgba(0, 119, 255, 0.1);
+    background: rgba(0, 119, 255, 0.06);
+}
+
+.trip-date-day.is-selected {
+    background: var(--primary-blue);
+    color: #fff;
+    border-color: rgba(0, 119, 255, 0.35);
+    box-shadow: 0 18px 40px rgba(0, 119, 255, 0.22);
+}
+
+.trip-date-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 16px 20px 20px;
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.trip-date-hint {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    max-width: 420px;
+}
+
+.trip-date-hint-dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(0, 119, 255, 0.1);
+    border: 1px solid rgba(0, 119, 255, 0.18);
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.trip-date-hint-dot::after {
+    content: 'i';
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: rgba(0, 119, 255, 0.85);
+    font-weight: 800;
+    font-size: 0.85rem;
+}
+
+.trip-date-hint-text {
+    font-size: 0.9rem;
+    color: rgba(15, 23, 42, 0.62);
+}
+
+.trip-date-input-wrap {
+    min-width: 280px;
+}
+
+.trip-date-input-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 650;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: rgba(15, 23, 42, 0.58);
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+/* ---------- Step 7: Build Itinerary ---------- */
+.step-review {
+    padding-top: 1.2rem;
+    
+}
+
+.trip-review-layout {
+    max-width: 1080px;
+    border-radius: 30px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 18px 58px rgba(15, 23, 42, 0.12);
+    border: 1px solid rgba(0, 119, 255, 0.08);
+    max-height: auto;
+}
+
+.trip-review-image-wrap {
+    height: 100%;
+    min-height: 520px;
+    max-height: 600px;
+}
+
+
+@media (max-width: 991px) {
+    .trip-review-image-wrap {
+        min-height: 320px;
+        max-height: 400px;
+    }
+}
+
+.trip-review-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.trip-review-panel {
+    height: 100%;
+    background: #f8fbff;
+    padding: 2rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.trip-review-kicker {
+    display: inline-flex;
+    width: fit-content;
+    font-size: 0.62rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #de6c2e;
+    background: rgba(222, 108, 46, 0.12);
+    padding: 6px 12px;
+    border-radius: 999px;
+}
+
+.trip-review-title {
+    font-size: clamp(2rem, 2.8vw, 3rem);
+    color: #12212d;
+    letter-spacing: 0.2px;
+    line-height: 1.08;
+    font-weight: 600;
+}
+
+.trip-review-facts {
+    margin: 0.75rem 0 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.trip-fact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 16px;
+    padding: 10px 12px;
+    background: #dff0fb;
+    border: 1px solid rgba(0, 119, 255, 0.08);
+}
+
+.trip-fact-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #0b5ed7;
+    background: rgba(11, 94, 215, 0.12);
+    flex: 0 0 auto;
+}
+
+.trip-fact-label {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-size: 0.58rem;
+    font-weight: 600;
+    color: rgba(18, 33, 45, 0.52);
+    line-height: 1.2;
+}
+
+.trip-fact-text strong {
+    display: block;
+    font-size: 1.02rem;
+    color: #0f1f2d;
+    font-weight: 550;
+    line-height: 1.25;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 991px) {
+    .trip-review-image-wrap {
+        min-height: 300px;
+    }
+    .trip-date-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .trip-date-input-wrap {
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .step-travelers .card-img-wrapper {
+        border-radius: 20px;
+    }
+    .step-travelers .card-overlay h4 {
+        font-size: 1.35rem;
+    }
+    #member-count-wrapper {
+        bottom: 10px;
+        border-radius: 18px;
+        padding: 10px;
+    }
+    #member-count-input {
+        font-size: 1.5rem;
+        max-width: 72px;
+    }
+    .member-help-text {
+        font-size: 0.62rem;
+    }
+    .trip-date-grid,
+    .trip-date-days {
+        gap: 8px;
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+}
+
+
+
+
+/* ── Step 8 Contact Step ── */
+.form-step.step-contact {
+    background: linear-gradient(135deg, #e8eaf6 0%, #cfe2f3 50%, #dce8f5 100%);
+    min-height: 100vh;
+    padding: 50px 0px;
+    position: relative;
+    border-radius: 20px;
+    border: 1px solid rgb(255, 255, 255);
+}
+
+/* Heading */
+.step-contact-head {
+    max-width: 800px;
+    margin-bottom: 32px;
+}
+
+.step-contact-head h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a1a2e;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.step-contact-head p {
+    font-size: 0.92rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Card */
+.step-contact-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 32px 28px;
+    max-width: 660px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* Labels */
+.step-contact-label {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #213976;
+    margin-bottom: 6px;
+}
+
+/* Inputs */
+.step-contact-input {
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    color: #aaa;
+    width: 100%;
+    outline: none;
+    box-shadow: none;
+    transition: background 0.2s;
+}
+
+.step-contact-input:focus {
+    background-color: #e8e8e8;
+    box-shadow: none;
+    border: none;
+    color: #333;
+}
+
+.step-contact-input::placeholder {
+    color: #bbb;
+}
+
+/* Textarea */
+.step-contact-textarea {
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    color: #aaa;
+    width: 100%;
+    min-height: 90px;
+    resize: none;
+    outline: none;
+    box-shadow: none;
+    transition: background 0.2s;
+}
+
+.step-contact-textarea:focus {
+    background-color: #e8e8e8;
+    box-shadow: none;
+    border: none;
+    color: #333;
+}
+
+.step-contact-textarea::placeholder {
+    color: #bbb;
+}
+
+/* Submit Button — bottom right */
+.step-contact-submit {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    background: #4169e1;
+    color: #fff;
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 13px 26px;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(65, 105, 225, 0.4);
+    transition: background 0.2s, transform 0.15s;
+    z-index: 100;
+}
+
+.step-contact-submit:hover {
+    background: #2f54d4;
+    transform: translateY(-1px);
+}
+
+.step-contact-submit:active {
+    transform: translateY(0);
+}

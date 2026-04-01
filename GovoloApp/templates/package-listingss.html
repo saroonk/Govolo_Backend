@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Listing | Govolo Tours</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Clash Grotesk Font -->
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="package-listing.css">
+</head>
+
+<body class="package-listing-page">
+
+
+
+<div class="social-iconss">
+        <a href="" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <a href="" target="_blank" rel="noopener noreferrer" class="telephone-float">
+        <i class="bi bi-telephone"></i>
+    </a>
+
+    <a href="mailto:[EMAIL_ADDRESS]" target="_blank" rel="noopener noreferrer" class="email-float">
+        <i class="bi bi-envelope"></i>
+    </a>
+</div>
+
+
+    <!-- Navbar -->
+    <!-- Desktop & Mobile Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+        <div class="container-fluid px-3">
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="assets/Group_1.png" alt="Govolo Tours">
+            </a>
+
+            <!-- Mobile Toggle Button (Triggers Offcanvas Drawer) -->
+            <button class="navbar-toggler border-0 shadow-none d-lg-none p-0" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#mobileDrawer" aria-controls="mobileDrawer">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Desktop Menu -->
+            <div class="collapse navbar-collapse d-none d-lg-flex" id="desktopNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+    
+                    <!-- Multi-level Dropdown for Destinations -->
+<li class="nav-item mega-parent ">
+    <a class="nav-link mega-trigger" href="#">
+        International 
+        <i class="bi bi-chevron-down ms-1 small dropdown-icon"></i>
+    </a>
+
+    <!-- FULL WIDTH WRAPPER -->
+    <div class="mega-menu mt-2">
+
+        <!-- INNER CONTAINER (IMPORTANT) -->
+        <div class="container">
+            <div class="row">
+
+                <!-- Asia -->
+                <div class="col-lg-4">
+                    <h6 class="mega-heading">Asia</h6>
+                    <ul class="mega-list">
+                        <li>Bali </li>
+                        <li>Maldives </li>
+                        <li>Thailand <span class="badge badge-budget">BUDGET</span></li>
+                        <li>Dubai</li>
+                        <li>Vietnam</li>
+                    </ul>
+                </div>
+
+                <!-- Europe -->
+                <div class="col-lg-4">
+                    <h6 class="mega-heading">Europe</h6>
+                    <ul class="mega-list">
+                        <li>France</li>
+                        <li>Switzerland</li>
+                        <li>Spain<span class="badge badge-trending">TRENDING</span></li>
+                        <li>Italy</li>
+                        <li>Germany</li>
+                    </ul>
+                </div>
+
+                <!-- Africa -->
+                <div class="col-lg-4">
+                    <h6 class="mega-heading">Africa</h6>
+                    <ul class="mega-list">
+                        <li>Kenya</li>
+                        <li>South Africa</li>
+                        <li>Egypt <span class="badge badge-trending">TRENDING</span></li>
+                        <li>Morocco</li>
+
+                        <!-- SINGLE VIEW ALL -->
+                        <li class="mt-3">
+                            <a href="/destinations/" class="view-all">
+                                Explore 40+ Destinations →
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#" >
+                            Domestic
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#" >
+                            Packages
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Testimonials</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-primary rounded-pill px-4 nav-explore-btn " type="button">Explore Tours <i
+                            class="bi bi-arrow-right ms-2   align-text-bottom"></i></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <!-- Custom Mobile Drawer (Offcanvas) -->
+    <div class="offcanvas offcanvas-start custom-mobile-drawer border-0 shadow-sm" tabindex="-1" id="mobileDrawer"
+        aria-labelledby="mobileDrawerLabel">
+        <div class="offcanvas-header border-bottom-0 mt-2 px-4">
+            <h5 class="offcanvas-title" id="mobileDrawerLabel">
+                <img src="assets/Group_1.png" alt="Govolo Tours" style="height: 36px; width: auto;">
+            </h5>
+            <button type="button" class="btn-close shadow-none p-2" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body px-4 pt-1">
+            <div class="accordion accordion-flush mobile-nav-accordion" id="mobileNavAccordion">
+                <div class="nav-item mb-3">
+                    <a class="nav-link active  fs-5" href="#">Home</a>
+                </div>
+                <div class="nav-item mb-3">
+                    <a class="nav-link  fs-5" href="#">About</a>
+                </div>
+                <!-- Accordion for Mobile Dropdown (Clean/Modern integration) -->
+
+                <!-- Nested Accordion for Destinations Mobile Dropdown -->
+                <div class="accordion-item border-0 mb-3 bg-transparent">
+                    <h2 class="accordion-header" id="headingDestinations">
+                        <button class="accordion-button collapsed px-0 py-0 shadow-none bg-transparent fs-5"
+                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseDestinations"
+                            aria-expanded="false" aria-controls="collapseDestinations">
+                            International
+                        </button>
+                    </h2>
+                    <div id="collapseDestinations" class="accordion-collapse collapse" aria-labelledby="headingDestinations"
+                        data-bs-parent="#mobileNavAccordion">
+                        <div class="accordion-body px-3 py-2 mt-2 border-start border-2 border-light">
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                                <li class="accordion accordion-flush" id="nestedNavAccordionInt">
+                                    <div class="accordion-item border-0 bg-transparent mb-0">
+                                        <h2 class="accordion-header" id="headingInt">
+                                            <button class="accordion-button collapsed px-0 py-1 shadow-none bg-transparent text-muted nav-sublink"
+                                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseInt"
+                                                aria-expanded="false" aria-controls="collapseInt" style="font-size: 1rem;">
+                                                Asia
+                                            </button>
+                                        </h2>
+                                        <div id="collapseInt" class="accordion-collapse collapse" aria-labelledby="headingInt"
+                                            data-bs-parent="#nestedNavAccordionInt">
+                                            <div class="accordion-body px-3 py-1 mt-1 border-start border-1 border-light">
+                                                <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Bali</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Maldives</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Thailand</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Vietnam</a></li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="accordion-item border-0 bg-transparent mb-0">
+                                        <h2 class="accordion-header" id="headingInt">
+                                            <button class="accordion-button collapsed px-0 py-1 shadow-none bg-transparent text-muted nav-sublink"
+                                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseeuro"
+                                                aria-expanded="false" aria-controls="collapseInt" style="font-size: 1rem;">
+                                                Europe
+                                            </button>
+                                        </h2>
+                                        <div id="collapseeuro" class="accordion-collapse collapse" aria-labelledby="headingInt"
+                                            data-bs-parent="#nestedNavAccordionInt">
+                                            <div class="accordion-body px-3 py-1 mt-1 border-start border-1 border-light">
+                                                <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">France</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Switzerland</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Italy</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Spain</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="accordion-item border-0 bg-transparent mb-0">
+                                        <h2 class="accordion-header" id="headingInt">
+                                            <button class="accordion-button collapsed px-0 py-1 shadow-none bg-transparent text-muted nav-sublink"
+                                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseafr"
+                                                aria-expanded="false" aria-controls="collapseInt" style="font-size: 1rem;">
+                                                Africa
+                                            </button>
+                                        </h2>
+                                        <div id="collapseafr" class="accordion-collapse collapse" aria-labelledby="headingInt"
+                                            data-bs-parent="#nestedNavAccordionInt">
+                                            <div class="accordion-body px-3 py-1 mt-1 border-start border-1 border-light">
+                                                <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Kenya</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">South Africa</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Egypt</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Morocco</a></li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </li>
+
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+                                <div class="nav-item mb-3">
+                    <a class="nav-link active fs-5" href="#">Domestic</a>
+                </div>
+
+                
+
+
+                <div class="nav-item mb-3">
+                    <a class="nav-link active fs-5" href="#">Packages</a>
+                </div>
+
+
+                <div class="nav-item mb-3">
+                    <a class="nav-link  fs-5" href="#">Testimonials</a>
+                </div>
+            </div>
+
+            <button
+                class="btn btn-primary rounded-pill w-100 py-3 mt-4 fs-6  d-flex align-items-center justify-content-center mobile-explore-btn"
+                type="button">
+                Explore Tours <i class="bi bi-arrow-right ms-2"></i>
+            </button>
+        </div>
+    </div>
+
+
+
+
+    
+    <!-- Hero Section -->
+    <section class="package-hero d-flex align-items-center text-white">
+        <div class="container text-center">
+            <h1 class="hero-title mb-3">Explore Our Travel Packages</h1>
+            <p class="hero-subtitle mb-4">Discover the perfect journey tailored to your style and budget.</p>
+        </div>
+    </section>
+
+    <section class="products-filter-bar d-none d-md-block">
+        <div class="container">
+            <form action="" method="GET" class="filter-form">
+                <div class="filter-bar-inner d-flex align-items-center justify-content-between">
+                    <div class="filter-left d-flex align-items-center gap-3">
+                        <span class="filter-label me-2"><i class="bi bi-funnel"></i> Filter:</span>
+
+                        <!-- Destination -->
+                        <div class="unified-dropdown" id="destDropdown">
+                            <div class="unified-drop-btn">
+                                <span class="selected-text">Destination</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="unified-drop-menu scrollable-menu">
+                                <div class="unified-option active" data-value="">All Destinations</div>
+                                <div class="unified-option" data-value="india">India</div>
+                                <div class="unified-option" data-value="vietnam">Vietnam</div>
+                                <div class="unified-option" data-value="usa">USA</div>
+                                <div class="unified-option" data-value="bhutan">Bhutan</div>
+                                <div class="unified-option" data-value="nepal">Nepal</div>
+                                <div class="unified-option" data-value="thailand">Thailand</div>
+                            </div>
+                            <input type="hidden" name="country" value="">
+                        </div>
+
+                        <!-- Duration -->
+                        <div class="unified-dropdown" id="durationDropdown">
+                            <div class="unified-drop-btn">
+                                <span class="selected-text">Duration</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="unified-drop-menu">
+                                <div class="unified-option active" data-value="">Any Duration</div>
+                                <div class="unified-option" data-value="3">3 Days</div>
+                                <div class="unified-option" data-value="5">5 Days</div>
+                                <div class="unified-option" data-value="7">7 Days</div>
+                            </div>
+                            <input type="hidden" name="duration" value="">
+                        </div>
+
+                        <!-- Price Range (Simple Dropdown) -->
+                        <div class="unified-dropdown" id="priceDropdown">
+                            <div class="unified-drop-btn">
+                                <span class="selected-text">Price Range</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="unified-drop-menu">
+                                <div class="unified-option active" data-value="">Any Price</div>
+                                <div class="unified-option" data-value="0-5000">Under ₹5,000</div>
+                                <div class="unified-option" data-value="5000-10000">₹5,000 – ₹10,000</div>
+                                <div class="unified-option" data-value="10000-20000">₹10,000 – ₹20,000</div>
+                                <div class="unified-option" data-value="20000+">₹20,000+</div>
+                            </div>
+                            <input type="hidden" name="price" value="">
+                        </div>
+
+                        <!-- Sort (Moved Inside Filters) -->
+                        <div class="unified-dropdown" id="sortDropdown">
+                            <div class="unified-drop-btn">
+                                <span class="selected-text">Sort By</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="unified-drop-menu">
+                                <div class="unified-option active" data-value="newest">Newest</div>
+                                <div class="unified-option" data-value="price-asc">Price: Low to High</div>
+                                <div class="unified-option" data-value="price-desc">Price: High to Low</div>
+                                <div class="unified-option" data-value="popular">Most Popular</div>
+                            </div>
+                            <input type="hidden" name="sort" value="newest">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary rounded-pill px-4 ms-2">Apply</button>
+                        <a href="package-listing.html" class="text-decoration-none text-muted small ms-3 fw-medium">Clear All</a>
+                    </div>
+
+                    <div class="filter-right">
+                        <span class="products-count fw-medium text-muted small"><span class="text-primary fw-bold">20</span> Packages Found</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- ====== MOBILE FILTER BAR ====== -->
+    <section class="products-filter-bar-mobile d-md-none">
+        <div class="container">
+            <div class="mobile-filter-bar d-flex align-items-center justify-content-between">
+                <button class="mobile-filter-btn" id="mobileFilterBtn">
+                    <i class="bi bi-sliders"></i> Filter & Sort
+                </button>
+                <span class="products-count small fw-bold"><span class="text-primary fw-bold">20</span> Packages</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== MOBILE FILTER DRAWER ====== -->
+    <div class="mobile-filter-overlay" id="mobileFilterOverlay"></div>
+    <div class="mobile-filter-drawer" id="mobileFilterDrawer">
+        <form action="" method="GET" class="h-100 d-flex flex-column">
+            <div class="drawer-header p-4 border-bottom d-flex align-items-center justify-content-between">
+                <h5 class="fw-bold mb-0">Filters</h5>
+                <button type="button" class="btn-close" id="drawerCloseBtn"></button>
+            </div>
+            <div class="drawer-body p-4 flex-grow-1 overflow-auto">
+                <!-- Mobile Destination -->
+                <div class="mobile-filter-group mb-4">
+                    <label class="fw-bold text-muted text-uppercase d-block mb-2 small">Destination</label>
+                    <div class="unified-dropdown w-100">
+                        <div class="unified-drop-btn w-100 justify-content-between">
+                            <span class="selected-text">All Destinations</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="unified-drop-menu scrollable-menu w-100">
+                            <div class="unified-option active" data-value="">All Destinations</div>
+                            <div class="unified-option" data-value="india">India</div>
+                            <div class="unified-option" data-value="vietnam">Vietnam</div>
+                            <div class="unified-option" data-value="usa">USA</div>
+                            <div class="unified-option" data-value="bhutan">Bhutan</div>
+                        </div>
+                        <input type="hidden" name="country" value="">
+                    </div>
+                </div>
+
+                <!-- Mobile Duration -->
+                <div class="mobile-filter-group mb-4">
+                    <label class="fw-bold text-muted text-uppercase d-block mb-2 small">Duration</label>
+                    <div class="unified-dropdown w-100">
+                        <div class="unified-drop-btn w-100 justify-content-between">
+                            <span class="selected-text">Any Duration</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="unified-drop-menu w-100">
+                            <div class="unified-option active" data-value="">Any Duration</div>
+                            <div class="unified-option" data-value="3">3 Days</div>
+                            <div class="unified-option" data-value="5">5 Days</div>
+                            <div class="unified-option" data-value="7">7 Days</div>
+                        </div>
+                        <input type="hidden" name="duration" value="">
+                    </div>
+                </div>
+
+                <!-- Mobile Price -->
+                <div class="mobile-filter-group mb-4">
+                    <label class="fw-bold text-muted text-uppercase d-block mb-2 small">Price Range</label>
+                    <div class="unified-dropdown w-100">
+                        <div class="unified-drop-btn w-100 justify-content-between">
+                            <span class="selected-text">Any Price</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="unified-drop-menu w-100">
+                            <div class="unified-option active" data-value="">Any Price</div>
+                            <div class="unified-option" data-value="0-5000">Under ₹5,000</div>
+                            <div class="unified-option" data-value="5000-10000">₹5,000 – ₹10,000</div>
+                            <div class="unified-option" data-value="10000-20000">₹10,000 – ₹20,000</div>
+                            <div class="unified-option" data-value="20000+">₹20,000+</div>
+                        </div>
+                        <input type="hidden" name="price" value="">
+                    </div>
+                </div>
+
+                <!-- Mobile Sort -->
+                <div class="mobile-filter-group mb-4">
+                    <label class="fw-bold text-muted text-uppercase d-block mb-2 small">Sort By</label>
+                    <div class="unified-dropdown w-100">
+                        <div class="unified-drop-btn w-100 justify-content-between">
+                            <span class="selected-text">Newest</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="unified-drop-menu w-100">
+                            <div class="unified-option active" data-value="newest">Newest</div>
+                            <div class="unified-option" data-value="price-asc">Price: Low to High</div>
+                            <div class="unified-option" data-value="price-desc">Price: High to Low</div>
+                            <div class="unified-option" data-value="popular">Most Popular</div>
+                        </div>
+                        <input type="hidden" name="sort" value="newest">
+                    </div>
+                </div>
+            </div>
+            <div class="drawer-footer p-4 border-top bg-white d-flex gap-3">
+                <a href="package-listing.html" class="btn btn-outline-secondary rounded-pill flex-grow-1 py-3 text-uppercase fw-bold small">Clear All</a>
+                <button type="submit" class="btn btn-primary rounded-pill flex-grow-1 py-3 text-uppercase fw-bold small">Apply Filters</button>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+
+
+    <section class="products-grid-section py-5 mb-5">
+        <div class="container">
+            <div class="row g-4" id="packageGrid">
+                <!-- Card 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="package-card bg-white rounded-4 overflow-hidden h-100 d-flex flex-column" data-aos="fade">
+                        <div class="package-img">
+                            <img src="assets/card_1.jpg" alt="Lithaniya - Santa Cruza"
+                                class="w-100 h-100 object-fit-cover">
+                        </div>
+                        <div class="package-content p-4 flex-grow-1 d-flex flex-column">
+                            <h4 class="package-title mb-1 fs-5">Lithaniya – Santa Cruza</h4>
+                            <p class="package-location text-muted mb-2 pb-2" style="font-size: 0.95rem;">Location: Roman
+                            </p>
+
+                            <div class="package-meta d-flex justify-content-between mb-4 py-4 border-bottom border-top text-muted"
+                                style="font-size: 0.9rem;">
+                                <span><i class="bi bi-calendar3 me-1"></i> 4 Days</span>
+                                <span><i class="bi bi-moon me-1"></i> 4 Nights</span>
+                                <span><i class="bi bi-globe me-1"></i> 08 Country</span>
+                            </div>
+
+                            <div class="package-footer mt-auto d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="text-muted mb-0" style="font-size: 0.8rem;">Starting From</p>
+                                    <h5 class="text-primary price mb-0 fs-4">$359</h5>
+                                </div>
+                                <a href="#" class="btn btn-primary rounded-pill px-4 py-2 package-btn">View Tour</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="package-card bg-white rounded-4 overflow-hidden h-100 d-flex flex-column" data-aos="fade">
+                        <div class="package-img">
+                            <img src="assets/card_2.jpg" alt="Velouria - Monte Sienna"
+                                class="w-100 h-100 object-fit-cover">
+                        </div>
+                        <div class="package-content p-4 flex-grow-1 d-flex flex-column">
+                            <h4 class="package-title fw-bold mb-1 fs-5">Velouria – Monte Sienna</h4>
+                            <p class="package-location text-muted mb-2 pb-2" style="font-size: 0.95rem;">Location:
+                                Bhutan</p>
+
+                            <div class="package-meta d-flex justify-content-between mb-4 py-4 border-bottom border-top text-muted"
+                                style="font-size: 0.9rem;">
+                                <span><i class="bi bi-calendar3 me-1"></i> 6 Days</span>
+                                <span><i class="bi bi-moon me-1"></i> 3 Nights</span>
+                                <span><i class="bi bi-globe me-1"></i> 08 Country</span>
+                            </div>
+
+                            <div class="package-footer mt-auto d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="text-muted mb-0" style="font-size: 0.8rem;">Starting From</p>
+                                    <h5 class="text-primary price mb-0 fs-4">$859</h5>
+                                </div>
+                                <a href="#" class="btn btn-primary rounded-pill px-4 py-2 package-btn">View Tour</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="package-card bg-white rounded-4 overflow-hidden h-100 d-flex flex-column" data-aos="fade">
+                        <div class="package-img">
+                            <img src="assets/card_1.jpg" alt="Lithaniya - Santa Cruza"
+                                class="w-100 h-100 object-fit-cover">
+                        </div>
+                        <div class="package-content p-4 flex-grow-1 d-flex flex-column">
+                            <h4 class="package-title mb-1 fs-5">Lithaniya – Santa Cruza</h4>
+                            <p class="package-location text-muted mb-2 pb-2" style="font-size: 0.95rem;">Location: Roman
+                            </p>
+
+                            <div class="package-meta d-flex justify-content-between mb-4 py-4 border-bottom border-top text-muted"
+                                style="font-size: 0.9rem;">
+                                <span><i class="bi bi-calendar3 me-1"></i> 4 Days</span>
+                                <span><i class="bi bi-moon me-1"></i> 4 Nights</span>
+                                <span><i class="bi bi-globe me-1"></i> 08 Country</span>
+                            </div>
+
+                            <div class="package-footer mt-auto d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="text-muted mb-0" style="font-size: 0.8rem;">Starting From</p>
+                                    <h5 class="text-primary price mb-0 fs-4">$359</h5>
+                                </div>
+                                <a href="#" class="btn btn-primary rounded-pill px-4 py-2 package-btn">View Tour</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="pagination-wrapper">
+                <nav aria-label="Blog pagination">
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <i class="bi bi-chevron-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <i class="bi bi-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+
+        </div>
+    </section>
+
+
+
+    {% include 'footer.html' %}
+
+
+
+
+    <!-- JS Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+
+
+            const navbar = document.querySelector('.custom-navbar');
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+    }
+
+
+
+        const dropdowns = document.querySelectorAll('.unified-dropdown');
+
+        dropdowns.forEach(dropdown => {
+            const btn = dropdown.querySelector('.unified-drop-btn');
+            const options = dropdown.querySelectorAll('.unified-option');
+            const hiddenInput = dropdown.querySelector('input[type="hidden"]');
+            const selectedText = dropdown.querySelector('.selected-text');
+
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    // Close others
+                    dropdowns.forEach(other => {
+                        if (other !== dropdown) other.classList.remove('active');
+                    });
+                    dropdown.classList.toggle('active');
+                });
+            }
+
+            options.forEach(option => {
+                option.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const val = option.getAttribute('data-value');
+                    const text = option.textContent.trim();
+                    
+                    if (hiddenInput) hiddenInput.value = val;
+                    if (selectedText) selectedText.textContent = text;
+
+                    options.forEach(opt => opt.classList.remove('active'));
+                    option.classList.add('active');
+                    dropdown.classList.remove('active');
+                });
+            });
+        });
+
+        // Close dropdowns on click outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.unified-dropdown')) {
+                dropdowns.forEach(d => d.classList.remove('active'));
+            }
+        });
+
+        // ====== MOBILE FILTER DRAWER LOGIC ======
+        const mobileFilterBtn = document.getElementById('mobileFilterBtn');
+        const mobileFilterDrawer = document.getElementById('mobileFilterDrawer');
+        const mobileFilterOverlay = document.getElementById('mobileFilterOverlay');
+        const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+
+        function openDrawer() {
+            mobileFilterDrawer.classList.add('open');
+            mobileFilterOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+            mobileFilterDrawer.classList.remove('open');
+            mobileFilterOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (mobileFilterBtn) mobileFilterBtn.addEventListener('click', openDrawer);
+        if (mobileFilterOverlay) mobileFilterOverlay.addEventListener('click', closeDrawer);
+        if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeDrawer);
+    </script>
+</body>
+
+</html>

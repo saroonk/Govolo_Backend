@@ -1,0 +1,271 @@
+/* Govolo Tours - About Us Custom Styling */
+
+/* 1. Hero Section */
+.about-hero {
+    min-height: 80vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    padding-top: 100px;
+}
+
+.about-hero  .btn-outline-light:hover{
+    color: black !important;
+}
+
+.hero-label {
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    font-weight: 500;
+}
+
+.hero-main-title {
+    line-height: 1.1;
+    font-weight: 600;
+}
+
+.hero-desc {
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .about-hero {
+        min-height: 100vh;
+    }
+    .hero-main-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* 2. Global Section Spacing */
+.section-padding {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+/* 3. About Company Elements */
+.about-img-wrapper {
+    z-index: 1;
+}
+
+.main-about-img {
+    transition: transform 0.5s ease;
+}
+
+.about-img-wrapper:hover .main-about-img {
+    transform: scale(1.02);
+}
+
+.experience-badge {
+    min-width: 140px;
+    border: 4px solid var(--pure-white);
+}
+
+.icon-box {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.icon-box:hover {
+    background-color: var(--primary-blue) !important;
+    color: var(--pure-white) !important;
+    transform: rotate(10deg);
+}
+
+/* 4. Feature Cards (Why Choose Us) */
+.feature-card {
+    background: var(--pure-white);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 119, 255, 0.1);
+    border-color: var(--primary-blue) !important;
+}
+
+.feature-icon-lg {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg-primary-light {
+    background-color: rgba(0, 119, 255, 0.08);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.provide-section {
+    background: linear-gradient(to top, var(--primary-blue), rgb(96, 149, 247));
+    color: var(--pure-white);
+}
+.provide-section h2{
+    font-weight: 600 !important;
+}
+
+/* 5. Service Strips */
+.service-strip {
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.service-strip:hover {
+    background-color: rgba(0, 119, 255, 0.2) !important;
+    transform: translateX(10px);
+}
+
+/* 6. Collage Grid (Travel Experience) */
+.collage-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    height: 500px;
+    gap: 15px;
+}
+
+.collage-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.collage-item.item-1 {
+    grid-column: 1 / 8;
+    grid-row: 1 / 13;
+}
+
+.collage-item.item-2 {
+    grid-column: 8 / 13;
+    grid-row: 1 / 7;
+}
+
+.collage-item.item-3 {
+    grid-column: 8 / 13;
+    grid-row: 7 / 13;
+}
+
+@media (max-width: 991px) {
+    .collage-grid {
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .collage-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        height: auto;
+    }
+
+    .collage-item {
+        grid-column: auto !important;
+        grid-row: auto !important;
+    }
+
+    .collage-item img {
+        height: 250px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* 7. Stats Section */
+.stats-bg {
+    background: #f0f7ff;
+}
+
+.stats-bg .display-4{
+    font-weight: 600 !important;
+}
+
+.tracking-widest {
+    letter-spacing: 2px;
+}
+
+/* 8. Team Cards */
+.team-card {
+    transition: all 0.3s ease;
+}
+
+.team-card img {
+    transition: filter 0.3s ease, transform 0.5s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+
+.team-card:hover img {
+    filter: brightness(1.05);
+}
+
+/* 9. CTA Box */
+.cta-box {
+    background-color: var(--primary-blue) !important;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-white {
+    background-color: var(--pure-white);
+    color: var(--primary-blue) !important;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-white:hover {
+    transform: scale(1.05);
+    background-color: #f8f9fa;
+}
+
+.cta-circle {
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/* Typography Consistency */
+.font-secondary {
+    font-family: inherit;
+    font-weight: 300;
+}
+
+/* Shadow Utility */
+.shadow-xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Transitions */
+.transition-all {
+    transition: all 0.3s ease-in-out;
+}

@@ -1,0 +1,203 @@
+/* Blog Listing CSS */
+
+.blog-hero {
+    height: 70vh;
+    /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/dest_water.jpg');  */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--pure-white);
+    margin-top: 0;
+}
+
+.blog-hero h1 {
+    font-size: 4.5rem;
+    font-weight: 400;
+    letter-spacing: -1px;
+}
+
+.blog-hero .lead {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+/* Category Tabs */
+.blog-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    /* margin-top: 30px; */
+    position: relative;
+    z-index: 10;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background: var(--pure-white);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 500;
+    color: var(--text-dark);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.tab-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.tab-btn.active {
+    background: var(--primary-blue);
+    color: var(--pure-white);
+}
+
+/* Blog Cards */
+.blog-listing-section {
+    padding: 80px 0;
+    background-color: #f8fbff;
+}
+
+.blog-card {
+    background: var(--pure-white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.blog-card-img {
+    height: 240px;
+    overflow: hidden;
+    position: relative;
+}
+
+.blog-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+   
+
+
+
+
+
+.blog-card:hover .blog-card-img img {
+    transform: scale(1.1);
+}
+
+.category-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--primary-blue);
+    color: var(--pure-white);
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.blog-card-content {
+    padding: 30px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+.blog-card-content p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.read-more-btn {
+    margin-top: auto;
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.3s ease;
+}
+
+.read-more-btn:hover {
+    gap: 12px;
+    color: var(--hover-blue);
+}
+
+/* Pagination */
+.pagination-wrapper {
+    margin-top: 50px;
+}
+
+.custom-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+}
+
+.page-item .page-link {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    background: var(--pure-white);
+    text-decoration: none;
+}
+
+.page-item.active .page-link {
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
+    color: var(--pure-white);
+}
+
+.page-item .page-link:hover:not(.active) {
+    background: #f0f7ff;
+    border-color: var(--primary-blue);
+    color: var(--primary-blue);
+}
+
+@media (max-width: 768px) {
+    .blog-hero h1 {
+        font-size: 2.5rem;
+    }
+    .blog-hero {
+        height: 350px;
+        padding-top: 80px;
+    }
+}

@@ -1,0 +1,358 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Govolo Tours - Destinations in Asia</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Clash Grotesk Font -->
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <!-- Fancybox CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Destination Listing Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/destinationlisting.css' %}">
+</head>
+
+<body>
+
+
+<div class="social-iconss">
+        <a href="" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <a href="" target="_blank" rel="noopener noreferrer" class="telephone-float">
+        <i class="bi bi-telephone"></i>
+    </a>
+
+    <a href="mailto:[EMAIL_ADDRESS]" target="_blank" rel="noopener noreferrer" class="email-float">
+        <i class="bi bi-envelope"></i>
+    </a>
+</div>
+
+
+
+    <!-- Desktop & Mobile Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+        <div class="container-fluid px-3">
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="assets/Group_1.png" alt="Govolo Tours">
+            </a>
+
+            <!-- Mobile Toggle Button (Triggers Offcanvas Drawer) -->
+            <button class="navbar-toggler border-0 shadow-none d-lg-none p-0" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#mobileDrawer" aria-controls="mobileDrawer">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Desktop Menu -->
+            <div class="collapse navbar-collapse d-none d-lg-flex" id="desktopNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+    
+                    <!-- Multi-level Dropdown for Destinations -->
+<li class="nav-item mega-parent ">
+    <a class="nav-link mega-trigger" href="#">
+        International 
+        <i class="bi bi-chevron-down ms-1 small dropdown-icon"></i>
+    </a>
+
+    <!-- FULL WIDTH WRAPPER -->
+    <div class="mega-menu mt-2">
+
+        <!-- INNER CONTAINER (IMPORTANT) -->
+        <div class="container">
+            <div class="row">
+
+                <!-- Asia -->
+                <div class="col-lg-4">
+                    <h6 class="mega-heading">Asia</h6>
+                    <ul class="mega-list">
+                        <li>Bali </li>
+                        <li>Maldives </li>
+                        <li>Thailand <span class="badge badge-budget">BUDGET</span></li>
+                        <li>Dubai</li>
+                        <li>Vietnam</li>
+                    </ul>
+                </div>
+
+                <!-- Europe -->
+                <div class="col-lg-4">
+                    <h6 class="mega-heading">Europe</h6>
+                    <ul class="mega-list">
+                        <li>France</li>
+                        <li>Switzerland</li>
+                        <li>Spain<span class="badge badge-trending">TRENDING</span></li>
+                        <li>Italy</li>
+                        <li>Germany</li>
+                    </ul>
+                </div>
+
+                <!-- Africa -->
+                <div class="col-lg-4">
+                    <h6 class="mega-heading">Africa</h6>
+                    <ul class="mega-list">
+                        <li>Kenya</li>
+                        <li>South Africa</li>
+                        <li>Egypt <span class="badge badge-trending">TRENDING</span></li>
+                        <li>Morocco</li>
+
+                        <!-- SINGLE VIEW ALL -->
+                        <li class="mt-3">
+                            <a href="/destinations/" class="view-all">
+                                Explore 40+ Destinations →
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#" >
+                            Domestic
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#" >
+                            Packages
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Testimonials</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-primary rounded-pill px-4 nav-explore-btn " type="button">Explore Tours <i
+                            class="bi bi-arrow-right ms-2   align-text-bottom"></i></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <!-- Custom Mobile Drawer (Offcanvas) -->
+    <div class="offcanvas offcanvas-start custom-mobile-drawer border-0 shadow-sm" tabindex="-1" id="mobileDrawer"
+        aria-labelledby="mobileDrawerLabel">
+        <div class="offcanvas-header border-bottom-0 mt-2 px-4">
+            <h5 class="offcanvas-title" id="mobileDrawerLabel">
+                <img src="assets/Group_1.png" alt="Govolo Tours" style="height: 36px; width: auto;">
+            </h5>
+            <button type="button" class="btn-close shadow-none p-2" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body px-4 pt-1">
+            <div class="accordion accordion-flush mobile-nav-accordion" id="mobileNavAccordion">
+                <div class="nav-item mb-3">
+                    <a class="nav-link active  fs-5" href="#">Home</a>
+                </div>
+                <div class="nav-item mb-3">
+                    <a class="nav-link  fs-5" href="#">About</a>
+                </div>
+                <!-- Accordion for Mobile Dropdown (Clean/Modern integration) -->
+
+                <!-- Nested Accordion for Destinations Mobile Dropdown -->
+                <div class="accordion-item border-0 mb-3 bg-transparent">
+                    <h2 class="accordion-header" id="headingDestinations">
+                        <button class="accordion-button collapsed px-0 py-0 shadow-none bg-transparent fs-5"
+                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseDestinations"
+                            aria-expanded="false" aria-controls="collapseDestinations">
+                            International
+                        </button>
+                    </h2>
+                    <div id="collapseDestinations" class="accordion-collapse collapse" aria-labelledby="headingDestinations"
+                        data-bs-parent="#mobileNavAccordion">
+                        <div class="accordion-body px-3 py-2 mt-2 border-start border-2 border-light">
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                                <li class="accordion accordion-flush" id="nestedNavAccordionInt">
+                                    <div class="accordion-item border-0 bg-transparent mb-0">
+                                        <h2 class="accordion-header" id="headingInt">
+                                            <button class="accordion-button collapsed px-0 py-1 shadow-none bg-transparent text-muted nav-sublink"
+                                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseInt"
+                                                aria-expanded="false" aria-controls="collapseInt" style="font-size: 1rem;">
+                                                Asia
+                                            </button>
+                                        </h2>
+                                        <div id="collapseInt" class="accordion-collapse collapse" aria-labelledby="headingInt"
+                                            data-bs-parent="#nestedNavAccordionInt">
+                                            <div class="accordion-body px-3 py-1 mt-1 border-start border-1 border-light">
+                                                <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Bali</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Maldives</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Thailand</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Vietnam</a></li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="accordion-item border-0 bg-transparent mb-0">
+                                        <h2 class="accordion-header" id="headingInt">
+                                            <button class="accordion-button collapsed px-0 py-1 shadow-none bg-transparent text-muted nav-sublink"
+                                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseeuro"
+                                                aria-expanded="false" aria-controls="collapseInt" style="font-size: 1rem;">
+                                                Europe
+                                            </button>
+                                        </h2>
+                                        <div id="collapseeuro" class="accordion-collapse collapse" aria-labelledby="headingInt"
+                                            data-bs-parent="#nestedNavAccordionInt">
+                                            <div class="accordion-body px-3 py-1 mt-1 border-start border-1 border-light">
+                                                <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">France</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Switzerland</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Italy</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Spain</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="accordion-item border-0 bg-transparent mb-0">
+                                        <h2 class="accordion-header" id="headingInt">
+                                            <button class="accordion-button collapsed px-0 py-1 shadow-none bg-transparent text-muted nav-sublink"
+                                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseafr"
+                                                aria-expanded="false" aria-controls="collapseInt" style="font-size: 1rem;">
+                                                Africa
+                                            </button>
+                                        </h2>
+                                        <div id="collapseafr" class="accordion-collapse collapse" aria-labelledby="headingInt"
+                                            data-bs-parent="#nestedNavAccordionInt">
+                                            <div class="accordion-body px-3 py-1 mt-1 border-start border-1 border-light">
+                                                <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Kenya</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">South Africa</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Egypt</a></li>
+                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Morocco</a></li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </li>
+
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+                                <div class="nav-item mb-3">
+                    <a class="nav-link active fs-5" href="#">Domestic</a>
+                </div>
+
+                
+
+
+                <div class="nav-item mb-3">
+                    <a class="nav-link active fs-5" href="#">Packages</a>
+                </div>
+
+
+                <div class="nav-item mb-3">
+                    <a class="nav-link  fs-5" href="#">Testimonials</a>
+                </div>
+            </div>
+
+            <button
+                class="btn btn-primary rounded-pill w-100 py-3 mt-4 fs-6  d-flex align-items-center justify-content-center mobile-explore-btn"
+                type="button">
+                Explore Tours <i class="bi bi-arrow-right ms-2"></i>
+            </button>
+        </div>
+    </div>
+
+
+
+    <section class="destination-hero w-100 d-flex flex-column align-items-center justify-content-center" data-aos="fade" style="background-image: url('{% static "images/pexels-francesco-ungaro-2325447.jpg" %}')">
+        <!-- Center Content -->
+        <div class="container position-relative text-center text-white mt-5 pt-4">
+            <h1 class="hero-title mb-3">Top Destinations in Asia</h1>
+            <p class="hero-subtitle mx-auto mb-0">Discover the beauty, rich culture, and unforgettable experiences across the continent.</p>
+        </div>
+    </section>
+
+    <section class="top-destinations-section py-5 bg-white">
+        <div class="container py-4 pb-5">
+            <div class="row g-4 justify-content-center" data-aos="fade-up">
+
+
+                {% if destinations|length >= 1 %}
+                {% for destination in destinations %}
+               
+                <div class="col-lg-3 col-md-6 col-12">
+                    <a href="#" class="d-block text-decoration-none h-100 w-100 border-0">
+                        <div class="dest-card dest-uniform h-100">
+                            <img src="{{ destination.main_image.url }}" alt="{{ destination.name }}">
+                            <div class="dest-overlay">
+                                <h4 class="dest-title">{{ destination.title }}</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% empty %}
+                    <p>No destinations available.</p>
+                {% endfor %}
+                {% endif %}
+
+            </div>
+        </div>
+    </section>
+
+    
+    {% include 'footer.html' %}
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <!-- Fancybox JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

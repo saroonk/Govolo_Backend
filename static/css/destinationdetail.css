@@ -1,0 +1,187 @@
+/* Destination Detail Page Specific Styles */
+
+:root {
+    --primary-blue: #0077FF;
+    --blue-light: rgba(0, 119, 255, 0.08);
+    --blue-extra-light: rgba(0, 119, 255, 0.03);
+    --text-dark: #212529;
+    --pure-white: #FFFFFF;
+}
+
+/* Hero Section with Video */
+.detail-hero-section {
+    position: relative;
+    background-color: #000;
+}
+
+.hero-video-bg {
+    filter: brightness(0.85);
+}
+
+.hero-overlay {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.hero-destination-name {
+    letter-spacing: 8px;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hero-tagline {
+    font-weight: 300;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Breadcrumb */
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "\F285"; /* Bootstrap Icons chevron-right */
+    font-family: "bootstrap-icons";
+    font-size: 0.75rem;
+    color: #ccc;
+}
+
+.breadcrumb-item.active {
+    font-weight: 500;
+}
+
+/* Overview Section */
+.bg-blue-light {
+    background-color: var(--blue-light);
+}
+
+.highlight-icon {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+}
+
+
+
+.overview-img-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    padding: 0.5rem;
+    width: 100%;          /* prevent stretching beyond parent */
+    box-sizing: border-box;
+}
+
+.grid-item {
+    min-width: 0;         /* critical: prevents grid blowout */
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+}
+
+.grid-item.item-1 {
+    grid-row: span 2;     /* spans 2 rows instead of using aspect-ratio hack */
+    aspect-ratio: unset;  /* let row-span control height, not aspect-ratio */
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.grid-item:hover img {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .overview-img-grid {
+        grid-template-columns: 1fr;   /* single column */
+    }
+
+    .grid-item.item-1 {
+        grid-row: span 1;             /* reset span on mobile */
+        aspect-ratio: 16 / 9;
+    }
+
+    .grid-item {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+
+
+/* Packages Section Adjustments */
+.nav-pills .nav-link {
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--primary-blue);
+    color: var(--pure-white);
+    box-shadow: 0 8px 15px rgba(0, 119, 255, 0.2);
+}
+
+/* Customize Cards - Keeping these as they are unique to this page or variants */
+.border-dashed {
+    border: 2px dashed #ddd;
+}
+
+.customize-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.customize-card-family {
+    background: linear-gradient(135deg, var(--blue-extra-light) 0%, rgba(0, 119, 255, 0.08) 100%);
+}
+
+.icon-box-outline {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Partners Section */
+.grayscale-hover div {
+    filter: grayscale(1);
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.grayscale-hover div:hover {
+    filter: grayscale(0);
+    opacity: 1 !important;
+}
+
+/* Testimonials Reused Layout Adjustments */
+.testimonial-card {
+    margin-top: 40px;
+}
+
+.testimonial-img-wrapper img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991px) {
+
+    .detail-hero-section{
+        max-height: 70svh !important;
+    }
+
+    
+    .hero-destination-name {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 576px) {
+
+    
+    .hero-destination-name {
+        font-size: 3rem;
+    }
+}
