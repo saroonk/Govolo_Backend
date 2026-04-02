@@ -404,6 +404,10 @@
         </div>
     </section>
 
+
+
+
+
     <!-- Couple Packages Section -->
     <section class="packages-section py-5 bg-light">
         <div class="container py-lg-4">
@@ -414,77 +418,71 @@
 
             <!-- Duration Tabs -->
             <ul class="nav nav-pills justify-content-center mb-5 gap-3" id="coupleTabs" role="tablist" data-aos="fade-up">
+                {% for duration in couple_durations %}
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active px-4 py-2 rounded-pill" id="couple-3days-tab" data-bs-toggle="pill" data-bs-target="#couple-3days" type="button" role="tab" aria-selected="true">3 Days</button>
+                    <button class="nav-link {% if forloop.first %}active{% endif %} px-4 py-2 rounded-pill" id="couple-{{ duration.id }}days-tab" data-bs-toggle="pill" data-bs-target="#couple-{{ duration.id }}days" type="button" role="tab" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">{{ duration.name }} Days</button>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link px-4 py-2 rounded-pill" id="couple-4days-tab" data-bs-toggle="pill" data-bs-target="#couple-4days" type="button" role="tab" aria-selected="false">4 Days</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link px-4 py-2 rounded-pill" id="couple-5days-tab" data-bs-toggle="pill" data-bs-target="#couple-5days" type="button" role="tab" aria-selected="false">5 Days</button>
-                </li>
+                {% endfor %}
             </ul>
 
             <div class="tab-content" id="coupleTabsContent">
-                <!-- 3 Days Tab -->
-                <div class="tab-pane fade show active" id="couple-3days" role="tabpanel">
+                {% for duration in couple_durations %}
+                <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="couple-{{ duration.id }}days" role="tabpanel">
                     <div class="row g-4 justify-content-center">
-                        <!-- Package 1 -->
+                        {% for package in couple_packages %}
+                            {% if package.tour_days == duration %}
+                        <!-- Package -->
                         <div class="col-lg-4 col-md-6">
-                            <div class="package-card bg-white rounded-4 overflow-hidden h-100 d-flex flex-column" data-aos="fade">
+                           <a href="{% url 'package_detail' package.slug %}" class="package-card bg-white rounded-4 overflow-hidden h-100 d-flex flex-column text-decoration-none" data-aos="fade">
                                 <div class="package-img">
-                                    <img src="assets/card_1.jpg" alt="Hanoi Discovery" class="w-100 h-100 object-fit-cover">
+                                    <img src="{{ package.main_image.url }}" alt="{{ package.title }}"
+                                        class="w-100 h-100 object-fit-cover">
                                 </div>
                                 <div class="package-content p-4 flex-grow-1 d-flex flex-column">
-                                    <h4 class="package-title mb-1 fs-5">Hanoi Romantic Discovery</h4>
-                                    <p class="package-location text-muted mb-2 pb-2" style="font-size: 0.95rem;">Location: Hanoi</p>
-                                    <div class="package-meta d-flex justify-content-between mb-4 py-4 border-bottom border-top text-muted" style="font-size: 0.9rem;">
-                                        <span><i class="bi bi-calendar3 me-1"></i> 3 Days</span>
-                                        <span><i class="bi bi-moon me-1"></i> 2 Nights</span>
-                                        <span><i class="bi bi-globe me-1"></i> 01 Country</span>
+                                    <h4 class="package-title mb-1 fs-5">{{ package.title }}</h4>
+                                    <p class="package-location text-muted mb-2 pb-2" style="font-size: 0.95rem;">Location: {{ package.destination }}
+                                    </p>
+
+                                    <div class="package-meta d-flex justify-content-between mb-4 py-4 border-bottom border-top text-muted"
+                                        style="font-size: 0.9rem;">
+                                        <span><i class="bi bi-calendar3 me-1"></i> {{ package.tour_days }} Days</span>
+                                        <span><i class="bi bi-moon me-1"></i> {{ package.nights }} Nights</span>
+                                        <span><i class="bi bi-globe me-1"></i> {{ package.country }}</span>
                                     </div>
+
                                     <div class="package-footer mt-auto d-flex justify-content-between align-items-center">
                                         <div>
                                             <p class="text-muted mb-0" style="font-size: 0.8rem;">Starting From</p>
-                                            <h5 class="text-primary price mb-0 fs-4">$299</h5>
+                                            <h5 class="text-primary price mb-0 fs-4">Rs {{ package.price }}</h5>
                                         </div>
-                                        <a href="#" class="btn btn-primary rounded-pill px-4 py-2 package-btn">View Details</a>
+                                        <button  class="btn btn-primary rounded-pill px-4 py-2 package-btn">View Tour</button>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
+                            {% endif %}
+                        {% endfor %}
 
-                        
-                                                
                         <!-- Customize Package Card -->
                         <div class="col-lg-4 col-md-6">
                             <div class="package-card customize-card rounded-4 border-dashed h-100 d-flex flex-column align-items-center justify-content-center p-5 text-center" data-aos="fade">
-                                <!-- <div class="icon-box bg-primary text-white rounded-circle mb-4 shadow-lg">
-                                    <i class="bi bi-magic fs-2"></i>
-                                </div> -->
                                 <div class="icon-box-outline border border-primary text-primary rounded-circle mb-4 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
-                                    <!-- <i class="bi bi-map fs-2"></i> -->
                                     <i class="bi bi-magic fs-2"></i>
-
                                 </div>
                                 <h4 class="package-title h5 mb-3">Didn't find your perfect package?</h4>
                                 <p class="text-muted small mb-4">Tell us your preferences and we'll craft a unique itinerary just for you.</p>
-                                <button class="btn btn-primary rounded-pill px-4 py-2">Customize Package</button>
+                                <button class="btn btn-primary rounded-pill px-4 py-2 start-planning-btn">Customize Package</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Tabs 4/5 days can be added here if needed, keeping them minimal as per original -->
-                <div class="tab-pane fade" id="couple-4days" role="tabpanel">
-                    <p class="text-center text-muted py-5">Looking for more? 4 Days packages are coming soon with even more adventures!</p>
-                </div>
-                <div class="tab-pane fade" id="couple-5days" role="tabpanel">
-                    <p class="text-center text-muted py-5">Deep dive into Vietnam with our 5-day immersive experiences.</p>
-                </div>
+                {% empty %}
+                <p class="text-center text-muted py-5">No packages found for this category.</p>
+                {% endfor %}
             </div>
 
             <div class="text-center mt-5">
-                <button class="btn btn-outline-secondary rounded-pill px-5 py-3 fw-medium">View More Packages</button>
+                <a href="{% url 'packages' %}" class="btn btn-outline-secondary rounded-pill px-5 py-3 fw-medium">View More Packages</a>
             </div>
         </div>
     </section>
@@ -517,46 +515,51 @@
 
             <!-- Duration Tabs -->
             <ul class="nav nav-pills justify-content-center mb-5 gap-3" id="familyTabs" role="tablist" data-aos="fade-up">
+                {% for duration in family_durations %}
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active px-4 py-2 rounded-pill" id="family-3days-tab" data-bs-toggle="pill" data-bs-target="#family-3days" type="button" role="tab" aria-selected="true">3 Days</button>
+                    <button class="nav-link {% if forloop.first %}active{% endif %} px-4 py-2 rounded-pill" id="family-{{ duration.id }}days-tab" data-bs-toggle="pill" data-bs-target="#family-{{ duration.id }}days" type="button" role="tab" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">{{ duration.name }} Days</button>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link px-4 py-2 rounded-pill" id="family-4days-tab" data-bs-toggle="pill" data-bs-target="#family-4days" type="button" role="tab" aria-selected="false">4 Days</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link px-4 py-2 rounded-pill" id="family-5days-tab" data-bs-toggle="pill" data-bs-target="#family-5days" type="button" role="tab" aria-selected="false">5 Days</button>
-                </li>
+                {% endfor %}
             </ul>
 
             <div class="tab-content" id="familyTabsContent">
-                <div class="tab-pane fade show active" id="family-3days" role="tabpanel">
+                {% for duration in family_durations %}
+                <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="family-{{ duration.id }}days" role="tabpanel">
                     <div class="row g-4 justify-content-center">
-                        <!-- Family Package 1 -->
+                        {% for package in family_packages %}
+                            {% if package.tour_days == duration %}
+                        <!-- Family Package -->
                         <div class="col-lg-4 col-md-6">
-                            <div class="package-card bg-white rounded-4 overflow-hidden h-100 d-flex flex-column" data-aos="fade">
-                                <div class="package-img">
-                                    <img src="assets/plan_trip_1.jpg" alt="Family Fun" class="w-100 h-100 object-fit-cover">
+                            <a href="{% url 'package_detail' package.slug %}" class="package-card bg-white rounded-4 overflow-hidden h-100 d-flex flex-column text-decoration-none" data-aos="fade">
+                        <div class="package-img">
+                            <img src="{{ package.main_image.url }}" alt="{{ package.title }}"
+                                class="w-100 h-100 object-fit-cover">
+                        </div>
+                        <div class="package-content p-4 flex-grow-1 d-flex flex-column">
+                            <h4 class="package-title mb-1 fs-5">{{ package.title }}</h4>
+                            <p class="package-location text-muted mb-2 pb-2" style="font-size: 0.95rem;">Location: {{ package.destination }}
+                            </p>
+
+                            <div class="package-meta d-flex justify-content-between mb-4 py-4 border-bottom border-top text-muted"
+                                style="font-size: 0.9rem;">
+                                <span><i class="bi bi-calendar3 me-1"></i> {{ package.tour_days }} Days</span>
+                                <span><i class="bi bi-moon me-1"></i> {{ package.nights }} Nights</span>
+                                <span><i class="bi bi-globe me-1"></i> {{ package.country }}</span>
+                            </div>
+
+                            <div class="package-footer mt-auto d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="text-muted mb-0" style="font-size: 0.8rem;">Starting From</p>
+                                    <h5 class="text-primary price mb-0 fs-4">Rs {{ package.price }}</h5>
                                 </div>
-                                <div class="package-content p-4 flex-grow-1 d-flex flex-column">
-                                    <h4 class="package-title mb-1 fs-5">Hanoi Family Fun Explorer</h4>
-                                    <p class="package-location text-muted mb-2 pb-2" style="font-size: 0.95rem;">Location: Hanoi</p>
-                                    <div class="package-meta d-flex justify-content-between mb-4 py-4 border-bottom border-top text-muted" style="font-size: 0.9rem;">
-                                        <span><i class="bi bi-calendar3 me-1"></i> 3 Days</span>
-                                        <span><i class="bi bi-moon me-1"></i> 2 Nights</span>
-                                        <span><i class="bi bi-globe me-1"></i> 01 Country</span>
-                                    </div>
-                                    <div class="package-footer mt-auto d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <p class="text-muted mb-0" style="font-size: 0.8rem;">Starting From</p>
-                                            <h5 class="text-primary price mb-0 fs-4">$399</h5>
-                                        </div>
-                                        <a href="#" class="btn btn-primary rounded-pill px-4 py-2 package-btn">View Details</a>
-                                    </div>
-                                </div>
+                                <button  class="btn btn-primary rounded-pill px-4 py-2 package-btn">View Tour</button>
                             </div>
                         </div>
+                    </a>
+                        </div>
+                            {% endif %}
+                        {% endfor %}
                        
-
                          <!-- Customize Itinerary Card -->
                          <div class="col-lg-4 col-md-6">
                             <div class="package-card customize-card rounded-4 border-dashed h-100 d-flex flex-column align-items-center justify-content-center p-5 text-center bg-blue-extra-light" data-aos="fade">
@@ -565,20 +568,14 @@
                                 </div>
                                 <h4 class="package-title h5 mb-3 text-dark">Need a special family plan?</h4>
                                 <p class="text-muted small mb-4">Let our experts help you build a kid-friendly, stress-free itinerary.</p>
-                                <button class="btn btn-primary rounded-pill px-4 py-2">Start Building Your Itinerary</button>
+                                <button class="btn btn-primary rounded-pill px-4 py-2 start-planning-btn">Start Building Your Itinerary</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-                <div class="tab-pane fade" id="family-4days" role="tabpanel">
-                    <p class="text-center text-muted py-5">Looking for more? 4 Days packages are coming soon with even more adventures!</p>
-                </div>
-                <div class="tab-pane fade" id="family-5days" role="tabpanel">
-                    <p class="text-center text-muted py-5">Deep dive into Vietnam with our 5-day immersive experiences.</p>
-                </div>
-
+                {% empty %}
+                <p class="text-center text-muted py-5">No packages found for this category.</p>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -593,72 +590,50 @@
 
             <!-- Duration Tabs -->
             <ul class="nav nav-pills justify-content-center mb-5 gap-3" id="soloTabs" role="tablist" data-aos="fade-up">
+                {% for duration in solo_durations %}
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active px-4 py-2 rounded-pill" id="solo-3days-tab" data-bs-toggle="pill" data-bs-target="#solo-3days" type="button" role="tab" aria-selected="true">3 Days</button>
+                    <button class="nav-link {% if forloop.first %}active{% endif %} px-4 py-2 rounded-pill" id="solo-{{ duration.id }}days-tab" data-bs-toggle="pill" data-bs-target="#solo-{{ duration.id }}days" type="button" role="tab" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">{{ duration.name }}</button>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link px-4 py-2 rounded-pill" id="solo-4days-tab" data-bs-toggle="pill" data-bs-target="#solo-4days" type="button" role="tab" aria-selected="false">4 Days</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link px-4 py-2 rounded-pill" id="solo-5days-tab" data-bs-toggle="pill" data-bs-target="#solo-5days" type="button" role="tab" aria-selected="false">5 Days</button>
-                </li>
+                {% endfor %}
             </ul>
 
             <div class="tab-content" id="soloTabsContent">
-                <div class="tab-pane fade show active" id="solo-3days" role="tabpanel">
+                {% for duration in solo_durations %}
+                <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="solo-{{ duration.id }}days" role="tabpanel">
                     <div class="row g-4 justify-content-center">
-                        <!-- Solo Package 1 -->
+                        {% for package in solo_packages %}
+                            {% if package.tour_days == duration %}
+                        <!-- Solo Package -->
                         <div class="col-lg-4 col-md-6">
-                            <div class="package-card bg-white rounded-4 overflow-hidden h-100 d-flex flex-column" data-aos="fade">
-                                <div class="package-img">
-                                    <img src="assets/cat_hiking.jpg" alt="Solo Hiking" class="w-100 h-100 object-fit-cover">
+                            <a href="{% url 'package_detail' package.slug %}" class="package-card bg-white rounded-4 overflow-hidden h-100 d-flex flex-column text-decoration-none" data-aos="fade">
+                        <div class="package-img">
+                            <img src="{{ package.main_image.url }}" alt="{{ package.title }}"
+                                class="w-100 h-100 object-fit-cover">
+                        </div>
+                        <div class="package-content p-4 flex-grow-1 d-flex flex-column">
+                            <h4 class="package-title mb-1 fs-5">{{ package.title }}</h4>
+                            <p class="package-location text-muted mb-2 pb-2" style="font-size: 0.95rem;">Location: {{ package.destination }}
+                            </p>
+
+                            <div class="package-meta d-flex justify-content-between mb-4 py-4 border-bottom border-top text-muted"
+                                style="font-size: 0.9rem;">
+                                <span><i class="bi bi-calendar3 me-1"></i> {{ package.tour_days }} Days</span>
+                                <span><i class="bi bi-moon me-1"></i> {{ package.nights }} Nights</span>
+                                <span><i class="bi bi-globe me-1"></i> {{ package.country }}</span>
+                            </div>
+
+                            <div class="package-footer mt-auto d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="text-muted mb-0" style="font-size: 0.8rem;">Starting From</p>
+                                    <h5 class="text-primary price mb-0 fs-4">Rs {{ package.price }}</h5>
                                 </div>
-                                <div class="package-content p-4 flex-grow-1 d-flex flex-column">
-                                    <h4 class="package-title mb-1 fs-5">Vietnam solo adventure</h4>
-                                    <p class="package-location text-muted mb-2 pb-2" style="font-size: 0.95rem;">Location: Sapa</p>
-                                    <div class="package-meta d-flex justify-content-between mb-4 py-4 border-bottom border-top text-muted" style="font-size: 0.9rem;">
-                                        <span><i class="bi bi-calendar3 me-1"></i> 3 Days</span>
-                                        <span><i class="bi bi-moon me-1"></i> 2 Nights</span>
-                                        <span><i class="bi bi-globe me-1"></i> 01 Country</span>
-                                    </div>
-                                    <div class="package-footer mt-auto d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <p class="text-muted mb-0" style="font-size: 0.8rem;">Starting From</p>
-                                            <h5 class="text-primary price mb-0 fs-4">$249</h5>
-                                        </div>
-                                        <a href="#" class="btn btn-primary rounded-pill px-4 py-2 package-btn">View Details</a>
-                                    </div>
-                                </div>
+                                <button  class="btn btn-primary rounded-pill px-4 py-2 package-btn">View Tour</button>
                             </div>
                         </div>
-                        <!-- Solo Package 2 -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="package-card bg-white rounded-4 overflow-hidden h-100 d-flex flex-column" data-aos="fade">
-                                <div class="package-img">
-                                    <img src="assets/cat_walking.png" alt="City Walk" class="w-100 h-100 object-fit-cover">
-                                </div>
-                                <div class="package-content p-4 flex-grow-1 d-flex flex-column">
-                                    <h4 class="package-title mb-1 fs-5">Saigon City Backpacker</h4>
-                                    <p class="package-location text-muted mb-2 pb-2" style="font-size: 0.95rem;">Location: Saigon</p>
-                                    <div class="package-meta d-flex justify-content-between mb-4 py-4 border-bottom border-top text-muted" style="font-size: 0.9rem;">
-                                        <span><i class="bi bi-calendar3 me-1"></i> 3 Days</span>
-                                        <span><i class="bi bi-moon me-1"></i> 2 Nights</span>
-                                        <span><i class="bi bi-globe me-1"></i> 01 Country</span>
-                                    </div>
-                                    <div class="package-footer mt-auto d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <p class="text-muted mb-0" style="font-size: 0.8rem;">Starting From</p>
-                                            <h5 class="text-primary price mb-0 fs-4">$199</h5>
-                                        </div>
-                                        <a href="#" class="btn btn-primary rounded-pill px-4 py-2 package-btn">View Details</a>
-                                    </div>
-                                </div>
-                            </div>
+                    </a>
                         </div>
-
-
-
-                        
+                            {% endif %}
+                        {% endfor %}
 
                          <!-- Customize Itinerary Card -->
                          <div class="col-lg-4 col-md-6">
@@ -668,19 +643,14 @@
                                 </div>
                                 <h4 class="package-title h5 mb-3 text-dark">Planning a solo trip?</h4>
                                 <p class="text-muted small mb-4">Let us help you design a safe and exciting solo journey across Vietnam.</p>
-                                <button class="btn btn-primary rounded-pill px-4 py-2">Start Planning Solo</button>
+                                <button class="btn btn-primary rounded-pill px-4 py-2 start-planning-btn">Start Planning Solo</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                                <div class="tab-pane fade" id="solo-4days" role="tabpanel">
-                    <p class="text-center text-muted py-5">Looking for more? 4 Days packages are coming soon with even more adventures!</p>
-                </div>
-                <div class="tab-pane fade" id="solo-5days" role="tabpanel">
-                    <p class="text-center text-muted py-5">Deep dive into Vietnam with our 5-day immersive experiences.</p>
-                </div>
-
+                {% empty %}
+                <p class="text-center text-muted py-5">No packages found for this category.</p>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -739,6 +709,501 @@
         </div>
     </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <!-- Full-Screen Customize Trip Overlay -->
+    <div id="customize-trip-overlay" class="customize-overlay">
+        <div class="overlay-header d-flex justify-content-between align-items-center px-4 py-3  shadow-sm mx-4 my-2">
+            <div class="overlay-logo">
+                <a href="index.html">
+                    <img src="{% static 'images/Group_1.png' %}" alt="Govolo Tours" style="height: 40px;">
+                </a>
+            </div>
+            <div class="step-navigation d-none d-md-flex align-items-center gap-4">
+                <span class="step-nav-item active" data-step="1">Travelers</span>
+                <span class="step-nav-item" data-step="2">Destination</span>
+                <span class="step-nav-item" data-step="3">Duration</span>
+                <span class="step-nav-item" data-step="4">Departure</span>
+                <span class="step-nav-item" data-step="5">Date</span>
+                <span class="step-nav-item" data-step="6">Cities</span>
+            </div>
+            <button class="btn-close-overlay btn border-0 shadow-none fs-4">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <div class="progress-container mx-md-4 ms-md-5">
+            <div class="progress-bar-custom" id="overlay-progress-bar" style="width: 11%;"></div>
+        </div>
+
+        <div class="overlay-body container py-5">
+            <form id="customize-trip-form">
+                <!-- Step 1: Travelers Count -->
+                <div class="form-step active step-travelers" data-step="1">
+                    <div class="text-center mb-5 mx-auto" style="max-width: 900px;">
+                        <h2 class="mb-2">Who’s joining you on this <br> <span class="text-primary">journey?</span> </h2>
+                        <p class="text-muted mb-0" style="font-size: 1rem;">Choose your travel style to help us personalize your itinerary.</p>
+                    </div>
+
+                    <div class="traveler-cards-wrap mx-auto">
+                        <div class="row g-4 justify-content-center traveler-cards-row">
+                        <div class="col-6 col-md-3">
+                            <label class="traveler-selection-card">
+                                <input type="radio" name="traveler_type" value="Solo" class="d-none traveler-type-radio"
+                                    required>
+                                <div class="card-img-wrapper">
+                                    <img src="{% static 'images/traveler_solo.png' %}" alt="Solo">
+                                    <div class="card-overlay">
+                                        <div class="trip-meta-icon"><i class="bi bi-person-fill"></i></div>
+                                        <h4>Solo Trip</h4>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <label class="traveler-selection-card">
+                                <input type="radio" name="traveler_type" value="Couple"
+                                    class="d-none traveler-type-radio">
+                                <div class="card-img-wrapper">
+                                    <img src="{% static 'images/traveler_couple.png' %}" alt="Couple">
+                                    <div class="card-overlay">
+                                        <div class="trip-meta-icon"><i class="bi bi-heart-fill"></i></div>
+                                        <h4>Couple Trip</h4>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <label class="traveler-selection-card">
+                                <input type="radio" name="traveler_type" value="Family"
+                                    class="d-none traveler-type-radio">
+                                <div class="card-img-wrapper">
+                                    <img src="{% static 'images/traveler_family.png' %}" alt="Family">
+                                    <div class="card-overlay">
+                                        <div class="trip-meta-icon"><i class="bi bi-people-fill"></i></div>
+                                        <h4>Family Trip</h4>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <label class="traveler-selection-card">
+                                <input type="radio" name="traveler_type" value="Friends"
+                                    class="d-none traveler-type-radio">
+                                <div class="card-img-wrapper">
+                                    <img src="{% static 'images/traveler_friends.png' %}" alt="Friends">
+                                    <div class="card-overlay">
+                                        <div class="trip-meta-icon"><i class="bi bi-person-plus-fill"></i></div>
+                                        <h4>Friends Trip</h4>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Member Input (Hidden by default) -->
+                    <div id="member-count-wrapper" class="d-none">
+                        <label class="form-label mb-2 d-block">Number of members</label>
+                        <div class="input-group input-group-lg overflow-hidden">
+                            <input type="number" name="travelers" id="member-count-input"
+                                class="form-control border-0 shadow-none" placeholder="4" min="1">
+                            <span class="member-help-text">Specify details<br>adults / children</span>
+                        </div>
+                    </div>
+                    </div>
+
+                </div>
+
+                <!-- Step 2: Destination Selection -->
+                <div class="form-step py-md-4 py-2 step-destination" data-step="2">
+                    <!-- Header -->
+                    <div class="dest-header mb-5 mx-auto" style="max-width: 1060px;">
+                        <h2 class=" mb-1 dest-main-title ">Choose your dream<br><span class="text-primary">destination</span></h2>
+                        <div class="dest-note mt-3 d-flex align-items-start gap-2 justify-content-center">
+                            <i class="bi bi-stars text-primary mt-1" style="font-size:0.95rem; flex-shrink:0;"></i>
+                            <p class="mb-0" style="font-size:0.88rem; color:#6b7280; line-height:1.6;">Not sure? Choose any destination to start, you can always create new one later. We'll help you curate the perfect itinerary regardless of your choice.</p>
+                        </div>
+                    </div>  
+
+                    <!-- Destination Cards Grid -->
+                    <div class="dest-cards-grid mx-auto" style="max-width: 1060px;">
+
+                        {% for destination in all_destinations %}
+
+                        <label class="dest-grid-card" tabindex="0">
+                            <input type="radio" name="destination" value="{{ destination.title }}" data-slug="{{ destination.slug }}" class="d-none">
+                            <div class="dest-card-badge">{{ destination.badge_text }}</div>
+                            <img src="{{ destination.main_image.url }}" alt="{{ destination.title }}" class="dest-card-img">
+                            <div class="dest-card-overlay"></div>
+                            <div class="dest-card-check"><i class="bi bi-check2"></i></div>
+                            <div class="dest-card-info">
+                                <h4 class="dest-card-name">{{ destination.title }}</h4>
+                                <!-- <p class="dest-card-sub">{{ destination.description }}</p> -->
+                            </div>
+                        </label>
+                        {% endfor %}
+
+
+
+                    </div>
+                </div>
+
+                <!-- Step 3: Trip Duration -->
+                <div class="form-step py-md-4 py-2 step-duration" data-step="3">
+                    <div class="text-start mb-5 mx-auto" style="max-width: 1100px;">
+                        <h2 class="fw-bold mb-2" style="font-size: 3rem; letter-spacing: -1.5px; color: #111;">How long is your <span class="text-primary">trip?</span></h2>
+                        <p class="text-muted mb-0" style="font-size: 1rem; font-weight: 400;">Every journey has its own rhythm. Tell us the duration so we can craft<br class="d-none d-md-block"> the perfect itinerary for your escape.</p>
+                    </div>
+
+                    <div class="row g-3 justify-content-center mb-5 mx-auto" style="max-width: 1100px;">
+                        <div class="col-6 col-md-6 col-lg-3">
+                            <label class="duration-select-card position-relative w-100 d-flex flex-column align-items-center justify-content-center">
+                                <input type="radio" name="duration" value="5" class="d-none">
+                                <div class="duration-icon-box d-flex align-items-center justify-content-center mb-3">
+                                    <i class="bi bi-calendar-event"></i>
+                                </div>
+                                <h4 class="mb-0">5 Days</h4>
+                                <span class="duration-subtitle mt-1">Quick Escape</span>
+                                <div class="check-circle"><i class="bi bi-check2"></i></div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-6 col-lg-3">
+                            <label class="duration-select-card position-relative w-100 d-flex flex-column align-items-center justify-content-center">
+                                <input type="radio" name="duration" value="8" class="d-none">
+                                <div class="duration-icon-box d-flex align-items-center justify-content-center mb-3">
+                                    <i class="fa-solid fa-plane-departure"></i>
+                                </div>
+                                <h4 class="mb-0">8 Days</h4>
+                                <span class="duration-subtitle mt-1">Balanced Week</span>
+                                <div class="check-circle"><i class="bi bi-check2"></i></div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-6 col-lg-3">
+                            <label class="duration-select-card position-relative w-100 d-flex flex-column align-items-center justify-content-center">
+                                <input type="radio" name="duration" value="10" class="d-none">
+                                <div class="duration-icon-box d-flex align-items-center justify-content-center mb-3">
+                                    <i class="bi bi-compass"></i>
+                                </div>
+                                <h4 class="mb-0">10 Days</h4>
+                                <span class="duration-subtitle mt-1">Deep Discovery</span>
+                                <div class="check-circle"><i class="bi bi-check2"></i></div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-6 col-lg-3">
+                            <label class="duration-select-card position-relative w-100 d-flex flex-column align-items-center justify-content-center">
+                                <input type="radio" name="duration" value="12" class="d-none">
+                                <div class="duration-icon-box d-flex align-items-center justify-content-center mb-3">
+                                    <i class="bi bi-map"></i>
+                                </div>
+                                <h4 class="mb-0">12 Days</h4>
+                                <span class="duration-subtitle mt-1">Grand Odyssey</span>
+                                <div class="check-circle"><i class="bi bi-check2"></i></div>
+                            </label>
+                        </div>
+                    </div>
+<!-- 
+                    <div class="row align-items-center mx-auto mt-4" style="max-width: 1100px;">
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <img src="assets/pexels-javon-swaby-197616-2797526.jpg" alt="Travel Planning" class="duration-info-img img-fluid w-100">
+                        </div>
+                        <div class="col-md-6 ps-md-4 text-start">
+                            <h4 class="duration-info-title">Travel Planning Simplified</h4>
+                            <p class="duration-info-text mb-0">Most voyagers find that 8 to 10 days provides the perfect equilibrium between high-octane exploration and serene moments of rest.</p>
+                        </div>
+                    </div> -->
+                </div>
+
+                <!-- Step 4: Departure Location -->
+                <div class="form-step step-airport" data-step="4">
+                    <div class="departure-header text-center mx-auto mb-4" style="max-width: 900px;">
+                        <h2 class="departure-title mb-2">Where will you travel  <br><span class="text-primary">from?</span></h2>
+                        <p class="departure-subtitle mb-0">Select your departure airport for exclusive lounge options.</p>
+                    </div>
+
+                    <div class="airport-list row g-3 justify-content-center mx-auto" style="max-width: 900px;">
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="airport-item airport-tile" data-value="Bengaluru, BLR" role="button" tabindex="0">
+                                <span class="airport-selected-indicator" aria-hidden="true"></span>
+                                <div class="airport-tile-icon"><i class="bi bi-airplane"></i></div>
+                                <div class="airport-tile-name">Bangalore</div>
+                                <div class="airport-tile-code">BLR</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="airport-item airport-tile" data-value="Mumbai, BOM" role="button" tabindex="0">
+                                <span class="airport-selected-indicator" aria-hidden="true"></span>
+                                <div class="airport-tile-icon"><i class="bi bi-airplane"></i></div>
+                                <div class="airport-tile-name">Mumbai</div>
+                                <div class="airport-tile-code">BOM</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="airport-item airport-tile" data-value="New Delhi, DEL" role="button" tabindex="0">
+                                <span class="airport-selected-indicator" aria-hidden="true"></span>
+                                <div class="airport-tile-icon"><i class="bi bi-airplane"></i></div>
+                                <div class="airport-tile-name">Delhi</div>
+                                <div class="airport-tile-code">DEL</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="airport-item airport-tile" data-value="Chennai, MAA" role="button" tabindex="0">
+                                <span class="airport-selected-indicator" aria-hidden="true"></span>
+                                <div class="airport-tile-icon"><i class="bi bi-airplane"></i></div>
+                                <div class="airport-tile-name">Chennai</div>
+                                <div class="airport-tile-code">MAA</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="airport-item airport-tile" data-value="Hyderabad, HYD" role="button" tabindex="0">
+                                <span class="airport-selected-indicator" aria-hidden="true"></span>
+                                <div class="airport-tile-icon"><i class="bi bi-airplane"></i></div>
+                                <div class="airport-tile-name">Hyderabad</div>
+                                <div class="airport-tile-code">HYD</div>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="airport-item airport-tile" data-value="Kolkata, CCU" role="button" tabindex="0">
+                                <span class="airport-selected-indicator" aria-hidden="true"></span>
+                                <div class="airport-tile-icon"><i class="bi bi-airplane"></i></div>
+                                <div class="airport-tile-name">Kolkata</div>
+                                <div class="airport-tile-code">CCU</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="airport-item airport-tile" data-value="Kochi, COK" role="button" tabindex="0">
+                                <span class="airport-selected-indicator" aria-hidden="true"></span>
+                                <div class="airport-tile-icon"><i class="bi bi-airplane"></i></div>
+                                <div class="airport-tile-name">Kochi</div>
+                                <div class="airport-tile-code">COK</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="airport-item airport-tile" data-value="Pune, PNQ" role="button" tabindex="0">
+                                <span class="airport-selected-indicator" aria-hidden="true"></span>
+                                <div class="airport-tile-icon"><i class="bi bi-airplane"></i></div>
+                                <div class="airport-tile-name">Pune</div>
+                                <div class="airport-tile-code">PNQ</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="airport-item airport-tile" data-value="Ahmedabad, AMD" role="button" tabindex="0">
+                                <span class="airport-selected-indicator" aria-hidden="true"></span>
+                                <div class="airport-tile-icon"><i class="bi bi-airplane"></i></div>
+                                <div class="airport-tile-name">Ahmedabad</div>
+                                <div class="airport-tile-code">AMD</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="airport-item airport-tile" data-value="Goa, GOI" role="button" tabindex="0">
+                                <span class="airport-selected-indicator" aria-hidden="true"></span>
+                                <div class="airport-tile-icon"><i class="bi bi-airplane"></i></div>
+                                <div class="airport-tile-name">Goa</div>
+                                <div class="airport-tile-code">GOI</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Departure Date -->
+                <div class="form-step py-md-4 py-2 step-date" data-step="5">
+                    <div class="text-start mb-4 mx-auto" style="max-width: 800px;">
+                        <h2 class="fw-bold mb-2 text-center" style="font-size: 3rem; letter-spacing: -1.5px; color: #111;">When are you planning your <br><span class="text-primary">journey?</span></h2>
+                        <p class="text-muted mb-0 text-center" style="font-size: 1rem; font-weight: 400;">Pick your start date — we’ll build the itinerary around it.</p>
+                    </div>
+
+                    <div class="trip-date-card mx-auto">
+                        <div class="trip-date-card-header">
+                            <div class="trip-date-month" aria-live="polite">—</div>
+                            <div class="trip-date-actions">
+                                <button class="trip-date-nav prev" type="button" aria-label="Previous month">
+                                    <i class="bi bi-chevron-left"></i>
+                                </button>
+                                <button class="trip-date-nav next" type="button" aria-label="Next month">
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="trip-date-grid" aria-hidden="true">
+                            <div class="trip-date-dow">SU</div><div class="trip-date-dow">MO</div><div class="trip-date-dow">TU</div><div class="trip-date-dow">WE</div><div class="trip-date-dow">TH</div><div class="trip-date-dow">FR</div><div class="trip-date-dow">SA</div>
+                        </div>
+
+                        <div class="trip-date-days" role="grid" aria-label="Choose a date"></div>
+
+                        <div class="trip-date-footer">
+                            <div class="trip-date-hint">
+                                <span class="trip-date-hint-dot" aria-hidden="true"></span>
+                                <span class="trip-date-hint-text">Tip: Weekday departures often have better flight availability.</span>
+                            </div>
+
+                            <div class="trip-date-input-wrap">
+                                <label class="trip-date-input-label" for="travel_date_input">Starting journey on</label>
+                                <div class="datepicker-wrapper datepicker-wrapper--inline">
+                                    <input id="travel_date_input" type="date" name="travel_date"
+                                        class="form-control form-control-lg rounded-pill px-4 shadow-sm border-light transition-all date-input-premium">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Step 6: Daily City Planning -->
+                <div class="form-step py-md-4 py-2 step-daily" data-step="6">
+                    <div class="text-start mb-4 mx-auto" style="max-width: 900px;">
+                        <h2 class="fw-bold mb-2 text-center" >Customize your daily <br> <span class="text-primary">experience</span></h2>
+                        <p class="text-muted mb-0 text-center" style="font-size: 1rem; font-weight: 400;">Select the cities you'd like to explore each day. We'll craft a detailed itinerary around your choices.</p>
+                    </div>
+
+                    <div id="city-planning-container" class="mx-auto" style="max-width: 900px;">
+                        <!-- Dynamically filled Day fields will go here -->
+                    </div>
+
+                    <!-- Bottom Info Panel -->
+                    <div class="row g-4 mt-4 mx-auto" style="max-width: 900px;">
+                        <div class="col-md-7">
+                            <div class="daily-info-panel p-4 h-100">
+                                <p class="daily-info-label text-uppercase mb-2">A Note on Preferences</p>
+                                <h5 class="fw-bold mb-2" style="color: #1a1a2e;">Your selections are flexible</h5>
+                                <p class="mb-0" style="font-size: 0.9rem; color: #5a6278; line-height: 1.7;">Don't worry about being exact — our travel experts will fine-tune your day plans based on your preferences, travel pace, and seasonal availability.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="daily-highlight-card p-4 h-100 d-flex flex-column justify-content-center">
+                                <p class="daily-highlight-label text-uppercase mb-2">Accommodation</p>
+                                <h4 class="fw-bold mb-1 text-white">Curated Hotels</h4>
+                                <p class="mb-0" style="font-size: 0.85rem; color: rgba(255,255,255,0.80); line-height: 1.6;">Hand-picked stays at every destination, balancing comfort and character.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step step-review" data-step="7">
+                    <div class="trip-review-layout mx-auto">
+                        <div class="row g-0 align-items-stretch">
+                            <div class="col-lg-6 order-md-1 order-2">
+                                <div class="trip-review-image-wrap">
+                                    <img src="{% static 'images/dest_amsterdam.jpg' %}" alt="Destination preview" class="trip-review-image">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 order-md-2 order-1">
+                                <div class="trip-review-panel">
+                                    <p class="trip-review-kicker mb-2">Your journey awaits</p>
+                                    <h3 class="trip-review-title mb-3">You’re one step away from viewing your custom itinerary.</h3>
+
+                                    <div class="trip-review-facts">
+                                        <div class="trip-fact-item">
+                                            <div class="trip-fact-icon"><i class="bi bi-people-fill"></i></div>
+                                            <div class="trip-fact-text">
+                                                <span class="trip-fact-label">Traveler Type</span>
+                                                <strong id="review-travelers">Not selected</strong>
+                                            </div>
+                                        </div>
+                                        <div class="trip-fact-item">
+                                            <div class="trip-fact-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                                            <div class="trip-fact-text">
+                                                <span class="trip-fact-label">Destination</span>
+                                                <strong id="review-destination">Not selected</strong>
+                                            </div>
+                                        </div>
+                                        <div class="trip-fact-item">
+                                            <div class="trip-fact-icon"><i class="bi bi-clock-fill"></i></div>
+                                            <div class="trip-fact-text">
+                                                <span class="trip-fact-label">Duration</span>
+                                                <strong id="review-duration">Not selected</strong>
+                                            </div>
+                                        </div>
+                                        <div class="trip-fact-item">
+                                            <div class="trip-fact-icon"><i class="bi bi-calendar2-check-fill"></i></div>
+                                            <div class="trip-fact-text">
+                                                <span class="trip-fact-label">Start Date</span>
+                                                <strong id="review-date">Not selected</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn btn-primary rounded-pill w-100 py-3 fs-5 build-itinerary-btn">
+                                        Build My Itinerary <i class="bi bi-stars ms-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 8: User Details Form -->
+                <div class="form-step step-contact" data-step="8">
+                    <div class="step-contact-head text-center mx-auto">
+                        <h2 class="mb-2"><span class="text-primary">Almost there!</span> Let’s deliver your personalized itinerary.</h2>
+                        <p class="mb-0">Share your details and we will send your complete day-by-day plan instantly.</p>
+                    </div>
+
+                    <div class="step-contact-card mx-auto">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="step-contact-label">First Name</label>
+                                <input type="text" name="first_name" class="form-control step-contact-input"
+                                    placeholder="E.g., Julian" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="step-contact-label">Last Name</label>
+                                <input type="text" name="last_name" class="form-control step-contact-input"
+                                    placeholder="E.g., Thome" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="step-contact-label">Email Address</label>
+                                <input type="email" name="email" class="form-control step-contact-input"
+                                    placeholder="julian@voyager.com" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="step-contact-label">Phone Number</label>
+                                <input type="tel" name="phone" class="form-control step-contact-input"
+                                    placeholder="+1 (555) 000-0000" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="step-contact-label">Additional Notes</label>
+                                <textarea name="notes" class="form-control step-contact-textarea"
+                                    placeholder="Dietary preferences, preferred airlines, or places you want to include..."></textarea>
+                            </div>
+                            <div class="col-12 text-center mt-2">
+                                <button type="submit" class="btn btn-primary rounded-pill step-contact-submit">
+                                    Get My Itinerary <i class="bi bi-arrow-right ms-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 9: Demo Itinerary Output -->
+                <div class="form-step" data-step="9" id="itinerary-output">
+                    <!-- Filled via JS -->
+                </div>
+            </form>
+        </div>
+
+        <div class="overlay-footer d-flex justify-content-between px-5 py-4 border-top bg-white">
+            <button class="btn btn-outline-secondary rounded-pill px-4 prev-step-btn opacity-0" type="button">
+                <i class="bi bi-chevron-left me-2"></i> Back
+            </button>
+            <button class="btn btn-primary rounded-pill px-5 py-2 next-step-btn custom-continue-btn" type="button" style="font-size: 1.05rem; background: linear-gradient(135deg, var(--primary-blue), #0b5ed7); border: none; box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3); transition: all 0.3s ease;">
+                Continue <i class="bi bi-arrow-right ms-2 mt-1 fw-bold"></i>
+            </button>
+        </div>
+    </div>
+
     <!-- Footer Section (Reused) -->
    {% include 'footer.html' %}
 
@@ -748,7 +1213,7 @@
       <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script src="{% static 'js/script.js' %}" defer></script>
 
     <script>
         AOS.init({

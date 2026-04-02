@@ -183,10 +183,33 @@ def destinations(request):
 
 
 def destination_detail(request,slug):
-    destination = Destination.objects.prefetch_related('images','highlights').get(slug=slug)
+    destination = Destination.objects.prefetch_related('images','highlights', 'packages__tour_days', 'packages__tour_category').get(slug=slug)
     testi = Testimonial.objects.all().order_by('-rating')
 
-    return render(request,'destinationdetail.html',{'destination':destination,'testimonial':testi})
+    # Couple
+    couple_packages = destination.packages.filter(is_active=True, tour_category__slug='couple').order_by('-id')[:8]
+    couple_durations = sorted(set(p.tour_days for p in couple_packages if p.tour_days), key=lambda x: str(x.name))
+
+    # Family
+    family_packages = destination.packages.filter(is_active=True, tour_category__slug='family').order_by('-id')[:8]
+    family_durations = sorted(set(p.tour_days for p in family_packages if p.tour_days), key=lambda x: str(x.name))
+
+    # Solo
+    solo_packages = destination.packages.filter(is_active=True, tour_category__slug='solo').order_by('-id')[:8]
+    solo_durations = sorted(set(p.tour_days for p in solo_packages if p.tour_days), key=lambda x: str(x.name))
+
+    context = {
+        'destination': destination,
+        'testimonial': testi,
+        'couple_packages': couple_packages,
+        'couple_durations': couple_durations,
+        'family_packages': family_packages,
+        'family_durations': family_durations,
+        'solo_packages': solo_packages,
+        'solo_durations': solo_durations,
+    }
+
+    return render(request,'destinationdetail.html', context)
 
 
 def destination_type_list(request, slug):
