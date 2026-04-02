@@ -189,7 +189,21 @@ def destination_detail(request,slug):
     return render(request,'destinationdetail.html',{'destination':destination,'testimonial':testi})
 
 
+def destination_type_list(request, slug):
 
+    type = DestinationType.objects.get(slug=slug)
+
+    destinations = Destination.objects.filter(
+        type__slug=slug,
+        is_active=True
+    ).select_related('region').order_by('-id')
+
+
+    return render(request, 'destination-listing.html', {
+        'destinations': destinations,
+        'type': type,
+      
+    })
 
 def get_destination_itineraries(request):
     destination_slug = request.GET.get('slug', '').strip()
@@ -230,6 +244,8 @@ def custom_trip_email_center(inquiry):
         daemon=True   # thread dies automatically if the server shuts down
     )
     thread.start()
+
+
 
 
 
@@ -330,3 +346,70 @@ def submit_lead(request):
     request.session.set_expiry(60 * 60 * 24 * 30)  # 30 days
 
     return JsonResponse({'success': True})
+
+
+
+
+def send_new_package_email(data):
+    subject = "New Travel Package Inquiry"
+
+    message = f"""
+    Name: {data['full_name']}
+    Phone: {data['phone']}
+    Package: {data['package']}
+    Travel Date: {data['travel_date']}
+    Trip Type: {data['trip_type']}
+    Budget: {data['budget']}
+    Message: {data['message']}
+    """
+
+    send_mail(
+        subject,
+        message,
+        settings.DEFAULT_FROM_EMAIL,
+        [settings.DEFAULT_FROM_EMAIL],
+        fail_silently=False,
+    )
+
+
+@csrf_exempt
+@require_POST
+def submit_package_inquiry(request):
+    try:
+        body = json.loads(request.body)
+        
+        package_id = body.get('package_id')
+        package = get_object_or_404(Package, id=package_id)
+
+        inquiry = PackageInquiry.objects.create(
+            package=package,
+            full_name=body.get('full_name', ''),
+            phone=body.get('phone', ''),
+            travel_date=body.get('travel_date'),
+            trip_type=body.get('trip_type', ''),
+            budget=body.get('budget', ''),
+            message=body.get('message', ''),
+        )
+
+        email_data = {
+            "full_name": inquiry.full_name,
+            "phone": inquiry.phone,
+            "package": inquiry.package.title,
+            "travel_date": inquiry.travel_date,
+            "trip_type": inquiry.trip_type,
+            "budget": inquiry.budget,
+            "message": inquiry.message,
+        }
+
+        thread = threading.Thread(
+            target=send_new_package_email,
+            args=(email_data,),
+            daemon=True   
+        )
+        thread.start()
+
+
+        return JsonResponse({'success': True, 'message': 'Inquiry submitted successfully!'})
+
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)}, status=400)

@@ -72,7 +72,7 @@
                     {% for type in nav_destination_types %}
                     {% if type.regions.all %}
                     <li class="nav-item mega-parent ">
-                        <a class="nav-link mega-trigger" href="#">
+                        <a href="{% url 'destination_type_list' type.slug%}" class="nav-link mega-trigger" href="#">
                             {{ type.name }}
                             <i class="bi bi-chevron-down ms-1 small dropdown-icon"></i>
                         </a>
@@ -97,12 +97,12 @@
                                         <ul class="mega-list">
                                         {% for destination in region.destinations.all %}
 
-                                            <li class="">{{ destination.title|title }} 
+                                            <li class="text-decoration-none"><a class="li" href="{% url 'destination_detail' destination.slug %}">{{ destination.title|title }} 
                                                 {% if destination.badge_text %}
                                                 <span class="badge badge-trending">
                                                     {{ destination.badge_text }}
                                                 </span>
-                                                {% endif %} 
+                                                {% endif %} </a>
                                             </li>
                                         {% empty %}
                                             <li class="text-muted">No destinations</li>
@@ -122,7 +122,7 @@
                                 </div>
                                 <div class="row d-flex justify-content-center mt-3">
                                     <div class="col-6 d-flex justify-content-center">
-                                                                                  <a href="/destinations/" class="view-all">
+                                                                                <a href="{% url 'destinations' %}" class="view-all">
                                 Explore More Destinations →
                             </a>
                                     </div>
@@ -134,7 +134,7 @@
                     </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a href="{% url 'destination_type_list' type.slug %}" class="nav-link" href="#">
                                 {{ type.name }}
                             </a>
                         </li>
@@ -151,7 +151,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#testimonialss">Testimonials</a>
+                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                     </li>
                 </ul>
                 <div class="d-flex align-items-center">
@@ -178,7 +178,7 @@
         <div class="offcanvas-body px-4 pt-1">
             <div class="accordion accordion-flush mobile-nav-accordion" id="mobileNavAccordion">
                 <div class="nav-item mb-3">
-                    <a class="nav-link active  fs-5" href="#">Home</a>
+                    <a class="nav-link active  fs-5" href="{% url 'index' %}">Home</a>
                 </div>
                 <div class="nav-item mb-3">
                     <a class="nav-link  fs-5" href="{% url 'about' %}">About</a>
@@ -248,7 +248,7 @@
 
                                         {% for destination in region.destinations.all %}
                                             <li>
-                                                <a href="#"
+                                                <a href="{% url 'destination_detail' destination.slug %}"
                                                     class="text-decoration-none text-muted py-1 d-block nav-sublink"
                                                     style="font-size: 0.95rem;">
                                                     
@@ -265,7 +265,7 @@
                                             <li class="text-muted">No destinations</li>
                                         {% endfor %}
                                             <li class="mt-2">
-                                                <a href="/destinations/" class="view-all">
+                                                <a href="{% url 'destinations' %}" class="view-all">
                                                     View All →
                                                 </a>
                                             </li>
@@ -289,7 +289,7 @@
     {% else %}
     <!-- SIMPLE LINK (NO REGIONS) -->
     <div class="nav-item mb-3">
-        <a class="nav-link fs-5" href="#">
+        <a href="{% url 'destination_type_list' type.slug %}" class="nav-link fs-5" href="#">
             {{ type.name }}
         </a>
     </div>

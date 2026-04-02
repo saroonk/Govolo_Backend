@@ -149,8 +149,8 @@ class DestinationItineraryInline(StackedInline):
 # ==========================================
 @admin.register(Destination)
 class DestinationAdmin(BaseAdmin):
-    list_display = ('title', 'region', 'is_active', 'is_top', 'show_in_navbar')
-    list_filter = ('region', 'is_active', 'is_top', 'show_in_navbar')
+    list_display = ('title', 'type', 'region', 'is_active', 'is_top', 'show_in_navbar')
+    list_filter = ('type', 'region', 'is_active', 'is_top', 'show_in_navbar')
     search_fields = ('title', 'subtitle')
     prepopulated_fields = {'slug': ('title',)}
 
@@ -322,4 +322,11 @@ class PackageAdmin(BaseAdmin):
 @admin.register(Lead)
 class LeadAdmin(BaseAdmin):
     list_display = ('name','phone', 'created_at')
-   
+
+@admin.register(PackageInquiry)
+class PackageInquiryAdmin(BaseAdmin):
+    list_display = ('full_name', 'package', 'phone', 'travel_date', 'trip_type', 'budget', 'created_at')
+    list_filter = ('trip_type', 'budget', 'travel_date', 'created_at', 'package')
+    search_fields = ('full_name', 'phone', 'package__title')
+    ordering = ('-created_at',)
+    readonly_fields = ('created_at',)

@@ -303,7 +303,7 @@
     <section class="destination-hero w-100 d-flex flex-column align-items-center justify-content-center" data-aos="fade" style="background-image: url('{% static "images/pexels-francesco-ungaro-2325447.jpg" %}')">
         <!-- Center Content -->
         <div class="container position-relative text-center text-white mt-5 pt-4">
-            <h1 class="hero-title mb-3">Top Destinations in Asia</h1>
+            <h1 class="hero-title mb-3">Top Destinations in {% if type %} {{type.name}} {% else %} World {% endif %}</h1>
             <p class="hero-subtitle mx-auto mb-0">Discover the beauty, rich culture, and unforgettable experiences across the continent.</p>
         </div>
     </section>
@@ -317,7 +317,7 @@
                 {% for destination in destinations %}
                
                 <div class="col-lg-3 col-md-6 col-12">
-                    <a href="#" class="d-block text-decoration-none h-100 w-100 border-0">
+                    <a href="{% url 'destination_detail' destination.slug %}" class="d-block text-decoration-none h-100 w-100 border-0">
                         <div class="dest-card dest-uniform h-100">
                             <img src="{{ destination.main_image.url }}" alt="{{ destination.name }}">
                             <div class="dest-overlay">

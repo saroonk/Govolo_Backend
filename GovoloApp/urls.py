@@ -11,7 +11,9 @@ urlpatterns = [
    path('about/',views.about,name="about"),
 
    path('destinations/',views.destinations,name="destinations"),
-   path('destinations/<slug:slug>/',views.destination_detail,name="destination_detail"),
+   path('destination/<slug:slug>/',views.destination_detail,name="destination_detail"),
+   path('destinations/type/<slug:slug>/', views.destination_type_list, name="destination_type_list"),
+
 
    path('api/destination-itineraries/', views.get_destination_itineraries, name='destination_itineraries'),
 
@@ -24,6 +26,7 @@ urlpatterns = [
 
 
    path('submit-lead/', views.submit_lead, name='submit_lead'),
+   path('submit-package-inquiry/', views.submit_package_inquiry, name='submit_package_inquiry'),
 
 
 

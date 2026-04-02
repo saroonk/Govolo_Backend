@@ -168,6 +168,10 @@ class TourCategory(models.Model):
 # ==========================================
 class DestinationType(models.Model):
     name = models.CharField(max_length=100,help_text="e.g. International, Domestic")
+    slug = models.SlugField(unique=True)
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -192,10 +196,20 @@ class DestinationRegion(models.Model):
 # Main Destination
 # ==========================================
 class Destination(models.Model):
+
+    type = models.ForeignKey(
+        DestinationType,
+        on_delete=models.CASCADE,
+        related_name='destinations',
+        blank=True,
+        null=True
+    )
     region = models.ForeignKey(
         DestinationRegion,
         on_delete=models.CASCADE,
-        related_name='destinations'
+        related_name='destinations',
+        blank=True,
+        null=True
     )
 
     title = models.CharField(max_length=200)
@@ -491,3 +505,34 @@ class Lead(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.phone}"
+
+
+class PackageInquiry(models.Model):
+    TRIP_TYPE_CHOICES = [
+        ('Solo', 'Solo'),
+        ('Couple', 'Couple'),
+        ('Family', 'Family'),
+        ('Group', 'Group'),
+    ]
+    BUDGET_CHOICES = [
+        ('Economic', 'Economic'),
+        ('Comfort', 'Comfort'),
+        ('Premium', 'Premium'),
+        ('Luxury', 'Luxury'),
+    ]
+
+    package = models.ForeignKey(Package, on_delete=models.CASCADE, related_name='inquiries')
+    full_name = models.CharField(max_length=150)
+    phone = models.CharField(max_length=20)
+    travel_date = models.DateField()
+    trip_type = models.CharField(max_length=20, choices=TRIP_TYPE_CHOICES)
+    budget = models.CharField(max_length=20, choices=BUDGET_CHOICES)
+    message = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.full_name} - {self.package.title}"
+
+    class Meta:
+        verbose_name = 'Package Inquiry'
+        verbose_name_plural = 'Package Inquiries'

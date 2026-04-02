@@ -423,7 +423,7 @@ h6 {
     margin: 0;
 }
 
-.mega-list li {
+.mega-list .li  {
     font-size: 16px;
     color: #4b5563; /* light theme list item color */
     padding: 8px 0;
@@ -432,19 +432,20 @@ h6 {
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 500;
+    text-decoration: none;
 }
 
-.mega-list li:not(.mt-3) {
+.mega-list .li:not(.mt-3) {
     position: relative;
     padding-left: 0;
 }
 
-.mega-list li:not(.mt-3):hover {
+.mega-list .li:not(.mt-3):hover {
     padding-left: 16px;
     color: var(--primary-blue);
 }
 
-.mega-list li:not(.mt-3)::before {
+.mega-list .li:not(.mt-3)::before {
     content: "";
     position: absolute;
     left: 0;
@@ -458,7 +459,7 @@ h6 {
     transition: all 0.3s ease;
 }
 
-.mega-list li:not(.mt-3):hover::before {
+.mega-list .li:not(.mt-3):hover::before {
     opacity: 1;
 }
 

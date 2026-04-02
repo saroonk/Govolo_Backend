@@ -544,7 +544,7 @@
                                 </div>
                             </div>
 
-                            <button class="btn btn-primary rounded-pill w-100 py-3 fw-semibold mb-3 shadow-sm shadow-primary">
+                            <button class="btn btn-primary rounded-pill w-100 py-3 fw-semibold mb-3 shadow-sm shadow-primary" data-bs-toggle="modal" data-bs-target="#bookingModal">
                                 Book This Package <i class="bi bi-arrow-right ms-2"></i>
                             </button>
 
@@ -782,6 +782,75 @@
     </div>
 </div>
 {% endif %}
+
+
+<!-- Booking Modal -->
+<div class="modal fade" id="bookingModal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content p-4 rounded-4 border-0 position-relative">
+            <button type="button" class="btn-close shadow-none position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+            
+            <div class="text-center mb-4 mt-2">
+                <h4 class="modal-title ">Book This Package 🌍</h4>
+                <p class="text-muted small">
+                    Please fill out the form below to inquire about <strong>{{ package.title }}</strong>. Our team will get back to you shortly.
+                </p>
+            </div>
+
+            <form id="bookingForm">
+                {% csrf_token %}
+                <input type="hidden" name="package_id" value="{{ package.id }}">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold text-muted mb-1">Full Name *</label>
+                        <input type="text" name="full_name" class="form-control custom-input" placeholder="Your Name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold text-muted mb-1">Phone Number *</label>
+                        <input type="tel" name="phone" class="form-control custom-input" placeholder="Your Phone Number" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold text-muted mb-1">Preferred Travel Date *</label>
+                        <input type="date" name="travel_date" class="form-control custom-input" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold text-muted mb-1">Trip Type *</label>
+                        <select name="trip_type" class="form-select custom-input" required>
+                            <option value="" disabled selected>Select trip type</option>
+                            <option value="Solo">Solo</option>
+                            <option value="Couple">Couple</option>
+                            <option value="Family">Family</option>
+                            <option value="Group">Group</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label small fw-semibold text-muted mb-1">Budget Category *</label>
+                        <select name="budget" class="form-select custom-input" required>
+                            <option value="" disabled selected>Select budget</option>
+                            <option value="Economic">Economic (Standard)</option>
+                            <option value="Comfort">Comfort </option>
+                            <option value="Premium">Premium </option>
+                            <option value="Luxury">Luxury </option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label small fw-semibold text-muted mb-1">Message / Additional Notes</label>
+                        <textarea name="message" class="form-control custom-input" rows="3" placeholder="Any specific requirements..."></textarea>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <button type="submit" class="btn btn-primary rounded-pill w-100 py-3 fw-semibold shadow-sm" id="submitBookingBtn">
+                            Submit Booking Inquiry <i class="bi bi-arrow-right ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            
+            <p class="text-center text-muted small mt-3 mb-0">
+                🔒 Your details are safe with us
+            </p>
+        </div>
+    </div>
+</div>
 
 
 
@@ -1420,6 +1489,51 @@ if (itineraryForm) {
             alert("Something went wrong. Please try again.");
             submitBtn.disabled = false;
             submitBtn.textContent = "Unlock Itinerary";
+        });
+    });
+}
+
+
+// Booking form submission
+const bookingForm = document.getElementById("bookingForm");
+
+if (bookingForm) {
+    bookingForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const submitBtn = document.getElementById("submitBookingBtn");
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Submitting... <i class="fas fa-spinner fa-spin ms-2"></i>';
+
+        const formData = new FormData(this);
+        const jsonData = {};
+        formData.forEach((value, key) => { jsonData[key] = value });
+
+        fetch("{% url 'submit_package_inquiry' %}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: JSON.stringify(jsonData),
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                alert("Booking inquiry submitted successfully!");
+                const modal = bootstrap.Modal.getInstance(document.getElementById("bookingModal"));
+                if (modal) modal.hide();
+                bookingForm.reset();
+            } else {
+                alert("Error: " + (data.error || "Something went wrong"));
+            }
+        })
+        .catch(err => {
+            alert("Something went wrong. Please try again.");
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Submit Booking Inquiry <i class="bi bi-arrow-right ms-2"></i>';
         });
     });
 }
