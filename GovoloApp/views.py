@@ -4,10 +4,16 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib import messages
 from .models import *
+from django.db.models import Q
 
 from django.core.paginator import Paginator
 # Create your views here.
 
+from django.http import JsonResponse
+
+import json
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 
 def send_contact_email(data):
@@ -33,6 +39,67 @@ def send_contact_email(data):
 
 
 
+
+
+
+def send_new_lead_email(inquiry):
+    """
+    Builds and sends a notification email for a new CustomTripInquiry.
+    Called in a background thread so it never delays the HTTP response.
+    """
+
+    daily_plan_lines = []
+    for day, points in inquiry.daily_plan.items():
+        points_str = ', '.join(points) if points else 'No points selected'
+        daily_plan_lines.append(f"  {day}: {points_str}")
+    daily_plan_text = '\n'.join(daily_plan_lines) or '  Not specified'
+
+    subject = f"New Custom Trip Inquiry — {inquiry.destination} ({inquiry.traveler_type})"
+
+    message = f"""
+A new custom trip inquiry has been submitted.
+
+─────────────────────────────
+TRAVELER DETAILS
+─────────────────────────────
+Name        : {inquiry.first_name} {inquiry.last_name}
+Email       : {inquiry.email}
+Phone       : {inquiry.phone}
+
+─────────────────────────────
+TRIP DETAILS
+─────────────────────────────
+Destination : {inquiry.destination}
+Traveler    : {inquiry.traveler_type} ({inquiry.travelers_count} traveler(s))
+Duration    : {inquiry.duration_days} Days
+Departure   : {inquiry.departure_airport}
+Start Date  : {inquiry.travel_date}
+
+─────────────────────────────
+DAILY ITINERARY PLAN
+─────────────────────────────
+{daily_plan_text}
+
+─────────────────────────────
+ADDITIONAL NOTES
+─────────────────────────────
+{inquiry.notes or 'None'}
+
+─────────────────────────────
+Submitted at: {inquiry.created_at.strftime('%d %B %Y, %I:%M %p')}
+    """.strip()
+
+    send_mail(
+        subject      = subject,
+        message      = message,
+        from_email   = settings.DEFAULT_FROM_EMAIL,
+        recipient_list = [settings.DEFAULT_FROM_EMAIL],
+        fail_silently = True,   # won't crash the app if email fails
+    )
+
+
+
+
 def index(request):
     gallery = GalleryImages.objects.all()
     testi = Testimonial.objects.all().order_by('-rating')
@@ -40,11 +107,12 @@ def index(request):
     tour_category =TourCategory.objects.all().order_by('-id')
     top_destinations = Destination.objects.filter(is_top=True,is_active=True).order_by('-id')[:7]
     all_destinations = Destination.objects.filter(is_active=True).order_by('-id')
+    recent_packages = Package.objects.select_related('destination').filter(is_active=True).order_by('-id')[:3]
 
     destination_types = DestinationType.objects.prefetch_related(
         'regions__destinations'
     )
-    context = {'gallery':gallery,'testimonial':testi,'hero': hero,'tour_category': tour_category,'top_destinations': top_destinations,'all_destinations': all_destinations}
+    context = {'gallery':gallery,'testimonial':testi,'hero': hero,'tour_category': tour_category,'top_destinations': top_destinations,'all_destinations': all_destinations,'recent_packages': recent_packages}
     return render(request,"index.html",context)
 
 
@@ -119,3 +187,146 @@ def destination_detail(request,slug):
     testi = Testimonial.objects.all().order_by('-rating')
 
     return render(request,'destinationdetail.html',{'destination':destination,'testimonial':testi})
+
+
+
+
+def get_destination_itineraries(request):
+    destination_slug = request.GET.get('slug', '').strip()
+    if not destination_slug:
+        return JsonResponse({'itineraries': []}, status=400)
+
+    try:
+        dest = Destination.objects.get(slug=destination_slug)
+        itineraries = list(
+            dest.itineraries.values('id', 'title', 'description')
+        )
+        return JsonResponse({'itineraries': itineraries})
+    except Destination.DoesNotExist:
+        return JsonResponse({'itineraries': []}, status=404)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def custom_trip_email_center(inquiry):
+    """
+    Spawns a background thread to send the lead notification email.
+    This keeps the HTTP response fast — email sending never blocks it.
+    """
+    thread = threading.Thread(
+        target=send_new_lead_email,
+        args=(inquiry,),
+        daemon=True   # thread dies automatically if the server shuts down
+    )
+    thread.start()
+
+
+
+
+
+
+@csrf_exempt
+@require_POST
+def submit_trip_inquiry(request):
+    try:
+        body = json.loads(request.body)
+
+        duration_days = int(body.get('duration_days', 5))
+        daily_plan = {}
+        for i in range(1, duration_days + 1):
+            raw = body.get(f'day_{i}_cities', '')
+            daily_plan[f'Day {i}'] = [c.strip() for c in raw.split(',') if c.strip()]
+
+        inquiry = CustomTripInquiry.objects.create(
+            traveler_type     = body.get('traveler_type', ''),
+            travelers_count   = int(body.get('travelers', 1) or 1),
+            destination       = body.get('destination', ''),
+            duration_days     = duration_days,
+            departure_airport = body.get('departure_airport', ''),
+            travel_date       = body.get('travel_date') or None,
+            daily_plan        = daily_plan,
+            first_name        = body.get('first_name', ''),
+            last_name         = body.get('last_name', ''),
+            email             = body.get('email', ''),
+            phone             = body.get('phone', ''),
+            notes             = body.get('notes', ''),
+        )
+
+        # Fire and forget — response returns immediately, email sends in background
+        custom_trip_email_center(inquiry)
+
+        return JsonResponse({'success': True})
+
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)}, status=400)
+
+
+
+
+def packages(request):
+
+
+    packages = Package.objects.select_related('destination','tour_days').filter(is_active=True).order_by('-id')
+
+    paginator = Paginator(packages, 20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request,'package-listingss.html',{'packages':page_obj, 'page_obj': page_obj})
+
+
+def package_detail(request, slug):
+    all_destinations = Destination.objects.filter(is_active=True).order_by('-id')
+
+    package = get_object_or_404(Package.objects.select_related('destination','tour_days').prefetch_related('highlights', 'images','inclusions','activities'), slug=slug)
+
+    inclusions = list(package.inclusions.all())
+    half = (len(inclusions) + 1) // 2  
+
+    left_inclusions = inclusions[:half]
+    right_inclusions = inclusions[half:]
+    activities = package.activities.order_by('day')
+    testi = Testimonial.objects.all().order_by('-rating')
+
+
+    similar_packages = Package.objects.filter(Q(destination=package.destination) | Q(tour_category=package.tour_category)).exclude(id=package.id).order_by('-id')[:3]
+    return render(request,'package-detail.html',{'lead_already_submitted': request.session.get('lead_submitted', False),'package':package, 'left_inclusions': left_inclusions, 'right_inclusions': right_inclusions, 'activities': activities, 'similar_packages': similar_packages,'testimonial':testi,'all_destinations': all_destinations})
+
+
+
+
+@require_POST
+def submit_lead(request):
+    # Already submitted in this session → just unlock
+    if request.session.get('lead_submitted'):
+        return JsonResponse({'success': True})
+
+    name = request.POST.get('name', '').strip()
+    phone = request.POST.get('phone', '').strip()
+
+    # Basic validation
+    if not name:
+        return JsonResponse({'success': False, 'errors': {'name': 'Name is required.'}})
+    if not phone:
+        return JsonResponse({'success': False, 'errors': {'phone': 'Phone number is required.'}})
+    if not phone.isdigit() or len(phone) < 10:
+        return JsonResponse({'success': False, 'errors': {'phone': 'Enter a valid phone number.'}})
+
+    # Save to DB
+    Lead.objects.create(name=name, phone=phone)
+
+    # Mark session
+    request.session['lead_submitted'] = True
+    request.session.set_expiry(60 * 60 * 24 * 30)  # 30 days
+
+    return JsonResponse({'success': True})

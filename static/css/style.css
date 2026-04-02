@@ -2930,7 +2930,7 @@ input[name="duration"]:checked~.card-overlay .icon-animate {
     top: 80%;
     right: 20px;
     transform: translateY(-50%);
-        z-index: 1000;
+        z-index: 1100;
 
     transition: all 0.3s ease;
     display: flex;

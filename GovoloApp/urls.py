@@ -13,6 +13,20 @@ urlpatterns = [
    path('destinations/',views.destinations,name="destinations"),
    path('destinations/<slug:slug>/',views.destination_detail,name="destination_detail"),
 
+   path('api/destination-itineraries/', views.get_destination_itineraries, name='destination_itineraries'),
+
+   path('api/submit-trip/', views.submit_trip_inquiry, name='submit_trip'), 
+
+
+   path('packages/',views.packages,name="packages"),
+   path('package/<slug:slug>/', views.package_detail, name='package_detail'),
+
+
+
+   path('submit-lead/', views.submit_lead, name='submit_lead'),
+
+
+
 
 
 

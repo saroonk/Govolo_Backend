@@ -276,3 +276,218 @@ class DestinationItinerary(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class CustomTripInquiry(models.Model):
+    TRAVELER_CHOICES = [
+        ('Solo', 'Solo'),
+        ('Couple', 'Couple'),
+        ('Family', 'Family'),
+        ('Friends', 'Friends'),
+    ]
+
+    # Step 1
+    traveler_type   = models.CharField(max_length=20, choices=TRAVELER_CHOICES, blank=True)
+    travelers_count = models.PositiveIntegerField(default=1)
+
+    # Step 2
+    destination = models.CharField(max_length=200, blank=True)
+
+    # Step 3
+    duration_days = models.PositiveIntegerField(default=5)
+
+    # Step 4
+    departure_airport = models.CharField(max_length=100, blank=True)
+
+    # Step 5
+    travel_date = models.DateField(null=True, blank=True)
+
+    # Step 6 — stored as JSON: {"Day 1": ["item1","item2"], "Day 2": [...], ...}
+    daily_plan = models.JSONField(default=dict, blank=True)
+
+    # Step 8 — contact
+    first_name = models.CharField(max_length=100, blank=True)
+    last_name  = models.CharField(max_length=100, blank=True)
+    email      = models.EmailField(blank=True)
+    phone      = models.CharField(max_length=30, blank=True)
+    notes      = models.TextField(blank=True)
+
+    # Meta
+    created_at   = models.DateTimeField(auto_now_add=True)
+    is_contacted = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name        = 'CustomTrip Inquiry'
+        verbose_name_plural = 'Custom Trip Inquiries'
+        ordering            = ['-created_at']
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} → {self.destination} ({self.travel_date})"
+
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}".strip()
+
+
+
+
+
+
+
+
+
+
+
+class TourDay(models.Model):
+    name = models.CharField(max_length=50)  # e.g. "4 Days", "5 Days"
+
+    def __str__(self):
+        return self.name
+
+
+
+
+
+class Package(models.Model):
+    title = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True, blank=True)
+    is_active = models.BooleanField(default=True)
+    main_image = models.ImageField(upload_to='packages/',blank=True, null=True)
+
+    destination = models.ForeignKey(
+        'Destination',
+        on_delete=models.CASCADE,
+        related_name='packages'
+    )
+
+    tour_days = models.ForeignKey(
+        'TourDay',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='packages'
+    )
+
+    nights = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True
+    )
+
+    country = models.CharField(max_length=100)
+
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    tagline = models.CharField(
+        max_length=255,
+        help_text="Example: Adventure Trekking, Honeymoon, Relaxation"
+    )
+
+    max_people = models.PositiveIntegerField()
+
+    tour_category = models.ForeignKey(
+        'TourCategory',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='packages'
+    )
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('package_detail', kwargs={'slug': self.slug})
+
+    def __str__(self):
+        return self.title
+
+
+
+
+
+class PackageImage(models.Model):
+    package = models.ForeignKey(
+        Package,
+        on_delete=models.CASCADE,
+        related_name='images'
+    )
+    image = models.ImageField(upload_to='packages/')
+
+    def __str__(self):
+        return f"{self.package.title} Image"
+
+
+
+class PackageHighlight(models.Model):
+    package = models.ForeignKey(
+        Package,
+        on_delete=models.CASCADE,
+        related_name='highlights'
+    )
+
+    icon_code = models.CharField(max_length=100, blank=True, null=True,default="fa-solid fa-check")
+
+    title = models.CharField(max_length=255)
+
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+
+
+class Inclusion(models.Model):
+    package = models.ForeignKey(
+        Package,
+        on_delete=models.CASCADE,
+        related_name='inclusions'
+    )
+
+    text = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return self.text or "Inclusion"
+
+
+class PackageActivity(models.Model):
+    package = models.ForeignKey(
+        Package,
+        on_delete=models.CASCADE,
+        related_name='activities'
+    )
+
+    day = models.IntegerField(max_length=50,help_text="e.g. 'Day 1', 'Day 2'")  # e.g. "Day 1", "Day 2"
+
+    activity = RichTextField()
+
+    def __str__(self):
+        return f"{self.package.title} - {self.day}"
+
+
+
+
+
+class Lead(models.Model):
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=15)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.phone}"
