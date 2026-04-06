@@ -106,7 +106,7 @@ def index(request):
     hero = HeroSection.objects.first()
     tour_category =TourCategory.objects.all().order_by('-id')
     top_destinations = Destination.objects.filter(is_top=True,is_active=True).order_by('-id')[:7]
-    all_destinations = Destination.objects.filter(is_active=True).order_by('-id')
+    all_destinations = Destination.objects.filter(is_active=True).order_by('title')
     recent_packages = Package.objects.select_related('destination').filter(is_active=True).order_by('-id')[:3]
 
     destination_types = DestinationType.objects.prefetch_related(
@@ -185,6 +185,7 @@ def destinations(request):
 def destination_detail(request,slug):
     destination = Destination.objects.prefetch_related('images','highlights', 'packages__tour_days', 'packages__tour_category').get(slug=slug)
     testi = Testimonial.objects.all().order_by('-rating')
+    all_destinations = Destination.objects.filter(is_active=True).order_by('title')
 
     # Couple
     couple_packages = destination.packages.filter(is_active=True, tour_category__slug='couple').order_by('-id')[:8]
@@ -207,6 +208,7 @@ def destination_detail(request,slug):
         'family_durations': family_durations,
         'solo_packages': solo_packages,
         'solo_durations': solo_durations,
+        'all_destinations': all_destinations,
     }
 
     return render(request,'destinationdetail.html', context)
@@ -314,18 +316,66 @@ def submit_trip_inquiry(request):
 
 
 def packages(request):
+    destinations = Destination.objects.filter(is_active=True).order_by('title')
+    tour_categories = TourCategory.objects.all().order_by('name')
 
+    selected_dest = request.GET.get('destination', '')
+    selected_tour_type = request.GET.get('tour_type', '')
+    selected_duration = request.GET.get('duration', '')
+    selected_price = request.GET.get('price', '')
+    selected_sort = request.GET.get('sort', 'newest')
 
-    packages = Package.objects.select_related('destination','tour_days').filter(is_active=True).order_by('-id')
+    packages_query = Package.objects.select_related('destination','tour_days','tour_category').filter(is_active=True)
 
-    paginator = Paginator(packages, 20)
+    if selected_dest:
+        packages_query = packages_query.filter(destination__slug=selected_dest)
+    
+    if selected_tour_type:
+        packages_query = packages_query.filter(tour_category__slug=selected_tour_type)
+
+    if selected_duration:
+        packages_query = packages_query.filter(tour_days__name=selected_duration)
+
+    if selected_price:
+        if selected_price == "0-5000":
+            packages_query = packages_query.filter(price__lte=5000)
+        elif selected_price == "5000-10000":
+            packages_query = packages_query.filter(price__gt=5000, price__lte=10000)
+        elif selected_price == "10000-20000":
+            packages_query = packages_query.filter(price__gt=10000, price__lte=20000)
+        elif selected_price == "20000+":
+            packages_query = packages_query.filter(price__gt=20000)
+
+    if selected_sort == 'price-asc':
+        packages_query = packages_query.order_by('price')
+    elif selected_sort == 'price-desc':
+        packages_query = packages_query.order_by('-price')
+    elif selected_sort == 'oldest':
+        packages_query = packages_query.order_by('id')
+    else:  # newest
+        packages_query = packages_query.order_by('-id')
+
+    paginator = Paginator(packages_query, 20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request,'package-listingss.html',{'packages':page_obj, 'page_obj': page_obj})
+
+    context = {
+        'packages': page_obj, 
+        'page_obj': page_obj,
+        'destinations': destinations,
+        'tour_categories': tour_categories,
+        'selected_dest': selected_dest,
+        'selected_tour_type': selected_tour_type,
+        'selected_duration': selected_duration,
+        'selected_price': selected_price,
+        'selected_sort': selected_sort,
+    }
+
+    return render(request,'package-listingss.html', context)
 
 
 def package_detail(request, slug):
-    all_destinations = Destination.objects.filter(is_active=True).order_by('-id')
+    all_destinations = Destination.objects.filter(is_active=True).order_by('title')
 
     package = get_object_or_404(Package.objects.select_related('destination','tour_days').prefetch_related('highlights', 'images','inclusions','activities'), slug=slug)
 

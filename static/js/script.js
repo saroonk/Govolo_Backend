@@ -23,9 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('click', function (e) {
             e.preventDefault();
             const text = this.innerText;
+            const val = this.getAttribute('data-value');
             const dropdown = this.closest('.custom-filter-dropdown');
             const selectedValue = dropdown ? dropdown.querySelector('.selected-value') : null;
+            const hiddenInput = dropdown ? dropdown.querySelector('input[type="hidden"]') : null;
             if (selectedValue) selectedValue.innerText = text;
+             if (hiddenInput && val !== null) {
+                hiddenInput.value = val;
+            }
         });
     });
 

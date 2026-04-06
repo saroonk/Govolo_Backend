@@ -49,7 +49,7 @@
     <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
         <div class="container-fluid px-3">
             <!-- Brand -->
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
                 <img src="{% static 'images/Group_1.png' %}" alt="Govolo Tours">
             </a>
 
@@ -63,7 +63,7 @@
             <div class="collapse navbar-collapse d-none d-lg-flex" id="desktopNav">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-3">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'about' %}">About</a>
@@ -155,8 +155,8 @@
                     </li>
                 </ul>
                 <div class="d-flex align-items-center">
-                    <button class="btn btn-primary rounded-pill px-4 nav-explore-btn " type="button">Explore Tours <i
-                            class="bi bi-arrow-right ms-2   align-text-bottom"></i></button>
+                    <a href="{% url 'packages' %}" class="btn btn-primary rounded-pill px-4 nav-explore-btn " type="button">Explore Tours <i
+                            class="bi bi-arrow-right ms-2   align-text-bottom"></i></a>
                 </div>
             </div>
         </div>
@@ -169,9 +169,9 @@
     <div class="offcanvas offcanvas-start custom-mobile-drawer border-0 shadow-sm" tabindex="-1" id="mobileDrawer"
         aria-labelledby="mobileDrawerLabel">
         <div class="offcanvas-header border-bottom-0 mt-2 px-4">
-            <h5 class="offcanvas-title" id="mobileDrawerLabel">
+            <a href="{% url 'index' %}" class="offcanvas-title" id="mobileDrawerLabel">
                 <img src="{% static 'images/Group_1.png' %}" alt="Govolo Tours" style="height: 36px; width: auto;">
-            </h5>
+            </a>
             <button type="button" class="btn-close shadow-none p-2" data-bs-dismiss="offcanvas"
                 aria-label="Close"></button>
         </div>
@@ -312,15 +312,15 @@
 
 
                 <div class="nav-item mb-3">
-                    <a class="nav-link  fs-5" href="#testimonialss">Testimonials</a>
+                    <a class="nav-link  fs-5" href="{% url 'contact' %}">Contact</a>
                 </div>
             </div>
 
-            <button
+            <a href="{% url 'packages' %}"
                 class="btn btn-primary rounded-pill w-100 py-3 mt-4 fs-6  d-flex align-items-center justify-content-center mobile-explore-btn"
                 type="button">
                 Explore Tours <i class="bi bi-arrow-right ms-2"></i>
-            </button>
+        </a>
         </div>
     </div>
 
@@ -348,13 +348,13 @@
 
                     <div
                         class="d-flex flex-nowrap flex-lg-wrap justify-content-center justify-content-lg-start gap-2 gap-lg-3 mt-4 mt-lg-5">
-                        <button class="btn btn-primary rounded-pill px-3 px-lg-5 py-2 py-lg-3 action-btn shadow-sm fs-6"
+                        <a href="{% url 'packages' %}" class="btn btn-primary rounded-pill px-3 px-lg-5 py-2 py-lg-3 action-btn shadow-sm fs-6"
                             data-aos="fade">{{ hero.btn1_text }}
-                             <i class="bi bi-arrow-right ms-1 ms-lg-2"></i> </button>
-                        <button
+                             <i class="bi bi-arrow-right ms-1 ms-lg-2"></i> </a>
+                        <a href="{% url 'contact' %}"
                             class="btn btn-outline-light rounded-pill px-3 px-lg-4 py-2 py-lg-3 action-btn bg-transparent text-white border-white hover-fill fs-6"
                             data-aos="fade">{{ hero.btn2_text }}
-                             <i class="bi bi-arrow-right ms-1 ms-lg-2"></i></button>
+                             <i class="bi bi-arrow-right ms-1 ms-lg-2"></i></a>
                     </div>
                 </div>
             </div>
@@ -394,7 +394,8 @@
 
 
 
-            <div
+            <!-- Hero Filter Desktop -->
+            <form action="{% url 'packages' %}" method="GET"
                 class="filter-bar-wrapper d-none d-md-flex position-absolute start-50 translate-middle-x z-3 w-100 px-4 justify-content-center">
                 <div class="filter-bar bg-white rounded-pill shadow-lg d-flex align-items-center w-100 mx-auto"
                     style="max-width: 1080px; padding: 0.6rem 0.6rem 0.6rem 1.5rem;">
@@ -403,6 +404,7 @@
                     <div class="filter-item d-flex align-items-center flex-fill pe-3 pe-xl-4 border-end border-light">
                         <i class="bi bi-geo-alt text-primary fs-6 me-2"></i>
                         <div class="dropdown custom-filter-dropdown w-100">
+                            <input type="hidden" name="destination" value="">
                             <button
                                 class="btn px-0 py-2 border-0 shadow-none dropdown-toggle d-flex align-items-center justify-content-between w-100 text-muted fw-medium"
                                 type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -411,18 +413,19 @@
                                 <i class="fa-solid fa-chevron-down ms-2" style="font-size: 0.70rem;"></i>
                             </button>
                             <ul class="dropdown-menu border-0 shadow rounded-4 py-2 mt-3 w-100">
-                                <li><a class="dropdown-item fw-medium" href="#">Destination</a></li>
-                                <li><a class="dropdown-item fw-medium" href="#">Maldives</a></li>
-                                <li><a class="dropdown-item fw-medium" href="#">Halong Bay, Thailand</a></li>
-                                <li><a class="dropdown-item fw-medium" href="#">Swiss Alps</a></li>
+                                <li><a class="dropdown-item fw-medium" href="#" data-value="">Any Destination</a></li>
+                                {% for dest in all_destinations %}
+                                <li><a class="dropdown-item fw-medium" href="#" data-value="{{ dest.slug }}">{{ dest.title }}</a></li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
 
-                    <!-- Activity -->
+                    <!-- Tour Type -->
                     <div class="filter-item d-flex align-items-center flex-fill px-3 px-xl-4 border-end border-light">
                         <i class="bi bi-bicycle text-primary fs-6 me-2"></i>
                         <div class="dropdown custom-filter-dropdown w-100">
+                            <input type="hidden" name="tour_type" value="">
                             <button
                                 class="btn px-0 py-2 border-0 shadow-none dropdown-toggle d-flex align-items-center justify-content-between w-100 text-muted fw-medium"
                                 type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -431,18 +434,19 @@
                                 <i class="fa-solid fa-chevron-down ms-2" style="font-size: 0.70rem;"></i>
                             </button>
                             <ul class="dropdown-menu border-0 shadow rounded-4 py-2 mt-3 w-100">
-                                <li><a class="dropdown-item fw-medium" href="#">Solo</a></li>
-                                <li><a class="dropdown-item fw-medium" href="#">Family</a></li>
-                                <li><a class="dropdown-item fw-medium" href="#">Couple</a></li>
-                                <li><a class="dropdown-item fw-medium" href="#">Friends</a></li>
+                                <li><a class="dropdown-item fw-medium" href="#" data-value="">Any Tour Type</a></li>
+                                {% for cat in tour_category %}
+                                <li><a class="dropdown-item fw-medium" href="#" data-value="{{ cat.slug }}">{{ cat.name }}</a></li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
 
-                    <!-- Date Range -->
+                    <!-- Duration -->
                     <div class="filter-item d-flex align-items-center flex-fill px-3 px-xl-4 border-end border-light">
                         <i class="bi bi-clock text-primary fs-6 me-2"></i>
                         <div class="dropdown custom-filter-dropdown w-100">
+                            <input type="hidden" name="duration" value="">
                             <button
                                 class="btn px-0 py-2 border-0 shadow-none dropdown-toggle d-flex align-items-center justify-content-between w-100 text-muted fw-medium"
                                 type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -451,9 +455,12 @@
                                 <i class="fa-solid fa-chevron-down ms-2" style="font-size: 0.70rem;"></i>
                             </button>
                             <ul class="dropdown-menu border-0 shadow rounded-4 py-2 mt-3 w-100">
-                                <li><a class="dropdown-item fw-medium" href="#">3 Days</a></li>
-                                <li><a class="dropdown-item fw-medium" href="#">5 Days</a></li>
-                                <li><a class="dropdown-item fw-medium" href="#">7 Days</a></li>
+                                <li><a class="dropdown-item fw-medium" href="#" data-value="">Any Duration</a></li>
+                                <li><a class="dropdown-item fw-medium" href="#" data-value="3">3 Days</a></li>
+                                <li><a class="dropdown-item fw-medium" href="#" data-value="5">5 Days</a></li>
+                                <li><a class="dropdown-item fw-medium" href="#" data-value="6">6 Days</a></li>
+                                <li><a class="dropdown-item fw-medium" href="#" data-value="8">8 Days</a></li>
+                                <li><a class="dropdown-item fw-medium" href="#" data-value="12">12 Days</a></li>
                             </ul>
                         </div>
                     </div>
@@ -462,31 +469,34 @@
                     <div class="filter-item d-flex align-items-center flex-fill px-3 px-xl-4">
                         <i class="bi bi-currency-dollar text-primary fs-6 me-2"></i>
                         <div class="dropdown custom-filter-dropdown w-100">
+                            <input type="hidden" name="price" value="">
                             <button
                                 class="btn px-0 py-2 border-0 shadow-none dropdown-toggle d-flex align-items-center justify-content-between w-100 text-muted fw-medium"
                                 type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span class="selected-value text-truncate d-inline-block text-start"
-                                    style="max-width: 120px;">$200 - $580</span>
+                                    style="max-width: 120px;">Price Range</span>
                                 <i class="fa-solid fa-chevron-down ms-2" style="font-size: 0.70rem;"></i>
                             </button>
                             <ul class="dropdown-menu border-0 shadow rounded-4 py-2 mt-3 w-100">
-                                <li><a class="dropdown-item fw-medium" href="#">$200 - $580</a></li>
-                                <li><a class="dropdown-item fw-medium" href="#">$580 - $1000</a></li>
-                                <li><a class="dropdown-item fw-medium" href="#">$1000+</a></li>
+                                <li><a class="dropdown-item fw-medium" href="#" data-value="">Any Price</a></li>
+                                <li><a class="dropdown-item fw-medium" href="#" data-value="0-5000">Under ₹5,000</a></li>
+                                <li><a class="dropdown-item fw-medium" href="#" data-value="5000-10000">₹5,000 – ₹10,000</a></li>
+                                <li><a class="dropdown-item fw-medium" href="#" data-value="10000-20000">₹10,000 – ₹20,000</a></li>
+                                <li><a class="dropdown-item fw-medium" href="#" data-value="20000+">₹20,000+</a></li>
                             </ul>
                         </div>
                     </div>
 
                     <!-- Search Button -->
                     <div class="px-3 pe-0 d-flex flex-shrink-0 py-2">
-                        <button
+                        <button type="submit"
                             class="btn btn-primary rounded-pill px-5 py-2 search-btn d-flex align-items-center text-white fs-6 shadow-none border-0 ">
                             Search <i class="bi bi-arrow-right ms-2 fs-5 fw-light"></i>
                         </button>
                     </div>
 
                 </div>
-            </div>
+            </form>
 
             <!-- Mobile Floating Minimal Filter Button -->
             <div
@@ -511,84 +521,93 @@
                     <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="mb-4">
-                        <label class="form-label text-muted small fw-medium text-uppercase mb-2"><i
-                                class="bi bi-geo-alt text-primary me-1"></i> Destination</label>
-                        <div class="dropdown custom-filter-dropdown">
-                            <button
-                                class="btn btn-light bg-light rounded-3 text-dark fw-medium d-flex align-items-center justify-content-between py-2 px-3 w-100 shadow-none border-0"
-                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="selected-value fs-6">All Destinations</span>
-                                <i class="fa-solid fa-chevron-down text-muted" style="font-size: 0.75rem;"></i>
-                            </button>
-                            <ul class="dropdown-menu border-0 shadow-sm mt-1 rounded-3 py-2 w-100 bg-white">
-                                <li><a class="dropdown-item py-2 fw-medium" href="#">All Destinations</a></li>
-                                <li><a class="dropdown-item py-2 fw-medium" href="#">Maldives</a></li>
-                                <li><a class="dropdown-item py-2 fw-medium" href="#">Halong Bay, Thailand</a></li>
-                                <li><a class="dropdown-item py-2 fw-medium" href="#">Swiss Alps</a></li>
-                            </ul>
+                <form action="{% url 'packages' %}" method="GET" class="modal-body p-0">
+                    <div class="p-3">
+                        <div class="mb-4">
+                            <label class="form-label text-muted small fw-medium text-uppercase mb-2"><i
+                                    class="bi bi-geo-alt text-primary me-1"></i> Destination</label>
+                            <div class="dropdown custom-filter-dropdown">
+                                <input type="hidden" name="destination" value="">
+                                <button
+                                    class="btn btn-light bg-light rounded-3 text-dark fw-medium d-flex align-items-center justify-content-between py-2 px-3 w-100 shadow-none border-0"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="selected-value fs-6">Any Destination</span>
+                                    <i class="fa-solid fa-chevron-down text-muted" style="font-size: 0.75rem;"></i>
+                                </button>
+                                <ul class="dropdown-menu border-0 shadow-sm mt-1 rounded-3 py-2 w-100 bg-white">
+                                    <li><a class="dropdown-item py-2 fw-medium" href="#" data-value="">Any Destination</a></li>
+                                    {% for dest in all_destinations %}
+                                    <li><a class="dropdown-item py-2 fw-medium" href="#" data-value="{{ dest.slug }}">{{ dest.title }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label text-muted small fw-medium text-uppercase mb-2"><i
-                                class="bi bi-bicycle text-primary me-1"></i> Tour Type</label>
-                        <div class="dropdown custom-filter-dropdown">
-                            <button
-                                class="btn btn-light bg-light rounded-3 text-dark fw-medium d-flex align-items-center justify-content-between py-2 px-3 w-100 shadow-none border-0"
-                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="selected-value fs-6">Select Tour Type</span>
-                                <i class="fa-solid fa-chevron-down text-muted" style="font-size: 0.75rem;"></i>
-                            </button>
-                            <ul class="dropdown-menu border-0 shadow-sm mt-1 rounded-3 py-2 w-100 bg-white">
-                                <li><a class="dropdown-item py-2 fw-medium" href="#">All Type</a></li>
-                                <li><a class="dropdown-item py-2 fw-medium" href="#">Solo</a></li>
-                                <li><a class="dropdown-item py-2 fw-medium" href="#">Couple</a></li>
-                                <li><a class="dropdown-item py-2 fw-medium" href="#">Family</a></li>
-                                <li><a class="dropdown-item py-2 fw-medium" href="#">Friends</a></li>
-                            </ul>
+                        <div class="mb-4">
+                            <label class="form-label text-muted small fw-medium text-uppercase mb-2"><i
+                                    class="bi bi-bicycle text-primary me-1"></i> Tour Type</label>
+                            <div class="dropdown custom-filter-dropdown">
+                                <input type="hidden" name="tour_type" value="">
+                                <button
+                                    class="btn btn-light bg-light rounded-3 text-dark fw-medium d-flex align-items-center justify-content-between py-2 px-3 w-100 shadow-none border-0"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="selected-value fs-6">Any Tour Type</span>
+                                    <i class="fa-solid fa-chevron-down text-muted" style="font-size: 0.75rem;"></i>
+                                </button>
+                                <ul class="dropdown-menu border-0 shadow-sm mt-1 rounded-3 py-2 w-100 bg-white">
+                                    <li><a class="dropdown-item py-2 fw-medium" href="#" data-value="">Any Tour Type</a></li>
+                                    {% for cat in tour_category %}
+                                    <li><a class="dropdown-item py-2 fw-medium" href="#" data-value="{{ cat.slug }}">{{ cat.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label text-muted small fw-medium text-uppercase mb-2"><i
-                                class="bi bi-clock text-primary me-1"></i> Duration</label>
-                        <div class="dropdown custom-filter-dropdown">
-                            <button
-                                class="btn btn-light bg-light rounded-3 text-dark fw-medium d-flex align-items-center justify-content-between py-2 px-3 w-100 shadow-none border-0"
-                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="selected-value fs-6">Select Duration</span>
-                                <i class="fa-solid fa-chevron-down text-muted" style="font-size: 0.75rem;"></i>
-                            </button>
-                            <ul class="dropdown-menu border-0 shadow-sm mt-1 rounded-3 py-2 w-100 bg-white">
-                                <li><a class="dropdown-item py-2 fw-medium" href="#">3 Days</a></li>
-                                <li><a class="dropdown-item py-2 fw-medium" href="#">5 Days</a></li>
-                                <li><a class="dropdown-item py-2 fw-medium" href="#">7 Days</a></li>
-                            </ul>
+                        <div class="mb-4">
+                            <label class="form-label text-muted small fw-medium text-uppercase mb-2"><i
+                                    class="bi bi-clock text-primary me-1"></i> Duration</label>
+                            <div class="dropdown custom-filter-dropdown">
+                                <input type="hidden" name="duration" value="">
+                                <button
+                                    class="btn btn-light bg-light rounded-3 text-dark fw-medium d-flex align-items-center justify-content-between py-2 px-3 w-100 shadow-none border-0"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="selected-value fs-6">Any Duration</span>
+                                    <i class="fa-solid fa-chevron-down text-muted" style="font-size: 0.75rem;"></i>
+                                </button>
+                                <ul class="dropdown-menu border-0 shadow-sm mt-1 rounded-3 py-2 w-100 bg-white">
+                                    <li><a class="dropdown-item py-2 fw-medium" href="#" data-value="">Any Duration</a></li>
+                                    <li><a class="dropdown-item py-2 fw-medium" href="#" data-value="3">3 Days</a></li>
+                                    <li><a class="dropdown-item py-2 fw-medium" href="#" data-value="5">5 Days</a></li>
+                                    <li><a class="dropdown-item py-2 fw-medium" href="#" data-value="6">6 Days</a></li>
+                                    <li><a class="dropdown-item py-2 fw-medium" href="#" data-value="8">8 Days</a></li>
+                                    <li><a class="dropdown-item py-2 fw-medium" href="#" data-value="12">12 Days</a></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label text-muted small fw-medium text-uppercase mb-2"><i
-                                class="bi bi-currency-dollar text-primary me-1"></i> Price Range</label>
-                        <div class="dropdown custom-filter-dropdown">
-                            <button
-                                class="btn btn-light bg-light rounded-3 text-dark fw-medium d-flex align-items-center justify-content-between py-2 px-3 w-100 shadow-none border-0"
-                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="selected-value fs-6">$200 - $580</span>
-                                <i class="fa-solid fa-chevron-down text-muted" style="font-size: 0.75rem;"></i>
-                            </button>
-                            <ul class="dropdown-menu border-0 shadow-sm mt-1 rounded-3 py-2 w-100 bg-white">
-                                <li><a class="dropdown-item py-2 fw-medium" href="#">$200 - $580</a></li>
-                                <li><a class="dropdown-item py-2 fw-medium" href="#">$580 - $1000</a></li>
-                                <li><a class="dropdown-item py-2 fw-medium" href="#">$1000+</a></li>
-                            </ul>
+                        <div class="mb-4">
+                            <label class="form-label text-muted small fw-medium text-uppercase mb-2"><i
+                                    class="bi bi-currency-dollar text-primary me-1"></i> Price Range</label>
+                            <div class="dropdown custom-filter-dropdown">
+                                <input type="hidden" name="price" value="">
+                                <button
+                                    class="btn btn-light bg-light rounded-3 text-dark fw-medium d-flex align-items-center justify-content-between py-2 px-3 w-100 shadow-none border-0"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="selected-value fs-6">Any Price</span>
+                                    <i class="fa-solid fa-chevron-down text-muted" style="font-size: 0.75rem;"></i>
+                                </button>
+                                <ul class="dropdown-menu border-0 shadow-sm mt-1 rounded-3 py-2 w-100 bg-white">
+                                    <li><a class="dropdown-item py-2 fw-medium" href="#" data-value="">Any Price</a></li>
+                                    <li><a class="dropdown-item py-2 fw-medium" href="#" data-value="0-5000">Under ₹5,000</a></li>
+                                    <li><a class="dropdown-item py-2 fw-medium" href="#" data-value="5000-10000">₹5,000 – ₹10,000</a></li>
+                                    <li><a class="dropdown-item py-2 fw-medium" href="#" data-value="10000-20000">₹10,000 – ₹20,000</a></li>
+                                    <li><a class="dropdown-item py-2 fw-medium" href="#" data-value="20000+">₹20,000+</a></li>
+                                </ul>
+                            </div>
                         </div>
+                        <button type="submit"
+                            class="btn btn-primary rounded-pill w-100 py-3 mt-2 shadow-sm  fs-6 d-flex align-items-center justify-content-center">
+                            Apply Filters <i class="bi bi-arrow-right ms-2"></i>
+                        </button>
                     </div>
-                    <button
-                        class="btn btn-primary rounded-pill w-100 py-3 mt-2 shadow-sm  fs-6 d-flex align-items-center justify-content-center"
-                        data-bs-dismiss="modal">
-                        Apply Filters <i class="bi bi-arrow-right ms-2"></i>
-                    </button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -639,7 +658,7 @@
                     <div class="category-card mx-2">
                         <img src="{{ category.image.url }}" alt="honeymoon" class="img-fluid">
                         <h4 class="category-title mt-4 mb-2">{{ category.name }}</h4>
-                        <a href="#" class="category-link">See More</a>
+                        <a href="{% url 'packages' %}?tour_type={{category.slug}}" class="category-link">See More</a>
                     </div>
                 </div>
                 {% endfor %}
@@ -714,7 +733,7 @@
                     </div>
 
                     <!-- Buttons -->
-                    <a href="#" class="btn btn-primary rounded-pill px-4 py-3  mt-2 plan-btn">Learn More <i
+                    <a href="{% url 'packages' %}" class="btn btn-primary rounded-pill px-4 py-3  mt-2 plan-btn">Learn More <i
                             class="bi bi-arrow-right ms-1 align-middle" style="font-size:1.1rem"></i></a>
                 </div>
             </div>
@@ -944,7 +963,7 @@
     <div id="customize-trip-overlay" class="customize-overlay">
         <div class="overlay-header d-flex justify-content-between align-items-center px-4 py-3  shadow-sm mx-4 my-2">
             <div class="overlay-logo">
-                <a href="index.html">
+                <a href="{% url 'index' %}">
                     <img src="{% static 'images/Group_1.png' %}" alt="Govolo Tours" style="height: 40px;">
                 </a>
             </div>

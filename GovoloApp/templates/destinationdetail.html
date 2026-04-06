@@ -30,28 +30,25 @@
 
 <body>
 
-
 <div class="social-iconss">
-        <a href="" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
+        <a href="https://wa.me/919995409270" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
         <i class="bi bi-whatsapp"></i>
     </a>
 
-    <a href="" target="_blank" rel="noopener noreferrer" class="telephone-float">
-        <i class="bi bi-telephone"></i>
-    </a>
+<a href="tel:+919995807701" target="_blank" rel="noopener noreferrer" class="telephone-float">
+    <i class="bi bi-telephone"></i>
+</a>
 
-    <a href="mailto:[EMAIL_ADDRESS]" target="_blank" rel="noopener noreferrer" class="email-float">
-        <i class="bi bi-envelope"></i>
-    </a>
+<a href="mailto:Reservations@govolotours.com" target="_blank" rel="noopener noreferrer" class="email-float">
+    <i class="bi bi-envelope"></i>
+</a>
 </div>
-
-
 
     <!-- Desktop & Mobile Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
         <div class="container-fluid px-3">
             <!-- Brand -->
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
                 <img src="{% static 'images/Group_1.png' %}" alt="Govolo Tours">
             </a>
 
@@ -65,90 +62,100 @@
             <div class="collapse navbar-collapse d-none d-lg-flex" id="desktopNav">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-3">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link " aria-current="page" href="{% url 'index' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
                     </li>
-    
-                    <!-- Multi-level Dropdown for Destinations -->
-<li class="nav-item mega-parent ">
-    <a class="nav-link mega-trigger" href="#">
-        International 
-        <i class="bi bi-chevron-down ms-1 small dropdown-icon"></i>
-    </a>
 
-    <!-- FULL WIDTH WRAPPER -->
-    <div class="mega-menu mt-2">
+                    {% for type in nav_destination_types %}
+                    {% if type.regions.all %}
+                    <li class="nav-item mega-parent ">
+                        <a href="{% url 'destination_type_list' type.slug%}" class="nav-link mega-trigger" href="#">
+                            {{ type.name }}
+                            <i class="bi bi-chevron-down ms-1 small dropdown-icon"></i>
+                        </a>
 
-        <!-- INNER CONTAINER (IMPORTANT) -->
-        <div class="container">
-            <div class="row">
+                        <!-- FULL WIDTH WRAPPER -->
+                        <div class="mega-menu mt-2">
 
-                <!-- Asia -->
-                <div class="col-lg-4">
-                    <h6 class="mega-heading">Asia</h6>
-                    <ul class="mega-list">
-                        <li>Bali </li>
-                        <li>Maldives </li>
-                        <li>Thailand <span class="badge badge-budget">BUDGET</span></li>
-                        <li>Dubai</li>
-                        <li>Vietnam</li>
-                    </ul>
-                </div>
+                            <!-- INNER CONTAINER (IMPORTANT) -->
+                            <div class="container">
+                                <div class="row">
+                                    
+                                    {% for region in type.regions.all %}
 
-                <!-- Europe -->
-                <div class="col-lg-4">
-                    <h6 class="mega-heading">Europe</h6>
-                    <ul class="mega-list">
-                        <li>France</li>
-                        <li>Switzerland</li>
-                        <li>Spain<span class="badge badge-trending">TRENDING</span></li>
-                        <li>Italy</li>
-                        <li>Germany</li>
-                    </ul>
-                </div>
+                                    <!-- {% if region.destinations.all %} -->
+                               
 
-                <!-- Africa -->
-                <div class="col-lg-4">
-                    <h6 class="mega-heading">Africa</h6>
-                    <ul class="mega-list">
-                        <li>Kenya</li>
-                        <li>South Africa</li>
-                        <li>Egypt <span class="badge badge-trending">TRENDING</span></li>
-                        <li>Morocco</li>
 
-                        <!-- SINGLE VIEW ALL -->
-                        <li class="mt-3">
-                            <a href="/destinations/" class="view-all">
-                                Explore 40+ Destinations →
+                                    <!-- Asia -->
+                                    <div class="col-lg-4 mt-lg-3 mt-0">
+                                        <h6 class="mega-heading">{{ region.name|title }}</h6>
+
+                                        <ul class="mega-list">
+                                        {% for destination in region.destinations.all %}
+
+                                            <li class="text-decoration-none"><a class="li" href="{% url 'destination_detail' destination.slug %}">{{ destination.title|title }} 
+                                                {% if destination.badge_text %}
+                                                <span class="badge badge-trending">
+                                                    {{ destination.badge_text }}
+                                                </span>
+                                                {% endif %} </a>
+                                            </li>
+                                        {% empty %}
+                                            <li class="text-muted">No destinations</li>
+                                        {% endfor %}
+
+                                         
+                                        </ul>
+                                    
+                                    </div>
+                                    <!-- {% endif %} -->
+                                {% endfor %}
+
+
+                                    
+
+
+                                </div>
+                                <div class="row d-flex justify-content-center mt-3">
+                                    <div class="col-6 d-flex justify-content-center">
+                                                                                <a href="{% url 'destinations' %}" class="view-all">
+                                Explore More Destinations →
+                            </a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{% url 'destination_type_list' type.slug %}" class="nav-link" href="#">
+                                {{ type.name }}
                             </a>
                         </li>
-                    </ul>
-                </div>
+                    {% endif %}
+                    {% endfor %}
 
-            </div>
-        </div>
 
-    </div>
-</li>
+          
+
+
                     <li class="nav-item ">
-                        <a class="nav-link" href="#" >
-                            Domestic
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="#" >
+                        <a class="nav-link" href="{% url 'packages' %}">
                             Packages
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Testimonials</a>
+                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                     </li>
                 </ul>
                 <div class="d-flex align-items-center">
-                    <button class="btn btn-primary rounded-pill px-4 nav-explore-btn " type="button">Explore Tours <i
-                            class="bi bi-arrow-right ms-2   align-text-bottom"></i></button>
+                    <a href="{% url 'packages' %}" class="btn btn-primary rounded-pill px-4 nav-explore-btn " type="button">Explore Tours <i
+                            class="bi bi-arrow-right ms-2   align-text-bottom"></i></a>
                 </div>
             </div>
         </div>
@@ -161,141 +168,158 @@
     <div class="offcanvas offcanvas-start custom-mobile-drawer border-0 shadow-sm" tabindex="-1" id="mobileDrawer"
         aria-labelledby="mobileDrawerLabel">
         <div class="offcanvas-header border-bottom-0 mt-2 px-4">
-            <h5 class="offcanvas-title" id="mobileDrawerLabel">
-                <img src="assets/Group_1.png" alt="Govolo Tours" style="height: 36px; width: auto;">
-            </h5>
+            <a href="{% url 'index' %}" class="offcanvas-title" id="mobileDrawerLabel">
+                <img src="{% static 'images/Group_1.png' %}" alt="Govolo Tours" style="height: 36px; width: auto;">
+            </a>
             <button type="button" class="btn-close shadow-none p-2" data-bs-dismiss="offcanvas"
                 aria-label="Close"></button>
         </div>
         <div class="offcanvas-body px-4 pt-1">
             <div class="accordion accordion-flush mobile-nav-accordion" id="mobileNavAccordion">
                 <div class="nav-item mb-3">
-                    <a class="nav-link active  fs-5" href="#">Home</a>
+                    <a class="nav-link   fs-5" href="{% url 'index' %}">Home</a>
                 </div>
                 <div class="nav-item mb-3">
-                    <a class="nav-link  fs-5" href="#">About</a>
+                    <a class="nav-link  fs-5" href="{% url 'about' %}">About</a>
                 </div>
                 <!-- Accordion for Mobile Dropdown (Clean/Modern integration) -->
 
                 <!-- Nested Accordion for Destinations Mobile Dropdown -->
-                <div class="accordion-item border-0 mb-3 bg-transparent">
-                    <h2 class="accordion-header" id="headingDestinations">
-                        <button class="accordion-button collapsed px-0 py-0 shadow-none bg-transparent fs-5"
-                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseDestinations"
-                            aria-expanded="false" aria-controls="collapseDestinations">
-                            International
-                        </button>
-                    </h2>
-                    <div id="collapseDestinations" class="accordion-collapse collapse" aria-labelledby="headingDestinations"
-                        data-bs-parent="#mobileNavAccordion">
-                        <div class="accordion-body px-3 py-2 mt-2 border-start border-2 border-light">
-                            <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
-                                <li class="accordion accordion-flush" id="nestedNavAccordionInt">
-                                    <div class="accordion-item border-0 bg-transparent mb-0">
-                                        <h2 class="accordion-header" id="headingInt">
-                                            <button class="accordion-button collapsed px-0 py-1 shadow-none bg-transparent text-muted nav-sublink"
-                                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseInt"
-                                                aria-expanded="false" aria-controls="collapseInt" style="font-size: 1rem;">
-                                                Asia
-                                            </button>
-                                        </h2>
-                                        <div id="collapseInt" class="accordion-collapse collapse" aria-labelledby="headingInt"
-                                            data-bs-parent="#nestedNavAccordionInt">
-                                            <div class="accordion-body px-3 py-1 mt-1 border-start border-1 border-light">
-                                                <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
-                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Bali</a></li>
-                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Maldives</a></li>
-                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Thailand</a></li>
-                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Vietnam</a></li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div class="accordion-item border-0 bg-transparent mb-0">
-                                        <h2 class="accordion-header" id="headingInt">
-                                            <button class="accordion-button collapsed px-0 py-1 shadow-none bg-transparent text-muted nav-sublink"
-                                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseeuro"
-                                                aria-expanded="false" aria-controls="collapseInt" style="font-size: 1rem;">
-                                                Europe
-                                            </button>
-                                        </h2>
-                                        <div id="collapseeuro" class="accordion-collapse collapse" aria-labelledby="headingInt"
-                                            data-bs-parent="#nestedNavAccordionInt">
-                                            <div class="accordion-body px-3 py-1 mt-1 border-start border-1 border-light">
-                                                <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
-                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">France</a></li>
-                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Switzerland</a></li>
-                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Italy</a></li>
-                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Spain</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div class="accordion-item border-0 bg-transparent mb-0">
-                                        <h2 class="accordion-header" id="headingInt">
-                                            <button class="accordion-button collapsed px-0 py-1 shadow-none bg-transparent text-muted nav-sublink"
-                                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseafr"
-                                                aria-expanded="false" aria-controls="collapseInt" style="font-size: 1rem;">
-                                                Africa
-                                            </button>
-                                        </h2>
-                                        <div id="collapseafr" class="accordion-collapse collapse" aria-labelledby="headingInt"
-                                            data-bs-parent="#nestedNavAccordionInt">
-                                            <div class="accordion-body px-3 py-1 mt-1 border-start border-1 border-light">
-                                                <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
-                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Kenya</a></li>
-                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">South Africa</a></li>
-                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Egypt</a></li>
-                                                    <li><a href="#" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">Morocco</a></li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                </li>
+                 
 
 
 
 
-                            </ul>
+
+
+   
+
+{% for type in nav_destination_types %}
+
+    {% if type.regions.all %}
+    <!-- TYPE LEVEL -->
+    <div class="accordion-item border-0 mb-3 bg-transparent">
+
+        <h2 class="accordion-header" id="heading-{{ forloop.counter }}">
+            <button class="accordion-button collapsed px-0 py-0 shadow-none bg-transparent fs-5"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse-{{ forloop.counter }}"
+                aria-expanded="false">
+                
+                {{ type.name }}
+            </button>
+        </h2>
+
+        <div id="collapse-{{ forloop.counter }}"
+            class="accordion-collapse collapse"
+            data-bs-parent="#mobileNavAccordion">
+
+            <div class="accordion-body px-3 py-2 mt-2 border-start border-2 border-light">
+
+                <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+
+                    {% for region in type.regions.all %}
+                    <li class="accordion accordion-flush" id="nested-{{ forloop.parentloop.counter }}-{{ forloop.counter }}">
+
+                        <div class="accordion-item border-0 bg-transparent mb-0">
+
+                            <!-- REGION -->
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed px-0 py-1 shadow-none bg-transparent text-muted nav-sublink"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#subcollapse-{{ forloop.parentloop.counter }}-{{ forloop.counter }}"
+                                    style="font-size: 1rem;">
+                                    
+                                    {{ region.name }}
+                                </button>
+                            </h2>
+
+                            <!-- DESTINATIONS -->
+                            <div id="subcollapse-{{ forloop.parentloop.counter }}-{{ forloop.counter }}"
+                                class="accordion-collapse collapse"
+                                data-bs-parent="#nested-{{ forloop.parentloop.counter }}-{{ forloop.counter }}">
+
+                                <div class="accordion-body px-3 py-1 mt-1 border-start border-1 border-light">
+
+                                    <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
+
+                                        {% for destination in region.destinations.all %}
+                                            <li>
+                                                <a href="{% url 'destination_detail' destination.slug %}"
+                                                    class="text-decoration-none text-muted py-1 d-block nav-sublink"
+                                                    style="font-size: 0.95rem;">
+                                                    
+                                                    {{ destination.title }}
+
+                                                    {% if destination.badge_text %}
+                                                        <span class="badge badge-trending ms-1">
+                                                            {{ destination.badge_text }}
+                                                        </span>
+                                                    {% endif %}
+                                                </a>
+                                            </li>
+                                        {% empty %}
+                                            <li class="text-muted">No destinations</li>
+                                        {% endfor %}
+                                            <li class="mt-2">
+                                                <a href="{% url 'destinations' %}" class="view-all">
+                                                    View All →
+                                                </a>
+                                            </li>
+
+                                    </ul>
+
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
-                </div>
+                    </li>
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+        </div>
+
+    </div>
+
+    {% else %}
+    <!-- SIMPLE LINK (NO REGIONS) -->
+    <div class="nav-item mb-3">
+        <a href="{% url 'destination_type_list' type.slug %}" class="nav-link fs-5" href="#">
+            {{ type.name }}
+        </a>
+    </div>
+    {% endif %}
+
+{% endfor %}
 
 
-                
-                                <div class="nav-item mb-3">
-                    <a class="nav-link active fs-5" href="#">Domestic</a>
-                </div>
 
-                
+
+
+
+
+
 
 
                 <div class="nav-item mb-3">
-                    <a class="nav-link active fs-5" href="#">Packages</a>
+                    <a class="nav-link  fs-5" href="{% url 'packages' %}">Packages</a>
                 </div>
 
 
                 <div class="nav-item mb-3">
-                    <a class="nav-link  fs-5" href="#">Testimonials</a>
+                    <a class="nav-link  fs-5" href="{% url 'contact' %}">Contact</a>
                 </div>
             </div>
 
-            <button
+            <a href="{% url 'packages' %}"
                 class="btn btn-primary rounded-pill w-100 py-3 mt-4 fs-6  d-flex align-items-center justify-content-center mobile-explore-btn"
                 type="button">
                 Explore Tours <i class="bi bi-arrow-right ms-2"></i>
-            </button>
+        </a>
         </div>
     </div>
 
@@ -324,7 +348,7 @@
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-decoration-none text-muted">Home</a></li>
                     <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-muted">Destinations</a></li>
                     <li class="breadcrumb-item active text-primary" aria-current="page">{{ destination.title }}</li>
                 </ol>
@@ -727,7 +751,7 @@
     <div id="customize-trip-overlay" class="customize-overlay">
         <div class="overlay-header d-flex justify-content-between align-items-center px-4 py-3  shadow-sm mx-4 my-2">
             <div class="overlay-logo">
-                <a href="index.html">
+                <a href="{% url 'index' %}">
                     <img src="{% static 'images/Group_1.png' %}" alt="Govolo Tours" style="height: 40px;">
                 </a>
             </div>

@@ -27,7 +27,6 @@
 </head>
 
 <body>
-
 <div class="social-iconss">
         <a href="https://wa.me/919995409270" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
         <i class="bi bi-whatsapp"></i>
@@ -46,7 +45,7 @@
     <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
         <div class="container-fluid px-3">
             <!-- Brand -->
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
                 <img src="{% static 'images/Group_1.png' %}" alt="Govolo Tours">
             </a>
 
@@ -60,7 +59,7 @@
             <div class="collapse navbar-collapse d-none d-lg-flex" id="desktopNav">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-3">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link " aria-current="page" href="{% url 'index' %}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'about' %}">About</a>
@@ -69,7 +68,7 @@
                     {% for type in nav_destination_types %}
                     {% if type.regions.all %}
                     <li class="nav-item mega-parent ">
-                        <a class="nav-link mega-trigger" href="#">
+                        <a href="{% url 'destination_type_list' type.slug%}" class="nav-link mega-trigger" href="#">
                             {{ type.name }}
                             <i class="bi bi-chevron-down ms-1 small dropdown-icon"></i>
                         </a>
@@ -94,12 +93,12 @@
                                         <ul class="mega-list">
                                         {% for destination in region.destinations.all %}
 
-                                            <li class="">{{ destination.title|title }} 
+                                            <li class="text-decoration-none"><a class="li" href="{% url 'destination_detail' destination.slug %}">{{ destination.title|title }} 
                                                 {% if destination.badge_text %}
                                                 <span class="badge badge-trending">
                                                     {{ destination.badge_text }}
                                                 </span>
-                                                {% endif %} 
+                                                {% endif %} </a>
                                             </li>
                                         {% empty %}
                                             <li class="text-muted">No destinations</li>
@@ -119,7 +118,7 @@
                                 </div>
                                 <div class="row d-flex justify-content-center mt-3">
                                     <div class="col-6 d-flex justify-content-center">
-                                                                                  <a href="/destinations/" class="view-all">
+                                                                                <a href="{% url 'destinations' %}" class="view-all">
                                 Explore More Destinations →
                             </a>
                                     </div>
@@ -131,7 +130,7 @@
                     </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a href="{% url 'destination_type_list' type.slug %}" class="nav-link" href="#">
                                 {{ type.name }}
                             </a>
                         </li>
@@ -143,17 +142,17 @@
 
 
                     <li class="nav-item ">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link active" href="{% url 'packages' %}">
                             Packages
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#testimonialss">Testimonials</a>
+                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                     </li>
                 </ul>
                 <div class="d-flex align-items-center">
-                    <button class="btn btn-primary rounded-pill px-4 nav-explore-btn " type="button">Explore Tours <i
-                            class="bi bi-arrow-right ms-2   align-text-bottom"></i></button>
+                    <a href="{% url 'packages' %}" class="btn btn-primary rounded-pill px-4 nav-explore-btn " type="button">Explore Tours <i
+                            class="bi bi-arrow-right ms-2   align-text-bottom"></i></a>
                 </div>
             </div>
         </div>
@@ -166,16 +165,16 @@
     <div class="offcanvas offcanvas-start custom-mobile-drawer border-0 shadow-sm" tabindex="-1" id="mobileDrawer"
         aria-labelledby="mobileDrawerLabel">
         <div class="offcanvas-header border-bottom-0 mt-2 px-4">
-            <h5 class="offcanvas-title" id="mobileDrawerLabel">
+            <a href="{% url 'index' %}" class="offcanvas-title" id="mobileDrawerLabel">
                 <img src="{% static 'images/Group_1.png' %}" alt="Govolo Tours" style="height: 36px; width: auto;">
-            </h5>
+            </a>
             <button type="button" class="btn-close shadow-none p-2" data-bs-dismiss="offcanvas"
                 aria-label="Close"></button>
         </div>
         <div class="offcanvas-body px-4 pt-1">
             <div class="accordion accordion-flush mobile-nav-accordion" id="mobileNavAccordion">
                 <div class="nav-item mb-3">
-                    <a class="nav-link active  fs-5" href="#">Home</a>
+                    <a class="nav-link   fs-5" href="{% url 'index' %}">Home</a>
                 </div>
                 <div class="nav-item mb-3">
                     <a class="nav-link  fs-5" href="{% url 'about' %}">About</a>
@@ -245,7 +244,7 @@
 
                                         {% for destination in region.destinations.all %}
                                             <li>
-                                                <a href="#"
+                                                <a href="{% url 'destination_detail' destination.slug %}"
                                                     class="text-decoration-none text-muted py-1 d-block nav-sublink"
                                                     style="font-size: 0.95rem;">
                                                     
@@ -262,7 +261,7 @@
                                             <li class="text-muted">No destinations</li>
                                         {% endfor %}
                                             <li class="mt-2">
-                                                <a href="/destinations/" class="view-all">
+                                                <a href="{% url 'destinations' %}" class="view-all">
                                                     View All →
                                                 </a>
                                             </li>
@@ -286,7 +285,7 @@
     {% else %}
     <!-- SIMPLE LINK (NO REGIONS) -->
     <div class="nav-item mb-3">
-        <a class="nav-link fs-5" href="#">
+        <a href="{% url 'destination_type_list' type.slug %}" class="nav-link fs-5" href="#">
             {{ type.name }}
         </a>
     </div>
@@ -304,20 +303,20 @@
 
 
                 <div class="nav-item mb-3">
-                    <a class="nav-link active fs-5" href="#">Packages</a>
+                    <a class="nav-link active fs-5" href="{% url 'packages' %}">Packages</a>
                 </div>
 
 
                 <div class="nav-item mb-3">
-                    <a class="nav-link  fs-5" href="#testimonialss">Testimonials</a>
+                    <a class="nav-link  fs-5" href="{% url 'contact' %}">Contact</a>
                 </div>
             </div>
 
-            <button
+            <a href="{% url 'packages' %}"
                 class="btn btn-primary rounded-pill w-100 py-3 mt-4 fs-6  d-flex align-items-center justify-content-center mobile-explore-btn"
                 type="button">
                 Explore Tours <i class="bi bi-arrow-right ms-2"></i>
-            </button>
+        </a>
         </div>
     </div>
 
@@ -445,8 +444,6 @@
                                         <i class="bi bi-check-circle-fill"></i>
                                         <span>{{ inclusion.text }}</span>
                                     </div>
-                                      {% empty %}
-                                    <p class="text-muted">No inclusions listed.</p>
                                     {% endfor %}
                                 </div>
                                 <div class="col-md-6">
@@ -455,8 +452,6 @@
                                         <i class="bi bi-check-circle-fill"></i>
                                         <span>{{ inclusion.text }}</span>
                                     </div>
-                                      {% empty %}
-                                    <p class="text-muted">No inclusions listed.</p>
                                     {% endfor %}
                                 </div>
              
@@ -859,7 +854,7 @@
     <div id="customize-trip-overlay" class="customize-overlay">
         <div class="overlay-header d-flex justify-content-between align-items-center px-4 py-3  shadow-sm mx-4 my-2">
             <div class="overlay-logo">
-                <a href="index.html">
+                <a href="{% url 'index' %}">
                     <img src="{% static 'images/Group_1.png' %}" alt="Govolo Tours" style="height: 40px;">
                 </a>
             </div>

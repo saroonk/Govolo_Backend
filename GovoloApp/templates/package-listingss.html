@@ -22,9 +22,6 @@
 
 <body class="package-listing-page">
 
-
-
-
 <div class="social-iconss">
         <a href="https://wa.me/919995409270" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
         <i class="bi bi-whatsapp"></i>
@@ -43,7 +40,7 @@
     <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
         <div class="container-fluid px-3">
             <!-- Brand -->
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
                 <img src="{% static 'images/Group_1.png' %}" alt="Govolo Tours">
             </a>
 
@@ -57,7 +54,7 @@
             <div class="collapse navbar-collapse d-none d-lg-flex" id="desktopNav">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-3">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link " aria-current="page" href="{% url 'index' %}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'about' %}">About</a>
@@ -66,7 +63,7 @@
                     {% for type in nav_destination_types %}
                     {% if type.regions.all %}
                     <li class="nav-item mega-parent ">
-                        <a class="nav-link mega-trigger" href="#">
+                        <a href="{% url 'destination_type_list' type.slug%}" class="nav-link mega-trigger" href="#">
                             {{ type.name }}
                             <i class="bi bi-chevron-down ms-1 small dropdown-icon"></i>
                         </a>
@@ -91,12 +88,12 @@
                                         <ul class="mega-list">
                                         {% for destination in region.destinations.all %}
 
-                                            <li class="">{{ destination.title|title }} 
+                                            <li class="text-decoration-none"><a class="li" href="{% url 'destination_detail' destination.slug %}">{{ destination.title|title }} 
                                                 {% if destination.badge_text %}
                                                 <span class="badge badge-trending">
                                                     {{ destination.badge_text }}
                                                 </span>
-                                                {% endif %} 
+                                                {% endif %} </a>
                                             </li>
                                         {% empty %}
                                             <li class="text-muted">No destinations</li>
@@ -116,7 +113,7 @@
                                 </div>
                                 <div class="row d-flex justify-content-center mt-3">
                                     <div class="col-6 d-flex justify-content-center">
-                                                                                  <a href="/destinations/" class="view-all">
+                                                                                <a href="{% url 'destinations' %}" class="view-all">
                                 Explore More Destinations →
                             </a>
                                     </div>
@@ -128,7 +125,7 @@
                     </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a href="{% url 'destination_type_list' type.slug %}" class="nav-link" href="#">
                                 {{ type.name }}
                             </a>
                         </li>
@@ -140,17 +137,17 @@
 
 
                     <li class="nav-item ">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link active" href="{% url 'packages' %}">
                             Packages
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#testimonialss">Testimonials</a>
+                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                     </li>
                 </ul>
                 <div class="d-flex align-items-center">
-                    <button class="btn btn-primary rounded-pill px-4 nav-explore-btn " type="button">Explore Tours <i
-                            class="bi bi-arrow-right ms-2   align-text-bottom"></i></button>
+                    <a href="{% url 'packages' %}" class="btn btn-primary rounded-pill px-4 nav-explore-btn " type="button">Explore Tours <i
+                            class="bi bi-arrow-right ms-2   align-text-bottom"></i></a>
                 </div>
             </div>
         </div>
@@ -163,16 +160,16 @@
     <div class="offcanvas offcanvas-start custom-mobile-drawer border-0 shadow-sm" tabindex="-1" id="mobileDrawer"
         aria-labelledby="mobileDrawerLabel">
         <div class="offcanvas-header border-bottom-0 mt-2 px-4">
-            <h5 class="offcanvas-title" id="mobileDrawerLabel">
+            <a href="{% url 'index' %}" class="offcanvas-title" id="mobileDrawerLabel">
                 <img src="{% static 'images/Group_1.png' %}" alt="Govolo Tours" style="height: 36px; width: auto;">
-            </h5>
+            </a>
             <button type="button" class="btn-close shadow-none p-2" data-bs-dismiss="offcanvas"
                 aria-label="Close"></button>
         </div>
         <div class="offcanvas-body px-4 pt-1">
             <div class="accordion accordion-flush mobile-nav-accordion" id="mobileNavAccordion">
                 <div class="nav-item mb-3">
-                    <a class="nav-link active  fs-5" href="#">Home</a>
+                    <a class="nav-link   fs-5" href="{% url 'index' %}">Home</a>
                 </div>
                 <div class="nav-item mb-3">
                     <a class="nav-link  fs-5" href="{% url 'about' %}">About</a>
@@ -242,7 +239,7 @@
 
                                         {% for destination in region.destinations.all %}
                                             <li>
-                                                <a href="#"
+                                                <a href="{% url 'destination_detail' destination.slug %}"
                                                     class="text-decoration-none text-muted py-1 d-block nav-sublink"
                                                     style="font-size: 0.95rem;">
                                                     
@@ -259,7 +256,7 @@
                                             <li class="text-muted">No destinations</li>
                                         {% endfor %}
                                             <li class="mt-2">
-                                                <a href="/destinations/" class="view-all">
+                                                <a href="{% url 'destinations' %}" class="view-all">
                                                     View All →
                                                 </a>
                                             </li>
@@ -283,7 +280,7 @@
     {% else %}
     <!-- SIMPLE LINK (NO REGIONS) -->
     <div class="nav-item mb-3">
-        <a class="nav-link fs-5" href="#">
+        <a href="{% url 'destination_type_list' type.slug %}" class="nav-link fs-5" href="#">
             {{ type.name }}
         </a>
     </div>
@@ -301,22 +298,25 @@
 
 
                 <div class="nav-item mb-3">
-                    <a class="nav-link active fs-5" href="#">Packages</a>
+                    <a class="nav-link active fs-5" href="{% url 'packages' %}">Packages</a>
                 </div>
 
 
                 <div class="nav-item mb-3">
-                    <a class="nav-link  fs-5" href="#testimonialss">Testimonials</a>
+                    <a class="nav-link  fs-5" href="{% url 'contact' %}">Contact</a>
                 </div>
             </div>
 
-            <button
+            <a href="{% url 'packages' %}"
                 class="btn btn-primary rounded-pill w-100 py-3 mt-4 fs-6  d-flex align-items-center justify-content-center mobile-explore-btn"
                 type="button">
                 Explore Tours <i class="bi bi-arrow-right ms-2"></i>
-            </button>
+        </a>
         </div>
     </div>
+
+
+
 
 
 
@@ -347,69 +347,93 @@
                         <!-- Destination -->
                         <div class="unified-dropdown" id="destDropdown">
                             <div class="unified-drop-btn">
-                                <span class="selected-text">Destination</span>
+                                <span class="selected-text">
+                                    {% if selected_dest %}
+                                        {% for dest in destinations %}
+                                            {% if dest.slug == selected_dest %}{{ dest.title }}{% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        All Destinations
+                                    {% endif %}
+                                </span>
                                 <i class="bi bi-chevron-down"></i>
                             </div>
                             <div class="unified-drop-menu scrollable-menu">
-                                <div class="unified-option active" data-value="">All Destinations</div>
-                                <div class="unified-option" data-value="india">India</div>
-                                <div class="unified-option" data-value="vietnam">Vietnam</div>
-                                <div class="unified-option" data-value="usa">USA</div>
-                                <div class="unified-option" data-value="bhutan">Bhutan</div>
-                                <div class="unified-option" data-value="nepal">Nepal</div>
-                                <div class="unified-option" data-value="thailand">Thailand</div>
+                                <div class="unified-option {% if not selected_dest %}active{% endif %}" data-value="">All Destinations</div>
+                                {% for dest in destinations %}
+                                <div class="unified-option {% if selected_dest == dest.slug %}active{% endif %}" data-value="{{ dest.slug }}">{{ dest.title }}</div>
+                                {% endfor %}
                             </div>
-                            <input type="hidden" name="country" value="">
+                            <input type="hidden" name="destination" value="{{ selected_dest }}">
                         </div>
 
-                        <!-- Duration -->
-                        <div class="unified-dropdown" id="durationDropdown">
+                        <!-- Tour Type -->
+                        <div class="unified-dropdown" id="tourTypeDropdown">
                             <div class="unified-drop-btn">
-                                <span class="selected-text">Duration</span>
+                                <span class="selected-text">
+                                    {% if selected_tour_type %}
+                                        {% for type in tour_categories %}
+                                            {% if type.slug == selected_tour_type %}{{ type.name }}{% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        Any Tour Type
+                                    {% endif %}
+                                </span>
                                 <i class="bi bi-chevron-down"></i>
                             </div>
                             <div class="unified-drop-menu">
-                                <div class="unified-option active" data-value="">Any Duration</div>
-                                <div class="unified-option" data-value="3">3 Days</div>
-                                <div class="unified-option" data-value="5">5 Days</div>
-                                <div class="unified-option" data-value="7">7 Days</div>
+                                <div class="unified-option {% if not selected_tour_type %}active{% endif %}" data-value="">Any Tour Type</div>
+                                {% for type in tour_categories %}
+                                <div class="unified-option {% if selected_tour_type == type.slug %}active{% endif %}" data-value="{{ type.slug }}">{{ type.name }}</div>
+                                {% endfor %}
                             </div>
-                            <input type="hidden" name="duration" value="">
+                            <input type="hidden" name="tour_type" value="{{ selected_tour_type }}">
                         </div>
 
                         <!-- Price Range (Simple Dropdown) -->
                         <div class="unified-dropdown" id="priceDropdown">
                             <div class="unified-drop-btn">
-                                <span class="selected-text">Price Range</span>
+                                <span class="selected-text">
+                                    {% if selected_price == "0-5000" %}Under ₹5,000
+                                    {% elif selected_price == "5000-10000" %}₹5,000 – ₹10,000
+                                    {% elif selected_price == "10000-20000" %}₹10,000 – ₹20,000
+                                    {% elif selected_price == "20000+" %}₹20,000+
+                                    {% else %}Any Price{% endif %}
+                                </span>
                                 <i class="bi bi-chevron-down"></i>
                             </div>
                             <div class="unified-drop-menu">
-                                <div class="unified-option active" data-value="">Any Price</div>
-                                <div class="unified-option" data-value="0-5000">Under ₹5,000</div>
-                                <div class="unified-option" data-value="5000-10000">₹5,000 – ₹10,000</div>
-                                <div class="unified-option" data-value="10000-20000">₹10,000 – ₹20,000</div>
-                                <div class="unified-option" data-value="20000+">₹20,000+</div>
+                                <div class="unified-option {% if not selected_price %}active{% endif %}" data-value="">Any Price</div>
+                                <div class="unified-option {% if selected_price == "0-5000" %}active{% endif %}" data-value="0-5000">Under ₹5,000</div>
+                                <div class="unified-option {% if selected_price == "5000-10000" %}active{% endif %}" data-value="5000-10000">₹5,000 – ₹10,000</div>
+                                <div class="unified-option {% if selected_price == "10000-20000" %}active{% endif %}" data-value="10000-20000">₹10,000 – ₹20,000</div>
+                                <div class="unified-option {% if selected_price == "20000+" %}active{% endif %}" data-value="20000+">₹20,000+</div>
                             </div>
-                            <input type="hidden" name="price" value="">
+                            <input type="hidden" name="price" value="{{ selected_price }}">
                         </div>
 
                         <!-- Sort (Moved Inside Filters) -->
                         <div class="unified-dropdown" id="sortDropdown">
                             <div class="unified-drop-btn">
-                                <span class="selected-text">Sort By</span>
+                                <span class="selected-text">
+                                    {% if selected_sort == 'price-asc' %}Low to High
+                                    {% elif selected_sort == 'price-desc' %}High to Low
+                                    {% elif selected_sort == 'oldest' %}Oldest
+                                    {% else %}Newest{% endif %} <!-- Default is newest -->
+                                </span>
                                 <i class="bi bi-chevron-down"></i>
                             </div>
                             <div class="unified-drop-menu">
-                                <div class="unified-option active" data-value="newest">Newest</div>
-                                <div class="unified-option" data-value="price-asc">Price: Low to High</div>
-                                <div class="unified-option" data-value="price-desc">Price: High to Low</div>
-                                <div class="unified-option" data-value="popular">Most Popular</div>
+                                <div class="unified-option {% if selected_sort == "newest" or not selected_sort %}active{% endif %}" data-value="newest">Newest</div>
+                                <div class="unified-option {% if selected_sort == "price-asc" %}active{% endif %}" data-value="price-asc">Low to High</div>
+                                <div class="unified-option {% if selected_sort == "price-desc" %}active{% endif %}" data-value="price-desc">High to Low</div>
+                                <div class="unified-option {% if selected_sort == "oldest" %}active{% endif %}" data-value="oldest">Oldest</div>
                             </div>
-                            <input type="hidden" name="sort" value="newest">
+                            <input type="hidden" name="sort" value="{{ selected_sort|default:'newest' }}">
                         </div>
 
                         <button type="submit" class="btn btn-primary rounded-pill px-4 ms-2">Apply</button>
-                        <a href="package-listing.html" class="text-decoration-none text-muted small ms-3 fw-medium">Clear All</a>
+                        <a href="{% url 'packages' %}" class="text-decoration-none text-muted small ms-3 fw-medium">Clear All</a>
                     </div>
 
                     <div class="filter-right">
@@ -450,35 +474,50 @@
                     <label class="fw-bold text-muted text-uppercase d-block mb-2 small">Destination</label>
                     <div class="unified-dropdown w-100">
                         <div class="unified-drop-btn w-100 justify-content-between">
-                            <span class="selected-text">All Destinations</span>
+                            <span class="selected-text">
+                                {% if selected_dest %}
+                                    {% for dest in destinations %}
+                                        {% if dest.slug == selected_dest %}{{ dest.title }}{% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    All Destinations
+                                {% endif %}
+                            </span>
                             <i class="bi bi-chevron-down"></i>
                         </div>
                         <div class="unified-drop-menu scrollable-menu w-100">
-                            <div class="unified-option active" data-value="">All Destinations</div>
-                            <div class="unified-option" data-value="india">India</div>
-                            <div class="unified-option" data-value="vietnam">Vietnam</div>
-                            <div class="unified-option" data-value="usa">USA</div>
-                            <div class="unified-option" data-value="bhutan">Bhutan</div>
+                            <div class="unified-option {% if not selected_dest %}active{% endif %}" data-value="">All Destinations</div>
+                            {% for dest in destinations %}
+                            <div class="unified-option {% if selected_dest == dest.slug %}active{% endif %}" data-value="{{ dest.slug }}">{{ dest.title }}</div>
+                            {% endfor %}
                         </div>
-                        <input type="hidden" name="country" value="">
+                        <input type="hidden" name="destination" value="{{ selected_dest }}">
                     </div>
                 </div>
 
-                <!-- Mobile Duration -->
+                <!-- Mobile Tour Type -->
                 <div class="mobile-filter-group mb-4">
-                    <label class="fw-bold text-muted text-uppercase d-block mb-2 small">Duration</label>
+                    <label class="fw-bold text-muted text-uppercase d-block mb-2 small">Tour Type</label>
                     <div class="unified-dropdown w-100">
                         <div class="unified-drop-btn w-100 justify-content-between">
-                            <span class="selected-text">Any Duration</span>
+                            <span class="selected-text">
+                                {% if selected_tour_type %}
+                                    {% for type in tour_categories %}
+                                        {% if type.slug == selected_tour_type %}{{ type.name }}{% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    Any Tour Type
+                                {% endif %}
+                            </span>
                             <i class="bi bi-chevron-down"></i>
                         </div>
                         <div class="unified-drop-menu w-100">
-                            <div class="unified-option active" data-value="">Any Duration</div>
-                            <div class="unified-option" data-value="3">3 Days</div>
-                            <div class="unified-option" data-value="5">5 Days</div>
-                            <div class="unified-option" data-value="7">7 Days</div>
+                            <div class="unified-option {% if not selected_tour_type %}active{% endif %}" data-value="">Any Tour Type</div>
+                            {% for type in tour_categories %}
+                            <div class="unified-option {% if selected_tour_type == type.slug %}active{% endif %}" data-value="{{ type.slug }}">{{ type.name }}</div>
+                            {% endfor %}
                         </div>
-                        <input type="hidden" name="duration" value="">
+                        <input type="hidden" name="tour_type" value="{{ selected_tour_type }}">
                     </div>
                 </div>
 
@@ -487,17 +526,23 @@
                     <label class="fw-bold text-muted text-uppercase d-block mb-2 small">Price Range</label>
                     <div class="unified-dropdown w-100">
                         <div class="unified-drop-btn w-100 justify-content-between">
-                            <span class="selected-text">Any Price</span>
+                            <span class="selected-text">
+                                {% if selected_price == "0-5000" %}Under ₹5,000
+                                {% elif selected_price == "5000-10000" %}₹5,000 – ₹10,000
+                                {% elif selected_price == "10000-20000" %}₹10,000 – ₹20,000
+                                {% elif selected_price == "20000+" %}₹20,000+
+                                {% else %}Any Price{% endif %}
+                            </span>
                             <i class="bi bi-chevron-down"></i>
                         </div>
                         <div class="unified-drop-menu w-100">
-                            <div class="unified-option active" data-value="">Any Price</div>
-                            <div class="unified-option" data-value="0-5000">Under ₹5,000</div>
-                            <div class="unified-option" data-value="5000-10000">₹5,000 – ₹10,000</div>
-                            <div class="unified-option" data-value="10000-20000">₹10,000 – ₹20,000</div>
-                            <div class="unified-option" data-value="20000+">₹20,000+</div>
+                            <div class="unified-option {% if not selected_price %}active{% endif %}" data-value="">Any Price</div>
+                            <div class="unified-option {% if selected_price == "0-5000" %}active{% endif %}" data-value="0-5000">Under ₹5,000</div>
+                            <div class="unified-option {% if selected_price == "5000-10000" %}active{% endif %}" data-value="5000-10000">₹5,000 – ₹10,000</div>
+                            <div class="unified-option {% if selected_price == "10000-20000" %}active{% endif %}" data-value="10000-20000">₹10,000 – ₹20,000</div>
+                            <div class="unified-option {% if selected_price == "20000+" %}active{% endif %}" data-value="20000+">₹20,000+</div>
                         </div>
-                        <input type="hidden" name="price" value="">
+                        <input type="hidden" name="price" value="{{ selected_price }}">
                     </div>
                 </div>
 
@@ -506,21 +551,26 @@
                     <label class="fw-bold text-muted text-uppercase d-block mb-2 small">Sort By</label>
                     <div class="unified-dropdown w-100">
                         <div class="unified-drop-btn w-100 justify-content-between">
-                            <span class="selected-text">Newest</span>
+                            <span class="selected-text">
+                                {% if selected_sort == 'price-asc' %}Low to High
+                                {% elif selected_sort == 'price-desc' %}High to Low
+                                {% elif selected_sort == 'oldest' %}Oldest
+                                {% else %}Newest{% endif %}
+                            </span>
                             <i class="bi bi-chevron-down"></i>
                         </div>
                         <div class="unified-drop-menu w-100">
-                            <div class="unified-option active" data-value="newest">Newest</div>
-                            <div class="unified-option" data-value="price-asc">Price: Low to High</div>
-                            <div class="unified-option" data-value="price-desc">Price: High to Low</div>
-                            <div class="unified-option" data-value="popular">Most Popular</div>
+                            <div class="unified-option {% if selected_sort == "newest" or not selected_sort %}active{% endif %}" data-value="newest">Newest</div>
+                            <div class="unified-option {% if selected_sort == "price-asc" %}active{% endif %}" data-value="price-asc">Low to High</div>
+                            <div class="unified-option {% if selected_sort == "price-desc" %}active{% endif %}" data-value="price-desc">High to Low</div>
+                            <div class="unified-option {% if selected_sort == "oldest" %}active{% endif %}" data-value="oldest">Oldest</div>
                         </div>
-                        <input type="hidden" name="sort" value="newest">
+                        <input type="hidden" name="sort" value="{{ selected_sort|default:'newest' }}">
                     </div>
                 </div>
             </div>
             <div class="drawer-footer p-4 border-top bg-white d-flex gap-3">
-                <a href="package-listing.html" class="btn btn-outline-secondary rounded-pill flex-grow-1 py-3 text-uppercase fw-bold small">Clear All</a>
+                <a href="{% url 'packages' %}" class="btn btn-outline-secondary rounded-pill flex-grow-1 py-3 text-uppercase fw-bold small">Clear All</a>
                 <button type="submit" class="btn btn-primary rounded-pill flex-grow-1 py-3 text-uppercase fw-bold small">Apply Filters</button>
             </div>
         </form>
@@ -652,7 +702,7 @@
     <!-- JS Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script src="{% static 'js/script.js' %}" defer></script>
 
     <script>
 
