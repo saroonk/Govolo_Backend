@@ -40,7 +40,7 @@ def send_contact_email(data):
 
 
 
-
+from django.utils.timezone import localtime
 
 def send_new_lead_email(inquiry):
     """
@@ -86,7 +86,7 @@ ADDITIONAL NOTES
 {inquiry.notes or 'None'}
 
 ─────────────────────────────
-Submitted at: {inquiry.created_at.strftime('%d %B %Y, %I:%M %p')}
+Submitted at: {localtime(inquiry.created_at).strftime('%d %B %Y, %I:%M %p')}
     """.strip()
 
     send_mail(
@@ -176,6 +176,10 @@ def blog_detail(request, slug):
 def about(request):
     return render(request,'aboutus.html')
 
+def testimonial_page(request):
+    testimonials = Testimonial.objects.all().order_by('-rating', '-created_at')
+    return render(request, 'testimonial.html', {'testimonials': testimonials})
+
 def destinations(request):
     destination = Destination.objects.filter(is_active=True).order_by('-id')
 
@@ -238,7 +242,7 @@ def get_destination_itineraries(request):
     try:
         dest = Destination.objects.get(slug=destination_slug)
         itineraries = list(
-            dest.itineraries.values('id', 'title', 'description')
+            dest.itineraries.values('id', 'title')
         )
         return JsonResponse({'itineraries': itineraries})
     except Destination.DoesNotExist:
@@ -304,7 +308,6 @@ def submit_trip_inquiry(request):
             notes             = body.get('notes', ''),
         )
 
-        # Fire and forget — response returns immediately, email sends in background
         custom_trip_email_center(inquiry)
 
         return JsonResponse({'success': True})
@@ -352,7 +355,7 @@ def packages(request):
         packages_query = packages_query.order_by('-price')
     elif selected_sort == 'oldest':
         packages_query = packages_query.order_by('id')
-    else:  # newest
+    else:  
         packages_query = packages_query.order_by('-id')
 
     paginator = Paginator(packages_query, 20)
@@ -388,7 +391,7 @@ def package_detail(request, slug):
     testi = Testimonial.objects.all().order_by('-rating')
 
 
-    similar_packages = Package.objects.filter(Q(destination=package.destination) | Q(tour_category=package.tour_category)).exclude(id=package.id).order_by('-id')[:3]
+    similar_packages = Package.objects.filter(Q(destination=package.destination) | Q(tour_category=package.tour_category),is_active=True).exclude(id=package.id).order_by('-id')[:3]
     return render(request,'package-detail.html',{'lead_already_submitted': request.session.get('lead_submitted', False),'package':package, 'left_inclusions': left_inclusions, 'right_inclusions': right_inclusions, 'activities': activities, 'similar_packages': similar_packages,'testimonial':testi,'all_destinations': all_destinations})
 
 
@@ -486,3 +489,25 @@ def submit_package_inquiry(request):
 
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)}, status=400)
+
+
+
+
+
+
+
+
+
+
+
+
+
+def terms_and_conditions(request):
+    return render(request,'terms-and-conditions.html')
+
+
+
+
+
+def privacy_policy(request):
+    return render(request,'privacy-policy.html')

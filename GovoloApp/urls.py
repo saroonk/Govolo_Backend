@@ -9,6 +9,7 @@ urlpatterns = [
    path('blogdetails/<slug:slug>',views.blog_detail,name="blogdetails"),
 
    path('about/',views.about,name="about"),
+   path('testimonials/', views.testimonial_page, name='testimonial_page'),
 
    path('destinations/',views.destinations,name="destinations"),
    path('destination/<slug:slug>/',views.destination_detail,name="destination_detail"),
@@ -27,6 +28,10 @@ urlpatterns = [
 
    path('submit-lead/', views.submit_lead, name='submit_lead'),
    path('submit-package-inquiry/', views.submit_package_inquiry, name='submit_package_inquiry'),
+
+
+   path('terms-and-conditions/',views.terms_and_conditions,name="terms_and_conditions"),
+   path('privacy-policy/',views.privacy_policy,name="privacy_policy"),
 
 
 

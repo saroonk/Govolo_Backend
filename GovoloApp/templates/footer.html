@@ -27,14 +27,15 @@
                             <h5 class="nav-heading mb-4">Company</h5>
                             <ul class="list-unstyled footer-links">
                                 <li><a href="{% url 'about' %}" class="text-white text-decoration-none">About Us</a></li>
-                                <li><a href="" class="text-white text-decoration-none">Terms of service</a></li>
+                                <li><a href="{% url 'contact' %}" class="text-white text-decoration-none">Contact Us</a></li>
+                                <li><a href="{% url 'testimonial_page' %}" class="text-white text-decoration-none">Testimonials</a></li>
                                 <li><a href="{% url 'blog' %}" class="text-white text-decoration-none">Blog</a></li>
                             </ul>
                         </div>
                         <div class="col-md-4">
                             <h5 class="nav-heading mb-4">Resources</h5>
                             <ul class="list-unstyled footer-links">
-                                <li><a href="{% url 'destinations' %}" class="text-white text-decoration-none">Our Packages</a></li>
+                                <li><a href="{% url 'packages' %}" class="text-white text-decoration-none">Our Packages</a></li>
                                 <li><a href="{% url 'destinations' %}" class="text-white text-decoration-none">Destinations</a></li>
                                 <!-- <li><a href="#" class="text-white text-decoration-none">Videos</a></li>
                                 <li><a href="#" class="text-white text-decoration-none">Our Homes</a></li> -->
@@ -57,9 +58,9 @@
                 </div>
                 <div class="col-md-6">
                     <div class="d-flex justify-content-center justify-content-md-end gap-4 footer-legal-links">
-                        <a href="#" class="text-white text-decoration-none small opacity-75">Privacy</a>
-                        <a href="#" class="text-white text-decoration-none small opacity-75">Terms of Agreement</a>
-                        <a href="#" class="text-white text-decoration-none small opacity-75">Licenses</a>
+                        <a href="{% url 'privacy_policy' %}" class="text-white text-decoration-none small opacity-75">Privacy</a>
+                        <a href="{% url 'terms_and_conditions' %}" class="text-white text-decoration-none small opacity-75">Terms of Agreement</a>
+                        <!-- <a href="#" class="text-white text-decoration-none small opacity-75">Licenses</a> -->
                     </div>
                 </div>
             </div>

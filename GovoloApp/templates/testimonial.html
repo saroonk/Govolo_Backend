@@ -1,0 +1,271 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials | Govolo Tours</title>
+
+    <meta name="description" content="Discover unforgettable journeys with Govolo Tours. Read what our clients have to say about their experiences.">
+    <meta name="keywords" content="Govolo Tours, testimonials, reviews, travel, tours, vacation">
+    <meta name="author" content="Govolo Tours">
+
+    <link rel="icon" type="image/png" href="{% static 'images/Group_1.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/testimonial.css' %}">
+    
+    <style>
+        .testimonial-hero {
+            background-image: url("{% static 'images/pexels-steve-26756127.jpg' %}");
+            background-color: #333;
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="testimonial-page pt-0">
+
+<div class="social-iconss">
+    <a href="https://wa.me/919995409270" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+    <a href="tel:+919995807701" target="_blank" rel="noopener noreferrer" class="telephone-float">
+        <i class="bi bi-telephone"></i>
+    </a>
+    <a href="mailto:Reservations@govolotours.com" target="_blank" rel="noopener noreferrer" class="email-float">
+        <i class="bi bi-envelope"></i>
+    </a>
+</div>
+
+    <!-- Desktop & Mobile Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+        <div class="container-fluid px-3">
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+                <img src="{% static 'images/Group_1.png' %}" alt="Govolo Tours">
+            </a>
+
+            <button class="navbar-toggler border-0 shadow-none d-lg-none p-0" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#mobileDrawer" aria-controls="mobileDrawer">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse d-none d-lg-flex" id="desktopNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-3">
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="{% url 'index' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+
+                    {% for type in nav_destination_types %}
+                    {% if type.regions.all %}
+                    <li class="nav-item mega-parent ">
+                        <a href="{% url 'destination_type_list' type.slug%}" class="nav-link mega-trigger" href="#">
+                            {{ type.name }}
+                            <i class="bi bi-chevron-down ms-1 small dropdown-icon"></i>
+                        </a>
+
+                        <div class="mega-menu mt-2">
+                            <div class="container">
+                                <div class="row">
+                                    {% for region in type.regions.all %}
+                                    <div class="col-lg-4 mt-lg-3 mt-0">
+                                        <h6 class="mega-heading">{{ region.name|title }}</h6>
+                                        <ul class="mega-list">
+                                        {% for destination in region.destinations.all %}
+                                            <li class="text-decoration-none"><a class="li" href="{% url 'destination_detail' destination.slug %}">{{ destination.title|title }} 
+                                                {% if destination.badge_text %}
+                                                <span class="badge badge-trending">{{ destination.badge_text }}</span>
+                                                {% endif %} </a>
+                                            </li>
+                                        {% empty %}
+                                            <li class="text-muted">No destinations</li>
+                                        {% endfor %}
+                                        </ul>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="row d-flex justify-content-center mt-3">
+                                    <div class="col-6 d-flex justify-content-center">
+                                        <a href="{% url 'destinations' %}" class="view-all">Explore More Destinations →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% else %}
+                        <li class="nav-item"><a href="{% url 'destination_type_list' type.slug %}" class="nav-link" href="#">{{ type.name }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+
+                    <li class="nav-item "><a class="nav-link" href="{% url 'packages' %}">Packages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="{% url 'packages' %}" class="btn btn-primary rounded-pill px-4 nav-explore-btn " type="button">Explore Tours <i class="bi bi-arrow-right ms-2   align-text-bottom"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Custom Mobile Drawer (Offcanvas) -->
+    <div class="offcanvas offcanvas-start custom-mobile-drawer border-0 shadow-sm" tabindex="-1" id="mobileDrawer"
+        aria-labelledby="mobileDrawerLabel">
+        <div class="offcanvas-header border-bottom-0 mt-2 px-4">
+            <a href="{% url 'index' %}" class="offcanvas-title" id="mobileDrawerLabel">
+                <img src="{% static 'images/Group_1.png' %}" alt="Govolo Tours" style="height: 36px; width: auto;">
+            </a>
+            <button type="button" class="btn-close shadow-none p-2" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body px-4 pt-1">
+            <div class="accordion accordion-flush mobile-nav-accordion" id="mobileNavAccordion">
+                <div class="nav-item mb-3"><a class="nav-link fs-5" href="{% url 'index' %}">Home</a></div>
+                <div class="nav-item mb-3"><a class="nav-link fs-5" href="{% url 'about' %}">About</a></div>
+
+                {% for type in nav_destination_types %}
+                    {% if type.regions.all %}
+                    <div class="accordion-item border-0 mb-3 bg-transparent">
+                        <h2 class="accordion-header" id="heading-{{ forloop.counter }}">
+                            <button class="accordion-button collapsed px-0 py-0 shadow-none bg-transparent fs-5"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ forloop.counter }}" aria-expanded="false">
+                                {{ type.name }}
+                            </button>
+                        </h2>
+                        <div id="collapse-{{ forloop.counter }}" class="accordion-collapse collapse" data-bs-parent="#mobileNavAccordion">
+                            <div class="accordion-body px-3 py-2 mt-2 border-start border-2 border-light">
+                                <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                                    {% for region in type.regions.all %}
+                                    <li class="accordion accordion-flush" id="nested-{{ forloop.parentloop.counter }}-{{ forloop.counter }}">
+                                        <div class="accordion-item border-0 bg-transparent mb-0">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed px-0 py-1 shadow-none bg-transparent text-muted nav-sublink"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#subcollapse-{{ forloop.parentloop.counter }}-{{ forloop.counter }}" style="font-size: 1rem;">
+                                                    {{ region.name }}
+                                                </button>
+                                            </h2>
+                                            <div id="subcollapse-{{ forloop.parentloop.counter }}-{{ forloop.counter }}" class="accordion-collapse collapse" data-bs-parent="#nested-{{ forloop.parentloop.counter }}-{{ forloop.counter }}">
+                                                <div class="accordion-body px-3 py-1 mt-1 border-start border-1 border-light">
+                                                    <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
+                                                        {% for destination in region.destinations.all %}
+                                                            <li>
+                                                                <a href="{% url 'destination_detail' destination.slug %}" class="text-decoration-none text-muted py-1 d-block nav-sublink" style="font-size: 0.95rem;">
+                                                                    {{ destination.title }}
+                                                                    {% if destination.badge_text %}
+                                                                        <span class="badge badge-trending ms-1">{{ destination.badge_text }}</span>
+                                                                    {% endif %}
+                                                                </a>
+                                                            </li>
+                                                        {% empty %}
+                                                            <li class="text-muted">No destinations</li>
+                                                        {% endfor %}
+                                                            <li class="mt-2"><a href="{% url 'destinations' %}" class="view-all">View All →</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="nav-item mb-3"><a href="{% url 'destination_type_list' type.slug %}" class="nav-link fs-5" href="#">{{ type.name }}</a></div>
+                    {% endif %}
+                {% endfor %}
+
+                <div class="nav-item mb-3"><a class="nav-link fs-5" href="{% url 'packages' %}">Packages</a></div>
+                <div class="nav-item mb-3"><a class="nav-link fs-5" href="{% url 'contact' %}">Contact</a></div>
+            </div>
+            <a href="{% url 'packages' %}" class="btn btn-primary rounded-pill w-100 py-3 mt-4 fs-6  d-flex align-items-center justify-content-center mobile-explore-btn" type="button">
+                Explore Tours <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+
+
+    <!-- Hero Section -->
+    <header class="testimonial-hero w-100 overflow-hidden shadow-sm" >
+        <div class="testimonial-hero-content pt-5">
+            <h1 class="testimonial-page-title">Testimonials</h1>
+            <p class="testimonial-page-subtitle">What our customers say about us</p>
+        </div>
+    </header>
+
+    <!-- Main Testimonials Content -->
+    <main class="py-5" style="background-color: #fcfcfc;">
+        <div class="container pb-5">
+            <div class="row gx-3 gy-5 justify-content-center pt-3 align-items-start" style="overflow-x: hidden;">
+                {% for t in testimonials %}
+                <div class="col-lg-4 col-md-6 mb-5">
+                    <div class="testimonial-card bg-white p-4 rounded-4 shadow-sm text-center position-relative mt-4">
+                        <div class="testimonial-img-wrapper position-absolute top-0 start-50 translate-middle">
+                            {% if t.profile_image %}
+                                <img src="{{ t.profile_image.url }}" alt="{{ t.name }}" style="width: 80px; height: 80px; object-fit: cover;" class="rounded-circle border border-white border-4 shadow-sm">
+                            {% else %}
+                                <div class="testimonial-initial-avatar rounded-circle border border-white border-4 shadow-sm mx-auto d-flex align-items-center justify-content-center">
+                                    <span>{{ t.name|first|upper }}</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="card-body-content mt-4 pt-4 flex-grow-1 d-flex flex-column justify-content-between">
+                            <div>
+                                <h5 class="fw-bold mb-1">{{ t.name }}</h5>
+                                <p class="text-secondary small mb-3">{{ t.designation }}</p>
+                                
+                                <!-- Truncate & Expand Container -->
+                                <div class="testimonial-text-container">
+                                    <p class="text-muted mb-0 mx-auto testimonial-text truncated" id="desc-{{ forloop.counter }}">
+                                        {{ t.description }}
+                                    </p>
+                                </div>
+                                
+                                {% if t.description|length > 150 %}
+                                    <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
+                                {% endif %}
+                                
+                            </div>
+                            <div class="stars-area text-warning fs-5 mt-4 d-flex align-items-center justify-content-center">
+                                {% for i in "12345" %}
+                                    {% if forloop.counter <= t.rating %}
+                                        <i class="fas fa-star"></i>
+                                    {% else %}
+                                        <i class="far fa-star"></i>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center text-muted py-5">
+                    <p class="fs-5">No testimonials available at the moment.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+
+    {% include 'footer.html' %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+
+    <script>
+        function toggleReadMore(btn) {
+            const container = btn.closest('.card-body-content');
+            const desc = container.querySelector('.testimonial-text');
+            if (desc.classList.contains('truncated')) {
+                desc.classList.remove('truncated');
+                btn.textContent = 'Read Less';
+            } else {
+                desc.classList.add('truncated');
+                btn.textContent = 'Read More';
+            }
+        }
+    </script>
+</body>
+</html>

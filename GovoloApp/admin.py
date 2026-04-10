@@ -214,7 +214,6 @@ class TripInquiryAdmin(BaseAdmin):
     list_filter       = ['destination', 'traveler_type', 'duration_days', 'is_contacted']
     search_fields     = ['first_name', 'last_name', 'email', 'phone', 'destination']
     list_editable     = ['is_contacted']
-    date_hierarchy    = 'created_at'
     readonly_fields   = ['created_at', 'daily_plan_display']
 
     fieldsets = (

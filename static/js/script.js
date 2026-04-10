@@ -564,7 +564,7 @@ async function generateDayPlanningFields() {
 
         const optionsHTML = itineraries.length
             ? itineraries.map(it =>
-                `<div class="city-option" data-city="${it.title}" title="${it.description || ''}">${it.title}</div>`
+                `<div class="city-option" data-city="${it.title}" title="${it.title || ''}">${it.title}</div>`
               ).join('')
             : `<div class="city-option disabled text-muted" style="pointer-events:none;">No itinerary points found</div>`;
 
@@ -734,11 +734,13 @@ if (tripForm) {
         const destination    = data.destination || 'Not Selected';
         const durationLabel  = `${totalDays} Days`;
 
+        const logoUrl = "/static/images/Group_1.png";
+
         output.innerHTML = `
             <div class="itin-document mx-auto">
                 <div class="itin-header">
                     <div class="itin-logo-line">
-                        <img src="{% static 'images/Group_1.png' %}" alt="Govolo Tours" class="itin-logo">
+                        <img src="${logoUrl}" alt="Govolo Tours" class="itin-logo">
                         <span class="itin-tag">Travel Itinerary</span>
                     </div>
                     <h1 class="itin-destination-name">${destination}</h1>

@@ -1292,7 +1292,9 @@ h6 {
     display: flex;
     flex-direction: column;
     min-width: 350px !important;
+    max-width: 350px !important;
     /* flex-grow: 1 !important; */
+    min-height: 370px !important;
 }
 
 .testimonial-card:hover {
@@ -1327,12 +1329,94 @@ h6 {
 /* ===== Testimonial Flexbox fixes ===== */
 .testimonial-carousel .owl-stage {
     display: flex;
+    align-items: flex-start;
 }
 
 .testimonial-carousel .owl-item {
     display: flex;
     flex: 1 0 auto;
 }
+
+
+
+@media (max-width: 767px) {
+    .testimonial-card {
+        min-width: 320px !important;
+    }
+}
+
+
+/* Testimonial Cards Specifics */
+.testimonial-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important;
+}
+
+.testimonial-text-container {
+    position: relative;
+}
+
+.testimonial-text.truncated {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.read-more-btn {
+    background: none;
+    border: none;
+    color: var(--primary-color, #0b5ed7);
+    font-weight: 600;
+    padding: 0;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.read-more-btn:hover {
+    color: #084298;
+    text-decoration: underline;
+}
+
+
+
+/* Fallback Initial Avatar Styling */
+.testimonial-initial-avatar {
+    width: 80px;
+    height: 80px;
+    background-color: #0d6efd;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 700;
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover .testimonial-initial-avatar {
+    transform: scale(1.05);
+}
+
+/* Professional Fallback Colors (cycles every 4 cards) */
+/* Grid Layout support */
+.col-lg-4:nth-child(4n+1) .testimonial-initial-avatar { background-color: #1e3a8a; } /* Navy Blue */
+.col-lg-4:nth-child(4n+2) .testimonial-initial-avatar { background-color: #065f46; } /* Emerald Green */
+.col-lg-4:nth-child(4n+3) .testimonial-initial-avatar { background-color: #92400e; } /* Amber/Brown */
+.col-lg-4:nth-child(4n) .testimonial-initial-avatar { background-color: #5b21b6; }   /* Indigo Purple */
+
+/* Carousel Layout support */
+.testimonial-carousel .owl-item:nth-child(4n+1) .testimonial-initial-avatar { background-color: #1e3a8a; }
+.testimonial-carousel .owl-item:nth-child(4n+2) .testimonial-initial-avatar { background-color: #065f46; }
+.testimonial-carousel .owl-item:nth-child(4n+3) .testimonial-initial-avatar { background-color: #92400e; }
+.testimonial-carousel .owl-item:nth-child(4n) .testimonial-initial-avatar { background-color: #5b21b6; }
+
+
+
 
 
 
